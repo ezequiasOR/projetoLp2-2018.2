@@ -2,11 +2,11 @@ package doe;
 
 import java.util.ArrayList;
 
-public class ControlerUsuario {
+public class ControllerUsuario {
 	
 	private ArrayList<Usuario> usuarios;
 	
-	public ControlerUsuario() {
+	public ControllerUsuario() {
 		this.usuarios = new ArrayList<>();
 	}
 	
@@ -14,8 +14,8 @@ public class ControlerUsuario {
 		
 	}
 	
-	public String pesquisaUsuario(String id) {
-		
+	public String pesquisaUsuarioPorId(String id) {
+		return null;
 	}
 
 }
