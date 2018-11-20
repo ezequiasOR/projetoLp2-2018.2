@@ -1,13 +1,13 @@
 package doe;
 
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class ControllerUsuario {
 	
-	private ArrayList<Usuario> usuarios;
+	private LinkedHashMap<String,Usuario> usuarios;
 	
 	public ControllerUsuario() {
-		this.usuarios = new ArrayList<>();
+		this.usuarios = new LinkedHashMap<String,Usuario>();
 	}
 	
 	public void cadastraDoador(String nome, String email, String celular, String id, String classe) {
@@ -16,6 +16,10 @@ public class ControllerUsuario {
 	
 	public String pesquisaUsuarioPorId(String id) {
 		return null;
+	}
+	
+	public void removerUsuario(String id) {
+		
 	}
 
 }
