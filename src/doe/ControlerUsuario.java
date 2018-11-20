@@ -10,7 +10,7 @@ public class ControlerUsuario {
 		this.usuarios = new ArrayList<>();
 	}
 	
-	public void cadastraUsuario(String nome, String email, String celular, String id) {
+	public void cadastraDoador(String nome, String email, String celular, String id, String classe) {
 		
 	}
 	
