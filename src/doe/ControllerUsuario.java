@@ -5,27 +5,16 @@ import java.util.LinkedHashMap;
 public class ControllerUsuario {
 	
 	private LinkedHashMap<String,Usuario> usuarios;
+	private Validador validador;
 	
 	public ControllerUsuario() {
 		this.usuarios = new LinkedHashMap<String,Usuario>();
+		this.validador = new Validador();
 	}
 	
 	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
-		if (nome == null || nome.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: nome nao pode ser vazio ou nulo.");
-		}
-		if (email == null || email.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: email nao pode ser vazio ou nulo.");
-		}
-		if (celular == null || celular.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: celular nao pode ser vazio ou nulo.");
-		}
-		if (classe == null || classe.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: classe nao pode ser vazia ou nula.");
-		}
-		if (id == null || id.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
-		}
+		this.validador.validaCadastroDeDoador(id, nome, email, celular, classe);
+		
 		if (this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario ja existente: "+ id +".");
 		}
