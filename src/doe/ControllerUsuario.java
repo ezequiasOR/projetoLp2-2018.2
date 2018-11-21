@@ -60,15 +60,13 @@ public class ControllerUsuario {
 		return null;
 	}
 	
-	public void removerUsuario(String id) {
+	public void removeUsuario(String id) {
 		if (id == null || id.equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
-		
-		
 	}
 
 
