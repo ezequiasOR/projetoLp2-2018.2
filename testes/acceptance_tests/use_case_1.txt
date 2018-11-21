@@ -1,4 +1,4 @@
-## Lendo os arquivos dos receptores ##
+	## Lendo os arquivos dos receptores ##
 
 lerReceptores caminho="arquivos_sistema/novosReceptores.csv"
 
