@@ -1,7 +1,14 @@
 package doe;
 
+import easyaccept.EasyAccept;
+
 public class Facade {
 	private ControllerUsuario ctlUsuarios;
+	
+	public static void main(String[] args) {
+		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt"};
+		EasyAccept.main(args);
+	}
 	
 	public Facade() {
 		ctlUsuarios = new ControllerUsuario();

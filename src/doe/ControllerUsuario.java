@@ -30,7 +30,7 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario ja existente: "+ id +".");
 		}
 		
-		this.usuarios.put(id, new Usuario(id, nome, email, celular, classe));
+		this.usuarios.put(id, new PessoaFisica(id, nome, email, celular, classe));
 	}
 	
 	public String pesquisaUsuarioPorId(String id) {

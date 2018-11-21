@@ -1,14 +1,14 @@
 package doe;
 
-public class Usuario {
+public abstract class Usuario {
     
-    private String nome;
-    private String email;
-    private String celular;
-    private String classe;
-    private String id;
+    protected String nome;
+    protected String email;
+    protected String celular;
+    protected String classe;
+    protected String id;
     
-    public Usuario(String nome, String email, String celular, String classe, String id) {
+    public Usuario(String id, String nome, String email, String celular, String classe) {
         this.nome = nome;
         this.email = email;
         this.celular = celular;
@@ -75,14 +75,7 @@ public class Usuario {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return nome + "/" + id + ", " + email + ", "  + celular + "status: ";
-                //TODO fazer status: se é doador receptor;
-    }
+    }    
     
-    
-    
+    //TODO separa entre pessoa fisica e pessoa juridica
 }
