@@ -45,8 +45,11 @@ public class ControllerUsuario {
 		if (id == null || id.equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
+		this.usuarios.get(id).setNome(nome); 
+		this.usuarios.get(id).setEmail(email); 
+		this.usuarios.get(id).setCelular(celular);
 		
-		return null;
+		return this.usuarios.get(id).toString();
 	}
 	
 	public void removeUsuario(String id) {
@@ -56,6 +59,8 @@ public class ControllerUsuario {
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
+		
+		this.usuarios.remove(id);
 	}
 
 
