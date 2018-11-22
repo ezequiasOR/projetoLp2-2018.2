@@ -3,10 +3,11 @@ package doe;
 public class PessoaJuridica extends Usuario{
 	private String cnpj;
 	private String status = "Doador";
+	private String aquiVaiSerItensParaDoar;
 	
 	public PessoaJuridica(String id, String nome, String email, String celular, String classe) {
 		super(id, nome, email, celular, classe);
-		// TODO Auto-generated constructor stub
+		this.aquiVaiSerItensParaDoar = "";
 	}
 	
 	public String formataCnpj(String id) {

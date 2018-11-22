@@ -14,18 +14,23 @@ public class ControllerUsuario {
 	
 	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
 		this.validador.validaCadastroDeDoador(id, nome, email, celular, classe);
+		this.validador.verificaSeClasseExiste(classe);
 		
 		if (this.usuarios.containsKey(id)) {
-			throw new IllegalArgumentException("Usuario ja existente: "+ id +".");
+			throw new IllegalArgumentException("Usuario ja existente: " + id + ".");
 		}
 		
-		this.usuarios.put(id, new PessoaFisica(id, nome, email, celular, classe));
+		if (this.validador.validaTipoDeUsuario(classe)) {			
+			this.usuarios.put(id, new PessoaFisica(id, nome, email, celular, classe));
+		}
+		else {
+			this.usuarios.put(id, new PessoaJuridica(id, nome, email, celular, classe));
+		}
 	}
 	
 	public String pesquisaUsuarioPorId(String id) {
-		if (id == null || id.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
-		}
+		this.validador.validaPesquisaPorId(id);
+		
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
@@ -33,9 +38,7 @@ public class ControllerUsuario {
 	}
 	
 	public String pesquisaUsuarioPorNome(String nome) {
-		if (nome == null || nome.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: nome nao pode ser vazio ou nulo.");
-		}
+		this.validador.validaPesquisaPorNome(nome);
 		
 		//TODO imprimir usuarios pelo nome e lancar excecao caso nao tenha usuario com o nome recebido
 		return null;

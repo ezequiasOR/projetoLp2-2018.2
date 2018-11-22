@@ -77,5 +77,7 @@ public abstract class Usuario {
         return true;
     }    
     
-    //TODO separa entre pessoa fisica e pessoa juridica
+    
+    
 }
+	
