@@ -13,6 +13,7 @@ public class ControllerUsuario {
 	}
 	
 	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
+		System.out.println(id);
 		this.validador.validaCadastroDeDoador(id, nome, email, celular, classe);
 		this.validador.verificaSeClasseExiste(classe);
 		
@@ -20,12 +21,7 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario ja existente: " + id + ".");
 		}
 		
-		if (this.validador.validaTipoDeUsuario(classe)) {			
-			this.usuarios.put(id, new PessoaFisica(id, nome, email, celular, classe));
-		}
-		else {
-			this.usuarios.put(id, new PessoaJuridica(id, nome, email, celular, classe));
-		}
+		this.usuarios.put(id, new Doador(id, nome, email, celular, classe));
 	}
 	
 	public String pesquisaUsuarioPorId(String id) {

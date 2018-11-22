@@ -7,13 +7,14 @@ public abstract class Usuario {
     protected String celular;
     protected String classe;
     protected String id;
+    protected Validador validador;
     
     public Usuario(String id, String nome, String email, String celular, String classe) {
         this.nome = nome;
         this.email = email;
         this.celular = celular;
         this.classe = classe;
-        this.id = id;
+        this.id = formataId(id);
     }
 
     public String getNome() {
@@ -75,9 +76,48 @@ public abstract class Usuario {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }    
+    }
     
-    
+    protected String formataId(String documento) {
+    	if (this.validador.validaTipoDeUsuario(documento)) {
+    		id = "";
+    		
+    		for (int i = 0; i<documento.length();i++) {
+    			id += documento.charAt(i);
+    			if (i==2) {
+    				id += '.';
+    			}
+    			else if (i == 5) {
+    				id += '.';
+    			}
+    			else if (i == 8) {
+    				id += '-';
+    			}
+    		}
+    		return id;
+    	}
+    	else {
+    		id = "";
+    		
+    		for (int i = 0; i<documento.length();i++) {
+    			id += documento.charAt(i);
+    			if (i==1) {
+    				id += '.';
+    			}
+    			else if (i == 4) {
+    				id += '.';
+    			}
+    			else if (i == 7) {
+    				id += '/';
+    			}
+    			else if (i == 11) {
+    				id += '-';
+    			}
+    		}
+    		return id;
+    	}
+    }
+
     
 }
 	

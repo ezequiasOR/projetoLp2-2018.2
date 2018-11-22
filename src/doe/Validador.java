@@ -35,8 +35,9 @@ public class Validador {
 	}
 	
 	public void verificaSeClasseExiste(String classe) {
-		if (!classe.toUpperCase().equals("PESSOA_FISICA") && !classe.toUpperCase().equals("IGREJA") && !classe.toUpperCase().equals("ONG") && !classe.toUpperCase().equals("ORGAO PUBLICO MUNICIPAL")
-				&& !classe.toUpperCase().equals("ORGAO PUBLICO ESTADUAL") && !classe.toUpperCase().equals("ORGAO PUBLICO FEDERAL") && !classe.toUpperCase().equals("ASSOCIACAO") && !classe.toUpperCase().equals("SOCIEDADE")) {
+		if (!classe.toUpperCase().equals("PESSOA_FISICA") && !classe.toUpperCase().equals("IGREJA") && !classe.toUpperCase().equals("ONG") 
+				&& !classe.toUpperCase().equals("ORGAO PUBLICO MUNICIPAL") && !classe.toUpperCase().equals("ORGAO PUBLICO ESTADUAL") 
+				&& !classe.toUpperCase().equals("ORGAO PUBLICO FEDERAL") && !classe.toUpperCase().equals("ASSOCIACAO") && !classe.toUpperCase().equals("SOCIEDADE")) {
 			throw new IllegalArgumentException("Entrada invalida: opcao de classe invalida.");
 		}
 		
