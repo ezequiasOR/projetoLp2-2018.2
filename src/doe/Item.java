@@ -10,7 +10,7 @@ public class Item {
 	private String[] tags;
 	
 	/*
-	 * faltam as exceções.
+	 * faltam as exceï¿½ï¿½es.
 	 */
 	public Item(int id, String desc, int quant, String tags) {
 		this.id = id;
@@ -23,8 +23,8 @@ public class Item {
 	public void adicionaQuantidade(int quant) {
 		this.quantidade = this.quantidade + quant;
 	}
-	
+
 	public String toString() {
-		return this.id + " - " + this.descricaoItem +", tags: " +  this.tags + ", quantidade: " + this.quantidade;
+		return " - " + this.descricaoItem +", tags: [" +  this.tags + "], quantidade: " + this.quantidade;
 	}
 }
