@@ -7,15 +7,24 @@ import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class ControllerUsuario {
-	
-	private LinkedHashMap<String,Usuario> usuarios;
 	private Validador validador;
+	private LinkedHashMap<String, Usuario> usuarios;
 	
 	public ControllerUsuario() {
-		this.usuarios = new LinkedHashMap<String,Usuario>();
+		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();
 	}
-	
+
+	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
+		this.validador.validaCadastro(id, nome, email, celular, classe);
+		this.validador.validaClasse(classe);
+		
+		if (this.usuarios.containsKey(id)) {
+			throw new IllegalArgumentException("Usuario ja existente: " + id + ".");
+		}
+		this.usuarios.put(id, new Doador(id, nome, email, celular, classe));
+	}
+
 	public void lerReceptores(String caminho) throws IOException {
 		Scanner sc = new Scanner(new File(caminho));
 		String linha = null;
@@ -25,23 +34,26 @@ public class ControllerUsuario {
 				continue;
 			}
 			String[] dadosReceptor = linha.split(",");
-			//excecoes
+			
+			this.validador.validaCadastro(dadosReceptor[0], dadosReceptor[1], dadosReceptor[2], dadosReceptor[3], 
+					dadosReceptor[4]);
+			
 			this.usuarios.put(dadosReceptor[0], new Receptor(dadosReceptor[0], dadosReceptor[1], 
 					dadosReceptor[2], dadosReceptor[3], dadosReceptor[4]));
 		}
+		
 	}
 
-	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
-		this.validador.validaCadastroDeDoador(id, nome, email, celular, classe);
-		this.validador.verificaSeClasseExiste(classe);
+	public String pesquisaUsuarioPorId(String id) {
+		this.validador.validaId(id);
 		
-		if (this.usuarios.containsKey(id)) {
-			throw new IllegalArgumentException("Usuario ja existente: " + id + ".");
+		if (!this.usuarios.containsKey(id)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
-		
-		this.usuarios.put(id, new Doador(id, nome, email, celular, classe));
+		return this.usuarios.get(id).toString();
 	}
 	
+	/*
 	public String pesquisaUsuarioPorId(String id) {
 		this.validador.validaPesquisaPorId(id);
 		
@@ -81,6 +93,6 @@ public class ControllerUsuario {
 	}
 
 
-
+	 */
 
 }

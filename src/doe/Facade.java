@@ -27,7 +27,7 @@ public class Facade {
 	public String pesquisaUsuarioPorId(String id) {
 		return ctlUsuarios.pesquisaUsuarioPorId(id);
 	}
-	
+	/*
 	public String pesquisaUsuarioPorNome(String nome) {
 		return ctlUsuarios.pesquisaUsuarioPorNome(nome);
 	}
@@ -40,7 +40,7 @@ public class Facade {
 		ctlUsuarios.removeUsuario(id);
 	}
 	
-	
+	*/
 	
 	
 }

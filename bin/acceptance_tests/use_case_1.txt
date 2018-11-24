@@ -26,7 +26,7 @@ expectError "Entrada invalida: classe nao pode ser vazia ou nula." adicionaDoado
 expectError "Entrada invalida: opcao de classe invalida." adicionaDoador id=39284182311 nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="EMPRESA"
 expectError "Entrada invalida: id do usuario nao pode ser vazio ou nulo." adicionaDoador id="" nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="PESSOA_FISICA"
 expectError "Entrada invalida: id do usuario nao pode ser vazio ou nulo." adicionaDoador id= nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="PESSOA_FISICA"
-expectError "Usuario ja existente: "${id1}"." adicionaDoador id=${id1} nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="PESSOA_FISICA"
+expectError "Usuario ja existente: 70513372911." adicionaDoador id=70513372911 nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="PESSOA_FISICA"
 expectError "Usuario ja existente: 80687834000156." adicionaDoador id=80687834000156 nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="ONG"
 expectError "Usuario ja existente: 24875800037." adicionaDoador id=24875800037 nome="Amelie Lacroix" email="amelie@talon.com" celular="(83) 98331-9811" classe="PESSOA_FISICA" 
 
