@@ -8,6 +8,9 @@ public class Doador extends Usuario {
 		status = "doador";
 	}
 
-	
+	@Override
+	public String toString() {
+		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status);
+	}
 	
 }

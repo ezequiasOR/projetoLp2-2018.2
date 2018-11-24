@@ -32,13 +32,13 @@ expectError "Usuario ja existente: 24875800037." adicionaDoador id=24875800037 n
 
 ## Pesquisando usuarios ##
 
-expect "Elizabeth Ashe/70513372911, elizabethcalamity@deadlock.com, (83) 92918-0211, status: doador" pesquisaUsuarioPorId id=${id1}
-expect "Satya Vaswani/59238650111, satya@vishkarcorp.com, (83) 99221-2571, status: doador" pesquisaUsuarioPorId id=${id2}
-expect "Arthur Morgan/52641947613, arthur.morgan@vanderlyne.com, (63) 99983-1899, status: doador" pesquisaUsuarioPorId id=${id3}
-expect "Cave Johnson/18304715242, cave@aperturescience.com, (83) 99831-2011, status: doador" pesquisaUsuarioPorId id=${id4}
-expect "Vaas Montenegro/50270271338, vaas@rook.com, (83) 99348-2481, status: doador" pesquisaUsuarioPorId id=${id5}
-expect "Lucas Fernandes/13507190272, lucas.fernandes@gmail.com, (83) 99982-9231, status: doador" pesquisaUsuarioPorId id=${id6}
-expect "Paroquia de Nossa Senhora da Conceicao/08704413000240, paroquia.da.conceicao@gmail.com, (83) 3321-3140, status: doador" pesquisaUsuarioPorId id=${id11}
+expect "Elizabeth Ashe/70513372911, elizabethcalamity@deadlock.com, (83) 92918-0211, status: doador" pesquisaUsuarioPorId id=70513372911
+expect "Satya Vaswani/59238650111, satya@vishkarcorp.com, (83) 99221-2571, status: doador" pesquisaUsuarioPorId id=59238650111
+expect "Arthur Morgan/52641947613, arthur.morgan@vanderlyne.com, (63) 99983-1899, status: doador" pesquisaUsuarioPorId id=52641947613
+expect "Cave Johnson/18304715242, cave@aperturescience.com, (83) 99831-2011, status: doador" pesquisaUsuarioPorId id=18304715242
+expect "Vaas Montenegro/50270271338, vaas@rook.com, (83) 99348-2481, status: doador" pesquisaUsuarioPorId id=50270271338
+expect "Lucas Fernandes/13507190272, lucas.fernandes@gmail.com, (83) 99982-9231, status: doador" pesquisaUsuarioPorId id=13507190272
+expect "Paroquia de Nossa Senhora da Conceicao/08704413000240, paroquia.da.conceicao@gmail.com, (83) 3321-3140, status: doador" pesquisaUsuarioPorId id=08704413000240
 expect "Mirella Vera da Paz/98624406000140, mirellaveradapaz-90@marcossousa.com, (67) 99164-0977, status: receptor" pesquisaUsuarioPorId id=98624406000140
 expect "Sonia Daniela/31862316040, soniadanielanogueira@danielvasconcelos.com.br, (31) 98874-9311, status: receptor" pesquisaUsuarioPorId id=31862316040
 
