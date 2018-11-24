@@ -1,5 +1,7 @@
 package doe;
 
+import java.io.IOException;
+
 import easyaccept.EasyAccept;
 
 public class Facade {
@@ -12,6 +14,10 @@ public class Facade {
 	
 	public Facade() {
 		ctlUsuarios = new ControllerUsuario();
+	}
+	
+	public void lerReceptores(String caminho) throws IOException {
+		ctlUsuarios.lerReceptores(caminho);
 	}
 	
 	public void adicionaDoador(String id, String nome, String email, String celular, String classe) {

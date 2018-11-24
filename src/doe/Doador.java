@@ -6,6 +6,18 @@ public class Doador extends Usuario {
 	public Doador(String id, String nome, String email, String celular, String classe) {
 		super(id, nome, email, celular, classe);
 		this.status = "doador";
+		
 	}
+
+	public String getStatus() {
+		return status;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status );
+	}
+	
 
 }

@@ -1,6 +1,10 @@
 package doe;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.Scanner;
 
 public class ControllerUsuario {
 	
@@ -12,8 +16,22 @@ public class ControllerUsuario {
 		this.validador = new Validador();
 	}
 	
+	public void lerReceptores(String caminho) throws IOException {
+		Scanner sc = new Scanner(new File(caminho));
+		String linha = null;
+		while (sc.hasNextLine()) {
+			linha = sc.nextLine();
+			if (linha.equals("id,nome,e-mail,celular,classe")) {
+				continue;
+			}
+			String[] dadosReceptor = linha.split(",");
+			//excecoes
+			this.usuarios.put(dadosReceptor[0], new Receptor(dadosReceptor[0], dadosReceptor[1], 
+					dadosReceptor[2], dadosReceptor[3], dadosReceptor[4]));
+		}
+	}
+
 	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
-		System.out.println(id);
 		this.validador.validaCadastroDeDoador(id, nome, email, celular, classe);
 		this.validador.verificaSeClasseExiste(classe);
 		
@@ -61,6 +79,7 @@ public class ControllerUsuario {
 		
 		this.usuarios.remove(id);
 	}
+
 
 
 

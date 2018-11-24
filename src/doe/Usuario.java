@@ -10,6 +10,8 @@ public abstract class Usuario {
     protected Validador validador;
     
     public Usuario(String id, String nome, String email, String celular, String classe) {
+    	this.validador.validaCadastroDeDoador(id, nome, email, celular, classe);
+    	
         this.nome = nome;
         this.email = email;
         this.celular = celular;
