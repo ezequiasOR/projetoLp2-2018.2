@@ -3,7 +3,9 @@ package doe;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class ControllerUsuario {
@@ -53,23 +55,42 @@ public class ControllerUsuario {
 		return this.usuarios.get(id).toString();
 	}
 	
-	/*
-	public String pesquisaUsuarioPorId(String id) {
-		this.validador.validaPesquisaPorId(id);
-		
-		if (!this.usuarios.containsKey(id)) {
-			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
-		}
-		return this.usuarios.get(id).toString();
-	}
-	
 	public String pesquisaUsuarioPorNome(String nome) {
-		this.validador.validaPesquisaPorNome(nome);
+		this.validador.validaNome(nome);
+		List<String> chaveUsuarios = new ArrayList<>();
+		int aux = 0;
+		int qtdMesmoNome = 0;
+		String saida = "";
 		
-		//TODO imprimir usuarios pelo nome e lancar excecao caso nao tenha usuario com o nome recebido
-		return null;
+		for (String u : this.usuarios.keySet()) {
+			chaveUsuarios.add(u);
+		}
+		
+		for (int j = 0; j<chaveUsuarios.size(); j++) {
+			if (this.usuarios.get(chaveUsuarios.get(j)).getNome().equals(nome)){
+				aux += 1;
+			}
+		}
+		
+		for (int i = 0; i < chaveUsuarios.size(); i++) {
+			System.out.println();
+			if (this.usuarios.get(chaveUsuarios.get(i)).getNome().equals(nome)){
+				if (qtdMesmoNome == aux-1) {
+					saida += this.usuarios.get(chaveUsuarios.get(i)).toString();
+				}
+				else {
+					saida += this.usuarios.get(chaveUsuarios.get(i)).toString() + " | ";
+					qtdMesmoNome += 1;
+				}
+			}
+		}
+		
+		if (saida.equals("")) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + nome + ".");
+		}
+		return saida;
 	}
-
+	/*
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		if (id == null || id.equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");

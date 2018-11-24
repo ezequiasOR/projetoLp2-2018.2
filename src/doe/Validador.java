@@ -34,4 +34,10 @@ public class Validador {
 		}
 	}
 
+	public void validaNome(String nome) {
+		if (nome == null || nome.equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: nome nao pode ser vazio ou nulo.");
+		}
+	}
+
 }
