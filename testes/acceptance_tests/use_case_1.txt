@@ -61,12 +61,12 @@ expectError "Usuario nao encontrado: 19048248108." pesquisaUsuarioPorId id=19048
 
 lerReceptores caminho="arquivos_sistema/atualizaReceptores.csv"
 
-expect "Lucas Oliveira/10357071312, amigao@gmail.com, (83) 94813-4871, status: doador" atualizaUsuario id=${id10} nome="Lucas Oliveira" email= celular=
-expect "Arthur Morgan/52641947613, morgan.arthur@vanderlyne.com, (63) 99983-1899, status: doador" atualizaUsuario id=${id3} nome= email="morgan.arthur@vanderlyne.com" celular=
-expect "Cave Johnson/18304715242, cave@aperturescience.com, (83) 99899-2011, status: doador" atualizaUsuario id=${id4} nome= email= celular="(83) 99899-2011"
-expect "Paroquia de Nossa Senhora da Conceicao/08704413000240, conceicao@gmail.com, (83) 3321-3140, status: doador" atualizaUsuario id=${id11} nome= email="conceicao@gmail.com" celular=
-expect "Elizabeth Ashe/70513372911, elizabethcalamity@deadlock.com, (83) 92918-0211, status: doador" atualizaUsuario id=${id1} nome= email= celular=
-expect "Satya Vaswani/59238650111, satya@vishkarcorp.com, (83) 99221-2571, status: doador" atualizaUsuario id=${id2} nome="" email="" celular=""
+expect "Lucas Oliveira/10357071312, amigao@gmail.com, (83) 94813-4871, status: doador" atualizaUsuario id=10357071312 nome="Lucas Oliveira" email= celular=
+expect "Arthur Morgan/52641947613, morgan.arthur@vanderlyne.com, (63) 99983-1899, status: doador" atualizaUsuario id=52641947613 nome= email="morgan.arthur@vanderlyne.com" celular=
+expect "Cave Johnson/18304715242, cave@aperturescience.com, (83) 99899-2011, status: doador" atualizaUsuario id=18304715242 nome= email= celular="(83) 99899-2011"
+expect "Paroquia de Nossa Senhora da Conceicao/08704413000240, conceicao@gmail.com, (83) 3321-3140, status: doador" atualizaUsuario id=08704413000240 nome= email="conceicao@gmail.com" celular=
+expect "Elizabeth Ashe/70513372911, elizabethcalamity@deadlock.com, (83) 92918-0211, status: doador" atualizaUsuario id=70513372911 nome= email= celular=
+expect "Satya Vaswani/59238650111, satya@vishkarcorp.com, (83) 99221-2571, status: doador" atualizaUsuario id=59238650111 nome="" email="" celular=""
 expect "Luiza Elisa Lopes/72859801000118, luizalopes-42@raninho.com.br, (63) 98796-9125, status: receptor" pesquisaUsuarioPorNome nome="Luiza Elisa Lopes"
 expect "Mirella Vera da Paz/98624406000140, mirelladapaz-80@marcossousa.com, (67) 99944-0977, status: receptor" pesquisaUsuarioPorId id=98624406000140
 expect "Victor Benedito/39779848029, victorbenedito@smbcontabil.com.br, (91) 99788-3412, status: receptor" pesquisaUsuarioPorId id=39779848029
@@ -77,9 +77,9 @@ expectError "Entrada invalida: id do usuario nao pode ser vazio ou nulo." atuali
 
 ## Removendo usuarios ##
 
-removeUsuario id=${id10}
+removeUsuario id=10357071312
 removeUsuario id=85618414490
 
-expectError "Usuario nao encontrado: "${id10}"." removeUsuario id=${id10}
+expectError "Usuario nao encontrado: 10357071312." removeUsuario id=10357071312
 expectError "Usuario nao encontrado: 85618414490." removeUsuario id=85618414490
 expectError "Entrada invalida: id do usuario nao pode ser vazio ou nulo." removeUsuario id=

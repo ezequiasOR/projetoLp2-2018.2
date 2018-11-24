@@ -31,7 +31,7 @@ public class Facade {
 	public String pesquisaUsuarioPorNome(String nome) {
 		return ctlUsuarios.pesquisaUsuarioPorNome(nome);
 	}
-	/*
+	
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		return ctlUsuarios.atualizaUsuario(id, nome, email, celular);
 	}
@@ -39,8 +39,6 @@ public class Facade {
 	public void removeUsuario(String id) {
 		ctlUsuarios.removeUsuario(id);
 	}
-	
-	*/
 	
 	
 }
