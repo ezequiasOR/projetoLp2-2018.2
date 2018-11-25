@@ -41,4 +41,24 @@ public class Facade {
 	}
 	
 	
+	public void adicionaDescritor(String descricao) {
+		ctlUsuarios.adicionaDescritor(descricao);
+	}
+	
+	public void adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
+		ctlUsuarios.adicionaItemParaDoacao(idDoador, descricao, quantidade, tags);
+	}
+	
+	public String exibeItem(int idItem, String idDoador) {
+		return ctlUsuarios.exibeItem(idItem, idDoador);
+	}
+	
+	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
+		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
+	}
+	
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
+	}
+	
 }
