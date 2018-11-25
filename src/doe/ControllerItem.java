@@ -16,7 +16,7 @@ public class ControllerItem {
 	public void adicionaDescritor(String descricao) {
 		this.validador.validaDescritor(descricao);
 		for (String descritor : descritores) {
-			if (descritor.equals(descricao.trim())) {
+			if (descricao.trim().equals(descritor)) {
 				throw new IllegalArgumentException("Descritor de Item ja existente: " + descricao.trim() + ".");
 			}
 		}
