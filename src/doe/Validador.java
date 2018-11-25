@@ -40,4 +40,10 @@ public class Validador {
 		}
 	}
 
+	public void validaDescritor(String descricao) {
+		if (descricao == null || descricao.equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: descricao nao pode ser vazia ou nula.");
+		}
+	}
+
 }

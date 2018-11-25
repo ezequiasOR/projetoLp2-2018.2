@@ -4,14 +4,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class ControllerUsuario {
 	private Validador validador;
 	private LinkedHashMap<String, Usuario> usuarios;
-
+	
 	public ControllerUsuario() {
 		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();
@@ -119,5 +121,5 @@ public class ControllerUsuario {
 
 		this.usuarios.remove(id);
 	}
-
+	
 }

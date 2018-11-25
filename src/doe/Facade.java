@@ -6,14 +6,16 @@ import easyaccept.EasyAccept;
 
 public class Facade {
 	private ControllerUsuario ctlUsuarios;
+	private ControllerItem ctlItem;
 	
 	public static void main(String[] args) {
-		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt"};
+		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt"};
 		EasyAccept.main(args);
 	}
 	
 	public Facade() {
 		ctlUsuarios = new ControllerUsuario();
+		ctlItem = new ControllerItem();
 	}
 	
 	public void lerReceptores(String caminho) throws IOException {
@@ -42,23 +44,24 @@ public class Facade {
 	
 	
 	public void adicionaDescritor(String descricao) {
-		ctlUsuarios.adicionaDescritor(descricao);
+		ctlItem.adicionaDescritor(descricao);
 	}
-	
+	/*
 	public void adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
-		ctlUsuarios.adicionaItemParaDoacao(idDoador, descricao, quantidade, tags);
+		ctlItem.adicionaItemParaDoacao(idDoador, descricao, quantidade, tags);
 	}
 	
 	public String exibeItem(int idItem, String idDoador) {
-		return ctlUsuarios.exibeItem(idItem, idDoador);
+		return ctlItem.exibeItem(idItem, idDoador);
 	}
 	
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
-		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
+		return ctlItem.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
 	}
 	
 	public void removeItemParaDoacao(int idItem, String idDoador) {
-		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
+		ctlItem.removeItemParaDoacao(idItem, idDoador);
 	}
+	*/
 	
 }
