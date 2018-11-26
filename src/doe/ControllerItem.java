@@ -1,5 +1,7 @@
 package doe;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,13 +16,16 @@ public class ControllerItem {
 	
 	
 	public void adicionaDescritor(String descricao) {
+		
 		this.validador.validaDescritor(descricao);
-		for (String descritor : descritores) {
-			if (descricao.trim().equals(descritor)) {
-				throw new IllegalArgumentException("Descritor de Item ja existente: " + descricao.trim() + ".");
-			}
+		
+		String descricaoAdicionar = descricao.toLowerCase().trim();
+		
+		if(this.descritores.contains(descricaoAdicionar)) {
+			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricaoAdicionar + ".");
 		}
 		
-		this.descritores.add(descricao.trim());
+		this.descritores.add(descricaoAdicionar);
+		
 	}
 }
