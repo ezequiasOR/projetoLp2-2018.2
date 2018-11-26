@@ -46,4 +46,16 @@ public class Validador {
 		}
 	}
 
+	public void verificaCadastroDeItem(String id, String descricao, int quantidade) {
+		if (id == null || id.equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		}
+		if (descricao == null || descricao.equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: descricao nao pode ser vazia ou nula.");
+		}
+		if (quantidade <= 0) {
+			throw new IllegalArgumentException("Entrada invalida: quantidade deve ser maior que zero.");
+		}
+	}
+
 }

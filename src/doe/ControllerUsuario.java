@@ -123,7 +123,11 @@ public class ControllerUsuario {
 	}
 	
 	public String adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem controlador) {
-		//TODO excessoes
+		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
+		
+		if (!this.usuarios.containsKey(id)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
+		}
 		
 		if(!(controlador.getDescritores().contains(descricao))) {
 			controlador.adicionaDescritor(descricao);
