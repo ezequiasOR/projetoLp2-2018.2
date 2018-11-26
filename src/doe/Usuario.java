@@ -1,5 +1,7 @@
 package doe;
 
+import java.util.Set;
+
 public abstract class Usuario {
 
 	protected String id;
@@ -74,6 +76,10 @@ public abstract class Usuario {
 	}
 	
 	public void adicionaItem(String descricao, int quantidade, String tags, int id) {
+	}
+	
+	public String getItem(int idItem) {
+		return "";
 	}
 	
 }

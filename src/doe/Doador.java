@@ -1,26 +1,31 @@
 package doe;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Doador extends Usuario {
 	
 	private String status;
-	private Set<Item> itens;
+	private Map<Integer, Item> itens;
 
 	public Doador(String id, String nome, String email, String celular, String classe) {
 		super(id, nome, email, celular, classe);
 		status = "doador";
-		this.itens = new HashSet<>();
+		this.itens = new HashMap<>();
 	}
 	
-	public void adicionaItem(String descricao, int quantidade, String tags, int id) {
-		this.itens.add(new Item(descricao, quantidade, tags, id));
+	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
+		this.itens.put(id, new Item(descricao, quantidade, tags, id));
 	}
 
 	@Override
 	public String toString() {
 		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status);
+	}
+
+	
+	public String getItem(int idItem) {
+		return this.itens.get(idItem).toString();
 	}
 	
 	

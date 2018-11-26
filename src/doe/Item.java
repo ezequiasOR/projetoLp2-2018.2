@@ -12,8 +12,8 @@ public class Item {
 	/*
 	 * faltam as exce��es.
 	 */
-	public Item(String desc, int quant, String tags, int id) {
-		this.descricaoItem = desc;
+	public Item(String descricao, int quantidade, String tags, int id) {
+		this.descricaoItem = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
 		this.id = id;
@@ -60,6 +60,7 @@ public class Item {
 	}
 
 	public String toString() {
-		return " - " + this.descricaoItem +", tags: " +  this.tags + ", quantidade: " + this.quantidade;
+		return String.format("%i - %s, tags: %s, quantidade: %i", this.id, this.descricaoItem, this.tags, this.quantidade);
 	}
+	
 }

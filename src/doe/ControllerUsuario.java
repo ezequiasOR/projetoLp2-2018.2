@@ -138,5 +138,11 @@ public class ControllerUsuario {
 		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags, controlador.getIdentificador());
 		return id;
 	}
+
+	public String exibeItem(int idItem, String idDoador) {
+		return this.usuarios.get(idDoador).getItem(idItem);
+	}
+	
+	
 	
 }

@@ -51,11 +51,11 @@ public class Facade {
 		return ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
 	}
 	
-	/*
-	public String exibeItem(int idItem, String idDoador) {
-		return ctlItem.exibeItem(idItem, idDoador);
-	}
 	
+	public String exibeItem(int idItem, String idDoador) {
+		return ctlUsuarios.exibeItem(idItem, idDoador);
+	}
+	/*
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
 		return ctlItem.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
 	}

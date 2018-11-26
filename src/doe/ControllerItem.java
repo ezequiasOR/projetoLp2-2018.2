@@ -24,9 +24,7 @@ public class ControllerItem {
 	
 	
 	public void adicionaDescritor(String descricao) {
-		
 		this.validador.validaDescritor(descricao);
-		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
 		
 		if(this.contemDescritor(descricaoAdicionar)) {
@@ -49,5 +47,5 @@ public class ControllerItem {
 	public Set<String> getDescritores() {
 		return descritores;
 	}
-	
+
 }
