@@ -48,7 +48,7 @@ public class Facade {
 	}
 	
 	public void adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
-		ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags);
+		ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
 	}
 	
 	/*

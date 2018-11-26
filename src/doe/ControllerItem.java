@@ -21,11 +21,25 @@ public class ControllerItem {
 		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
 		
-		if(this.descritores.contains(descricaoAdicionar)) {
+		if(this.contemDescritor(descricaoAdicionar)) {
 			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricaoAdicionar + ".");
 		}
 		
 		this.descritores.add(descricaoAdicionar);
 		
 	}
+	
+	public boolean contemDescritor(String descricao) {
+		if(this.descritores.contains(descricao)) {
+			return true;
+		}
+		
+		return false;
+	}
+
+
+	public Set<String> getDescritores() {
+		return descritores;
+	}
+	
 }

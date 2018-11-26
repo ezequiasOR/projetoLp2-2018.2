@@ -122,8 +122,12 @@ public class ControllerUsuario {
 		this.usuarios.remove(id);
 	}
 	
-	public String adicionaItem(String id, String descricao, int quantidade, String tags) {
+	public String adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem controlador) {
 		//TODO excessoes
+		
+		if(!(controlador.getDescritores().contains(descricao))) {
+			controlador.adicionaDescritor(descricao);
+		}
 		
 		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags);
 		return id;
