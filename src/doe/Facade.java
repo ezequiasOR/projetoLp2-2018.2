@@ -22,8 +22,8 @@ public class Facade {
 		ctlUsuarios.lerReceptores(caminho);
 	}
 	
-	public void adicionaDoador(String id, String nome, String email, String celular, String classe) {
-		ctlUsuarios.cadastraDoador(id, nome, email, celular, classe);
+	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
+		return ctlUsuarios.cadastraDoador(id, nome, email, celular, classe);
 	}
 	
 	public String pesquisaUsuarioPorId(String id) {
@@ -47,8 +47,8 @@ public class Facade {
 		ctlItem.adicionaDescritor(descricao);
 	}
 	
-	public void adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
-		ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
+	public String adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
+		return ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
 	}
 	
 	/*

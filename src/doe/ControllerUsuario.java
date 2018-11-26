@@ -19,7 +19,7 @@ public class ControllerUsuario {
 		this.validador = new Validador();
 	}
 
-	public void cadastraDoador(String id, String nome, String email, String celular, String classe) {
+	public String cadastraDoador(String id, String nome, String email, String celular, String classe) {
 		this.validador.validaCadastro(id, nome, email, celular, classe);
 		this.validador.validaClasse(classe);
 
@@ -27,6 +27,7 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario ja existente: " + id + ".");
 		}
 		this.usuarios.put(id, new Doador(id, nome, email, celular, classe));
+		return id;
 	}
 
 	public void lerReceptores(String caminho) throws IOException {
