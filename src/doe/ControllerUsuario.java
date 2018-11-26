@@ -135,7 +135,7 @@ public class ControllerUsuario {
 			controlador.adicionaDescritor(descricao);
 		}
 		
-		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags, controlador.getIdentificador());
+		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags, controlador.identificador());
 		return id;
 	}
 

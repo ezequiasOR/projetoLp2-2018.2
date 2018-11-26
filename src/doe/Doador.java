@@ -15,7 +15,7 @@ public class Doador extends Usuario {
 	}
 	
 	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
-		this.itens.put(id, new Item(descricao, quantidade, tags, id));
+		this.itens.put(id, new Item(id, descricao, quantidade, tags));
 	}
 
 	@Override
@@ -25,9 +25,7 @@ public class Doador extends Usuario {
 
 	
 	public String getItem(int idItem) {
-		return this.itens.get(idItem).toString();
+		return itens.get(idItem).toString();
 	}
-	
-	
 	
 }

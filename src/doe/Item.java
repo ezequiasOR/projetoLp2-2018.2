@@ -12,20 +12,17 @@ public class Item {
 	/*
 	 * faltam as exce��es.
 	 */
-	public Item(String descricao, int quantidade, String tags, int id) {
+	public Item(int id, String descricao, int quantidade, String tags) {
 		this.descricaoItem = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
 		this.id = id;
-		
 	}
 	
 	public void adicionaQuantidade(int quant) {
 		this.quantidade = this.quantidade + quant;
 	}
 	
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,7 +57,7 @@ public class Item {
 	}
 
 	public String toString() {
-		return String.format("%i - %s, tags: %s, quantidade: %i", this.id, this.descricaoItem, this.tags, this.quantidade);
+		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, this.tags, this.quantidade);
 	}
 	
 }
