@@ -6,12 +6,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ControllerItem {
+	
 	private Set<String> descritores;
+	private int id;
 	private Validador validador;
+	
+	public int getIdentificador() {
+		this.id += 1;
+		return this.id;
+	}
 	
 	public ControllerItem() {
 		this.validador = new Validador();
 		this.descritores = new HashSet<>();
+		this.id = 0;
 	}
 	
 	

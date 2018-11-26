@@ -12,11 +12,11 @@ public class Item {
 	/*
 	 * faltam as exce��es.
 	 */
-	public Item(String desc, int quant, String tags) {
+	public Item(String desc, int quant, String tags, int id) {
 		this.descricaoItem = desc;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
-		this.id = this.hashCode();
+		this.id = id;
 		
 	}
 	

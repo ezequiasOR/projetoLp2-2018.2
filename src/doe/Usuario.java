@@ -73,7 +73,7 @@ public abstract class Usuario {
 		return true;
 	}
 	
-	public void adicionaItem(String descricao, int quantidade, String tags) {
+	public void adicionaItem(String descricao, int quantidade, String tags, int id) {
 	}
 	
 }

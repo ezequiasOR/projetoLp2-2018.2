@@ -14,8 +14,8 @@ public class Doador extends Usuario {
 		this.itens = new HashSet<>();
 	}
 	
-	public void adicionaItem(String descricao, int quantidade, String tags) {
-		this.itens.add(new Item(descricao, quantidade, tags));
+	public void adicionaItem(String descricao, int quantidade, String tags, int id) {
+		this.itens.add(new Item(descricao, quantidade, tags, id));
 	}
 
 	@Override
