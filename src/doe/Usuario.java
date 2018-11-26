@@ -71,6 +71,9 @@ public abstract class Usuario {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
+	
+	public void adicionaItem(String descricao, int quantidade, String tags) {
+	}
 	
 }

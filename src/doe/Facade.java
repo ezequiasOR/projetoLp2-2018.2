@@ -46,11 +46,12 @@ public class Facade {
 	public void adicionaDescritor(String descricao) {
 		ctlItem.adicionaDescritor(descricao);
 	}
-	/*
+	
 	public void adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
-		ctlItem.adicionaItemParaDoacao(idDoador, descricao, quantidade, tags);
+		ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags);
 	}
 	
+	/*
 	public String exibeItem(int idItem, String idDoador) {
 		return ctlItem.exibeItem(idItem, idDoador);
 	}
