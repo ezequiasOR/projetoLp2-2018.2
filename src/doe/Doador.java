@@ -61,6 +61,12 @@ public class Doador extends Usuario {
 	}
 	
 	public void removeItem(int idItem) {
+		if(this.itens.isEmpty()) {
+			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
+		}
+		if(!(this.itens.containsKey(idItem))) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
 		this.itens.remove(idItem);
 	}
 }

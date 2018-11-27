@@ -63,7 +63,7 @@ public class Facade {
 	}
 	
 	
-	public void removeItemParaDoacao(int idItem, String idDoador) {
+	public void removeItemParaDoacao(String idItem, String idDoador) {
 		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
 	}
 	
