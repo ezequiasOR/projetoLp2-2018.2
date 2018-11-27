@@ -141,7 +141,7 @@ public class ControllerUsuario {
 		Item i = new Item(idItem, descricao, quantidade, tags);
 		
 		this.usuarios.get(id).adicionaItem(idItem, descricao, quantidade, tags);
-		controlador.registraItem(i);
+		//controlador.registraItem(i);
 		return idItem;
 	}
 	
