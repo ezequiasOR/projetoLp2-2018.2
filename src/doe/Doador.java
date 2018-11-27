@@ -7,7 +7,7 @@ public class Doador extends Usuario {
 	
 	private String status;
 	private Map<Integer, Item> itens;
-
+	
 	public Doador(String id, String nome, String email, String celular, String classe) {
 		super(id, nome, email, celular, classe);
 		status = "doador";
@@ -15,9 +15,18 @@ public class Doador extends Usuario {
 	}
 	
 	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
-		this.itens.put(id, new Item(id, descricao, quantidade, tags));
+		Item i = new Item(id, descricao, quantidade, tags);
+		
+		if (itens.containsValue(i)) {
+			this.percorre(i, quantidade, tags);
+		}
+		else {
+			this.itens.put(id, i);
+		}
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status);
@@ -28,4 +37,12 @@ public class Doador extends Usuario {
 		return itens.get(idItem).toString();
 	}
 	
+	private void percorre(Item i, int quantidade, String tags) {
+		for (Item item : itens.values()) {
+			if (item.equals(i)) {
+				item.setQuantidade(quantidade);
+				item.setTags(tags.split(","));
+			}
+		}
+	}
 }

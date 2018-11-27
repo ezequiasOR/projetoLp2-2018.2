@@ -28,7 +28,6 @@ public class Item {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descricaoItem == null) ? 0 : descricaoItem.hashCode());
-		result = prime * result + quantidade;
 		result = prime * result + Arrays.hashCode(tags);
 		return result;
 	}
@@ -47,15 +46,35 @@ public class Item {
 				return false;
 		} else if (!descricaoItem.equals(other.descricaoItem))
 			return false;
-		if (id != other.id)
-			return false;
-		if (quantidade != other.quantidade)
-			return false;
 		if (!Arrays.equals(tags, other.tags))
 			return false;
 		return true;
 	}
-	
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String[] getTags() {
+		return tags;
+	}
+
+	public void setTags(String[] tags) {
+		this.tags = tags;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getDescricaoItem() {
+		return descricaoItem;
+	}
+
 	public String toString() {
 		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade);
 	}
