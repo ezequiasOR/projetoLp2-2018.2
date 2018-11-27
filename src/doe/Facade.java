@@ -70,7 +70,7 @@ public class Facade {
 	public String listaDescritorDeItensParaDoacao() {
 		return ctlItem.listarDescritores();
 	}
-	
+	/*
 	public void listaItensParaDoacao() {
 		
 	}
@@ -78,4 +78,5 @@ public class Facade {
 	public void pesquisaItemParaDoacaoPorDescricao(String descricao) {
 		
 	}
+	*/
 }
