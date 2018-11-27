@@ -25,8 +25,6 @@ public class Doador extends Usuario {
 		}
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status);
@@ -41,8 +39,15 @@ public class Doador extends Usuario {
 		for (Item item : itens.values()) {
 			if (item.equals(i)) {
 				item.setQuantidade(quantidade);
-				item.setTags(tags.split(","));
+				item.setTags(tags);
 			}
 		}
+	}
+		
+	public String atualizaItem(int idItem, int quantidade, String tags) {
+		itens.get(idItem).setQuantidade(quantidade);
+		itens.get(idItem).setTags(tags);
+		
+		return itens.get(idItem).toString();
 	}
 }

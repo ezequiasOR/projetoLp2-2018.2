@@ -148,6 +148,11 @@ public class ControllerUsuario {
 		return this.usuarios.get(idDoador).getItem(idItem);
 	}
 	
-	
+	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
+		this.validador.validaId(idDoador);
+		
+		
+		return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
+	}
 	
 }

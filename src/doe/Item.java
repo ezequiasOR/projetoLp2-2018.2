@@ -59,20 +59,24 @@ public class Item {
 		this.quantidade = quantidade;
 	}
 
+	public String getDescricaoItem() {
+		return descricaoItem;
+	}
+
+	public void setDescricaoItem(String descricaoItem) {
+		this.descricaoItem = descricaoItem;
+	}
+
 	public String[] getTags() {
 		return tags;
 	}
-
-	public void setTags(String[] tags) {
-		this.tags = tags;
+		
+	public void setTags(String tags) {
+		this.tags = tags.split(",");
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public String getDescricaoItem() {
-		return descricaoItem;
 	}
 
 	public String toString() {

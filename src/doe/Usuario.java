@@ -78,6 +78,12 @@ public abstract class Usuario {
 	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
 	}
 	
+	public String atualizaItem(int idItem, int quantidade, String tags) {
+		
+		
+		return "";
+	}
+	
 	public String getItem(int idItem) {
 		return "";
 	}
