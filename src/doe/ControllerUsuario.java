@@ -135,10 +135,8 @@ public class ControllerUsuario {
 		
 		int idItem = controlador.identificador();
 		
-		Item i = new Item(idItem, descricao, quantidade, tags);
-		
 		this.usuarios.get(id).adicionaItem(idItem, descricao, quantidade, tags);
-		//controlador.registraItem(i);
+		controlador.cadastraItemSistema(idItem,descricao,quantidade,tags);
 		return idItem;
 	}
 	

@@ -36,10 +36,6 @@ public class ControllerItem {
 		this.descritores.add(descricaoAdicionar);
 	}
 	
-	public void registraItem(Item item) {
-		this.itensCadastrados.add(item);
-	}
-
 	
 	public boolean contemDescritor(String descricao) {
 		if(this.descritores.contains(descricao)) {
@@ -76,6 +72,31 @@ public class ControllerItem {
 		return itensOrdenados;
 		
 		
+	}
+	
+	public boolean cadastraItemSistema(int idItem, String descricao, int quantidade, String tags) {
+		
+		Item novoItem = new Item(idItem, descricao, quantidade, tags);
+		
+		for(Item itemSistema: this.itensCadastrados) {
+			if(itemSistema.equals(novoItem)) {
+				this.procuraItemCadastrado(itemSistema, quantidade);
+				return false;
+			}
+		}
+		
+		this.itensCadastrados.add(novoItem);
+		return true;
+		
+	}
+	
+	private void procuraItemCadastrado(Item item, int quantidade) {
+		for (Item itemSistema : this.itensCadastrados) {
+			if (itemSistema.equals(item)) {
+				itemSistema.setQuantidade(quantidade);
+			
+			}
+		}
 	}
 	
 }
