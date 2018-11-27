@@ -138,7 +138,7 @@ public class ControllerUsuario {
 		
 		int idItem = controlador.identificador();
 		
-		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags, idItem);
+		this.usuarios.get(id).adicionaItem(idItem, descricao, quantidade, tags);
 		return idItem;
 	}
 	

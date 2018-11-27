@@ -75,7 +75,7 @@ public abstract class Usuario {
 		return true;
 	}
 	
-	public void adicionaItem(String descricao, int quantidade, String tags, int id) {
+	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
 	}
 	
 	public String getItem(int idItem) {
