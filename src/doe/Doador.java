@@ -48,17 +48,15 @@ public class Doador extends Usuario {
 	}
 		
 	public String atualizaItem(int idItem, int quantidade, String tags) {
-
-		this.itens.get(idItem).setQuantidade(quantidade);
-		this.itens.get(idItem).setTags(tags);
-
-		
-		itens.get(idItem).setQuantidade(quantidade);
-		itens.get(idItem).setTags(tags);
-
-		
-		return itens.get(idItem).toString();
-	}
+        if (!(tags == null) && !(tags.equals(""))) {
+            this.itens.get(idItem).setTags(tags);
+        }    
+        if ((quantidade > 0)) {
+            this.itens.get(idItem).setQuantidade(quantidade);
+        }
+        
+        return itens.get(idItem).toString();
+    }
 	
 	public void removeItem(int idItem) {
 		if(this.itens.isEmpty()) {
