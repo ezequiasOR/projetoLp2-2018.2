@@ -11,7 +11,7 @@ public class Facade {
 
 	
 	public static void main(String[] args) {
-		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt"};
+		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -67,5 +67,15 @@ public class Facade {
 		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
 	}
 	
+	public void listaDescritorDeItensParaDoacao() {
+		
+	}
 	
+	public void listaItensParaDoacao() {
+		
+	}
+	
+	public void pesquisaItemParaDoacaoPorDescricao(String descricao) {
+		
+	}
 }
