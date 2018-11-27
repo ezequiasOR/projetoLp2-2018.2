@@ -50,7 +50,7 @@ public class Item {
 			return false;
 		return true;
 	}
-
+	
 	public int getQuantidade() {
 		return quantidade;
 	}
@@ -77,6 +77,11 @@ public class Item {
 
 	public int getId() {
 		return id;
+	}
+	
+	public String nomesPesquisa() {
+		String nomePesquisa = this.quantidade + " - " + this.descricaoItem;
+		return nomePesquisa;
 	}
 
 	public String toString() {
