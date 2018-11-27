@@ -32,6 +32,9 @@ public class Doador extends Usuario {
 
 	
 	public String getItem(int idItem) {
+		if (!this.itens.containsKey(idItem)) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
 		return itens.get(idItem).toString();
 	}
 	
@@ -45,6 +48,7 @@ public class Doador extends Usuario {
 	}
 		
 	public String atualizaItem(int idItem, int quantidade, String tags) {
+		
 		itens.get(idItem).setQuantidade(quantidade);
 		itens.get(idItem).setTags(tags);
 		

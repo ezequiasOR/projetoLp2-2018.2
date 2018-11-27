@@ -79,8 +79,6 @@ public abstract class Usuario {
 	}
 	
 	public String atualizaItem(int idItem, int quantidade, String tags) {
-		
-		
 		return "";
 	}
 	
