@@ -15,13 +15,14 @@ public class Doador extends Usuario {
 	}
 	
 	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
-		Item i = new Item(id, descricao, quantidade, tags);
 		
-		if (itens.containsValue(i)) {
-			this.percorre(i, quantidade, tags);
+		Item item = new Item(id, descricao, quantidade, tags);
+		
+		if (itens.containsValue(item)) {
+			this.procuraItem(item, quantidade, tags);
 		}
 		else {
-			this.itens.put(id, i);
+			this.itens.put(id, item);
 		}
 	}
 	
@@ -38,11 +39,11 @@ public class Doador extends Usuario {
 		return itens.get(idItem).toString();
 	}
 	
-	private void percorre(Item i, int quantidade, String tags) {
-		for (Item item : itens.values()) {
-			if (item.equals(i)) {
-				item.setQuantidade(quantidade);
-				item.setTags(tags);
+	private void procuraItem(Item item, int quantidade, String tags) {
+		for (Item itemSistema : itens.values()) {
+			if (itemSistema.equals(item)) {
+				itemSistema.setQuantidade(quantidade);
+				itemSistema.setTags(tags);
 			}
 		}
 	}
