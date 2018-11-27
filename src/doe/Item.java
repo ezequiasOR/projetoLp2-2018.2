@@ -57,7 +57,8 @@ public class Item {
 	}
 	
 	public String toString() {
-		return String.format("%s - %s, tags: %s, quantidade: %d", Integer.toString(this.id), this.descricaoItem, this.tags, this.quantidade);
+		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade);
 	}
+	
 	
 }
