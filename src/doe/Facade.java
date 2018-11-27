@@ -47,7 +47,7 @@ public class Facade {
 		ctlItem.adicionaDescritor(descricao);
 	}
 	
-	public String adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
+	public int adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
 		return ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
 	}
 	

@@ -123,10 +123,11 @@ public class ControllerUsuario {
 		this.usuarios.remove(id);
 	}
 	
-	public String adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem controlador) {
+	public int adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem controlador) {
 		
 		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
 		
+	
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
@@ -135,9 +136,13 @@ public class ControllerUsuario {
 			controlador.adicionaDescritor(descricao);
 		}
 		
-		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags, controlador.identificador());
-		return id;
+		int idItem = controlador.identificador();
+		
+		this.usuarios.get(id).adicionaItem(descricao, quantidade, tags, idItem);
+		return idItem;
 	}
+	
+	
 
 	public String exibeItem(int idItem, String idDoador) {
 		return this.usuarios.get(idDoador).getItem(idItem);
