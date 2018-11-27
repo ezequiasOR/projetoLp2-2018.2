@@ -67,8 +67,8 @@ public class Facade {
 		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
 	}
 	
-	public void listaDescritorDeItensParaDoacao() {
-		
+	public String listaDescritorDeItensParaDoacao() {
+		return ctlItem.listarDescritores();
 	}
 	
 	public void listaItensParaDoacao() {
