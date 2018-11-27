@@ -21,6 +21,7 @@ public class ControllerItem {
 	
 	public ControllerItem() {
 		this.validador = new Validador();
+		this.itensCadastrados = new ArrayList<>();
 		this.descritores = new HashSet<>();
 		this.id = 0;
 	}
