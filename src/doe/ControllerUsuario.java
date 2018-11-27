@@ -145,6 +145,9 @@ public class ControllerUsuario {
 	
 
 	public String exibeItem(int idItem, String idDoador) {
+		if (!this.usuarios.containsKey(idDoador)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + idDoador + ".");
+		}
 		return this.usuarios.get(idDoador).getItem(idItem);
 	}
 	
