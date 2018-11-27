@@ -5,8 +5,9 @@ import java.io.IOException;
 import easyaccept.EasyAccept;
 
 public class Facade {
-	private ControllerUsuario ctlUsuarios;
-	private ControllerItem ctlItem;
+	
+	private ControllerGeral ctlGeral;
+
 	
 	public static void main(String[] args) {
 		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt"};
@@ -14,46 +15,45 @@ public class Facade {
 	}
 	
 	public Facade() {
-		ctlUsuarios = new ControllerUsuario();
-		ctlItem = new ControllerItem();
+		ctlGeral = new ControllerGeral();
 	}
 	
 	public void lerReceptores(String caminho) throws IOException {
-		ctlUsuarios.lerReceptores(caminho);
+		ctlGeral.lerReceptores(caminho);
 	}
 	
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
-		return ctlUsuarios.cadastraDoador(id, nome, email, celular, classe);
+		return ctlGeral.adicionaDoador(id, nome, email, celular, classe);
 	}
 	
 	public String pesquisaUsuarioPorId(String id) {
-		return ctlUsuarios.pesquisaUsuarioPorId(id);
+		return ctlGeral.pesquisaUsuarioPorId(id);
 	}
 	
 	public String pesquisaUsuarioPorNome(String nome) {
-		return ctlUsuarios.pesquisaUsuarioPorNome(nome);
+		return ctlGeral.pesquisaUsuarioPorNome(nome);
 	}
 	
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
-		return ctlUsuarios.atualizaUsuario(id, nome, email, celular);
+		return ctlGeral.atualizaUsuario(id, nome, email, celular);
 	}
 	
 	public void removeUsuario(String id) {
-		ctlUsuarios.removeUsuario(id);
+		ctlGeral.removeUsuario(id);
 	}
 	
 	
 	public void adicionaDescritor(String descricao) {
-		ctlItem.adicionaDescritor(descricao);
+		ctlGeral.adicionaDescritor(descricao);
 	}
 	
 	public int adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
-		return ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
+		return ctlGeral.adicionaItemParaDoacao(idDoador, descricao, quantidade, tags);
 	}
 	
 	
 	public String exibeItem(int idItem, String idDoador) {
-		return ctlUsuarios.exibeItem(idItem, idDoador);
+		return ctlGeral.exibeItem(idItem, idDoador);
 	}
 	/*
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
