@@ -57,11 +57,12 @@ public class Facade {
 	public String exibeItem(int idItem, String idDoador) {
 		return ctlUsuarios.exibeItem(idItem, idDoador);
 	}
-	/*
+	
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
-		return ctlItem.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
+		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
 	}
 	
+	/*
 	public void removeItemParaDoacao(int idItem, String idDoador) {
 		ctlItem.removeItemParaDoacao(idItem, idDoador);
 	}

@@ -28,4 +28,10 @@ public class Doador extends Usuario {
 		return itens.get(idItem).toString();
 	}
 	
+	public String atualizaItem(int idItem, int quantidade, String tags) {
+		itens.get(idItem).setQuantidade(quantidade);
+		itens.get(idItem).setTags(tags);
+		
+		return itens.get(idItem).toString();
+	}
 }
