@@ -57,5 +57,15 @@ public class Validador {
 			throw new IllegalArgumentException("Entrada invalida: quantidade deve ser maior que zero.");
 		}
 	}
+	
+	public void validaIdItem(int idItem) {
+		if(idItem < 0) {
+			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
+		}
+		
+		else if(idItem == 0) {
+			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		}
+	}
 
 }

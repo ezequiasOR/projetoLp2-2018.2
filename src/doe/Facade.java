@@ -62,10 +62,10 @@ public class Facade {
 		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
 	}
 	
-	/*
+	
 	public void removeItemParaDoacao(int idItem, String idDoador) {
-		ctlItem.removeItemParaDoacao(idItem, idDoador);
+		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
 	}
-	*/
+	
 	
 }

@@ -88,4 +88,8 @@ public abstract class Usuario {
 		return "";
 	}
 	
+	public void removeItem(int idItem) {
+		
+	}
+	
 }

@@ -155,4 +155,10 @@ public class ControllerUsuario {
 		return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
 	}
 	
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		this.validador.validaId(idDoador);
+		this.validador.validaIdItem(idItem);
+		this.usuarios.get(idDoador).removeItem(idItem);
+	}
+	
 }
