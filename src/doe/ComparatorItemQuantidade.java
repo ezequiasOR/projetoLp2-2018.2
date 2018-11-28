@@ -15,7 +15,12 @@ public class ComparatorItemQuantidade implements Comparator<Item> {
 		else if(i1Quant < i2Quant) {
 			return 1;
 		}
-		return 0;
+		else {
+			String descI1 = i1.getDescricaoItem();
+			String descI2 = i2.getDescricaoItem();
+			
+			return descI1.compareTo(descI2);
+		}
 				
 	}
 
