@@ -75,11 +75,11 @@ public class Facade {
 		return ctlItem.listarItensNoSistema();
 	}
 	
-	/*
-	public void pesquisaItemParaDoacaoPorDescricao(String descricao) {
-		
+	
+	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
+		return ctlItem.listaItemPorDescricao(descricao);
 	}
-	*/
+	
 	
 	public void adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
 		ctlUsuarios.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);

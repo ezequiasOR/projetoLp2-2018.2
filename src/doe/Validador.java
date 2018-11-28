@@ -67,5 +67,11 @@ public class Validador {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
 	}
+	
+	public void validaPesquisa(String descricao) {
+		if (descricao == null || descricao.equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: texto da pesquisa nao pode ser vazio ou nulo.");
+		}
+	}
 
 }

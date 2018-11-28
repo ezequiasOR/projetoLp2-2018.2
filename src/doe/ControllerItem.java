@@ -21,6 +21,18 @@ public class ControllerItem {
 		return this.id;
 	}
 	
+	private boolean inDescritor(Item item, String palavra) {
+		
+		String[] descritores = item.getDescricaoItem().split(" ");
+		
+		for(int h = 0; h < descritores.length; h++) {
+			if(descritores[h].equals(palavra)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public ControllerItem() {
 		this.validador = new Validador();
 		this.descritoresSistema = new HashSet<>();
@@ -108,6 +120,23 @@ public class ControllerItem {
 		return descritores;
 	}
 	
+	private String concatenador(ArrayList arrayItens) {
+		
+	
+		String stringDeItens = "";
+		
+		for(int i = 0; i < arrayItens.size(); i++) {
+			if(i == arrayItens.size()-1) {
+				stringDeItens = stringDeItens + arrayItens.get(i).toString();
+			}
+			else {
+				stringDeItens = stringDeItens + arrayItens.get(i).toString() + " | ";
+			}
+		}
+		
+		return stringDeItens;
+	}
+	
 	public String listarDescritores() {
 		
 		ArrayList<Descritor> descritoresOrdenadosPorNome = new ArrayList<>();
@@ -118,18 +147,7 @@ public class ControllerItem {
 		
 		Collections.sort(descritoresOrdenadosPorNome, new ComparatorDescritor());
 		
-		String descritoresOrdenados = "";
-		
-		for(int i = 0; i < descritoresOrdenadosPorNome.size(); i++) {
-			if(i == descritoresOrdenadosPorNome.size()-1) {
-				descritoresOrdenados = descritoresOrdenados + descritoresOrdenadosPorNome.get(i).toString();
-			}
-			else {
-				descritoresOrdenados = descritoresOrdenados + descritoresOrdenadosPorNome.get(i).toString() + " | ";
-			}
-		}
-		
-		return descritoresOrdenados;
+		return this.concatenador(descritoresOrdenadosPorNome);
 		
 		
 	}
@@ -149,6 +167,23 @@ public class ControllerItem {
 		}
 		
 		return itensOrdenados;
+	}
+	
+	public String listaItemPorDescricao(String descricao) {
+		
+		this.validador.validaPesquisa(descricao);
+		
+		ArrayList<Item> itensSelecionados = new ArrayList<>();
+		
+		for(int i = 0; i < this.itensSistema.size(); i ++) {
+			if(this.inDescritor(this.itensSistema.get(i), descricao)) {
+				itensSelecionados.add(this.itensSistema.get(i));
+			}
+		}
+		
+		Collections.sort(itensSelecionados, new ComparatorItemNome());
+		
+		return this.concatenador(itensSelecionados);
 	}
 
 		
