@@ -9,8 +9,8 @@ import java.util.Set;
 
 public class ControllerItem {
 	
-	private ArrayList<Item> itensCadastrados;
 	private Set<String> descritores;
+	private Set<Descritor> descritoresSistema;
 	private int id;
 	private Validador validador;
 	
@@ -21,20 +21,36 @@ public class ControllerItem {
 	
 	public ControllerItem() {
 		this.validador = new Validador();
-		this.itensCadastrados = new ArrayList<>();
+		this.descritoresSistema = new HashSet<>();
 		this.descritores = new HashSet<>();
 		this.id = 0;
 	}
 	
 	public void adicionaDescritor(String descricao) {
 		this.validador.validaDescritor(descricao);
+		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
 		if(this.contemDescritor(descricaoAdicionar)) {
 			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricaoAdicionar + ".");
 		}
 		
 		this.descritores.add(descricaoAdicionar);
+		this.descritoresSistema.add(new Descritor(descricaoAdicionar));
 	}
+	
+	public void modificaDescritorSistemaQuantidade(String descricao, int quantidade) {
+		
+		String descricaoAdicionar = descricao.toLowerCase().trim();
+		
+		
+		
+		for(Descritor d: this.descritoresSistema) {
+			if(d.getDescritor().equals(descricaoAdicionar)) {
+					d.setQuantidade(quantidade);
+			}
+		}
+	}
+	
 	
 	
 	public boolean contemDescritor(String descricao) {
@@ -50,22 +66,22 @@ public class ControllerItem {
 	
 	public String listarDescritores() {
 		
-		ArrayList<Item> itensOrdenadosPorNome = new ArrayList<>();
+		ArrayList<Descritor> itensOrdenadosPorNome = new ArrayList<>();
 		
-		for(Item i: this.itensCadastrados) {
-			itensOrdenadosPorNome.add(i);
+		for(Descritor d: this.descritoresSistema) {
+			itensOrdenadosPorNome.add(d);
 		}
 		
-		Collections.sort(itensOrdenadosPorNome, new ComparatorNomesItens());
+		Collections.sort(itensOrdenadosPorNome, new ComparatorDescritor());
 		
 		String itensOrdenados = "";
 		
 		for(int i = 0; i < itensOrdenadosPorNome.size(); i++) {
 			if(i == itensOrdenadosPorNome.size()-1) {
-				itensOrdenados = itensOrdenados + itensOrdenadosPorNome.get(i).nomesPesquisa();
+				itensOrdenados = itensOrdenados + itensOrdenadosPorNome.get(i).toString();
 			}
 			else {
-				itensOrdenados = itensOrdenados + itensOrdenadosPorNome.get(i).nomesPesquisa() + " | ";
+				itensOrdenados = itensOrdenados + itensOrdenadosPorNome.get(i).toString() + " | ";
 			}
 		}
 		
@@ -73,7 +89,7 @@ public class ControllerItem {
 		
 		
 	}
-	
+	/*
 	public boolean cadastraItemSistema(int idItem, String descricao, int quantidade, String tags) {
 		
 		Item novoItem = new Item(idItem, descricao, quantidade, tags);
@@ -96,7 +112,9 @@ public class ControllerItem {
 				itemSistema.setQuantidade(quantidade);
 			
 			}
-		}
+			
+	*/		
+		
 	}
 	
-}
+

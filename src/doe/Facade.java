@@ -59,12 +59,12 @@ public class Facade {
 	}
 	
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
-		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
+		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags,ctlItem);
 	}
 	
 	
 	public void removeItemParaDoacao(String idItem, String idDoador) {
-		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
+		ctlUsuarios.removeItemParaDoacao(idItem, idDoador, ctlItem);
 	}
 	
 	public String listaDescritorDeItensParaDoacao() {

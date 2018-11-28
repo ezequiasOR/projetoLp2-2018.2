@@ -123,20 +123,28 @@ public class ControllerUsuario {
 		this.usuarios.remove(id);
 	}
 	
-	public int adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem controlador) {
+	public int adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem ctlItem) {
 		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
 	
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
-		if(!(controlador.contemDescritor(descricao))) {
-			controlador.adicionaDescritor(descricao);
+		
+		int idItem = ctlItem.identificador();
+		
+		if(!(ctlItem.contemDescritor(descricao))) {
+			ctlItem.adicionaDescritor(descricao);
+			if(quantidade > 0) {
+				ctlItem.modificaDescritorSistemaQuantidade(descricao, quantidade);
+			}
 		}
 		
-		int idItem = controlador.identificador();
+		else {
+			ctlItem.modificaDescritorSistemaQuantidade(descricao, quantidade);
+		}
 		
 		this.usuarios.get(id).adicionaItem(idItem, descricao, quantidade, tags);
-		controlador.cadastraItemSistema(idItem,descricao,quantidade,tags);
+		
 		return idItem;
 	}
 	
@@ -149,7 +157,7 @@ public class ControllerUsuario {
 		return this.usuarios.get(idDoador).getItem(idItem);
 	}
 	
-	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
+	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags, ControllerItem ctlItem) {
         this.validador.validaId(idDoador);
         this.validador.validaIdItem(idItem);
         
@@ -160,10 +168,14 @@ public class ControllerUsuario {
             throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
         }
         
+        if(quantidade > 0) {
+        	ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idDoador).getItemOb(idItem).getDescricaoItem(), quantidade);
+        }
+        
         return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
     }
 	
-	public void removeItemParaDoacao(String idItem, String idDoador) {
+	public void removeItemParaDoacao(String idItem, String idDoador, ControllerItem ctlItem) {
 		this.validador.validaId(idDoador);
 		this.validador.validaId(idItem);
 		this.validador.validaIdItem(Integer.parseInt(idItem));
@@ -172,7 +184,15 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idDoador + ".");
 		}
 		
-		this.usuarios.get(idDoador).removeItem(Integer.parseInt(idItem));
+		int idItemInt = Integer.parseInt(idItem);
+		
+		if(this.usuarios.get(idDoador).verificaItem(idItemInt)) {
+			ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idDoador).getItemOb(idItemInt).getDescricaoItem(), 0);
+		}
+		
+		this.usuarios.get(idDoador).removeItem(idItemInt);
+		
+
 	}
 	
 }

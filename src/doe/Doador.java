@@ -33,10 +33,14 @@ public class Doador extends Usuario {
 
 	
 	public String getItem(int idItem) {
-		if (!this.itens.containsKey(idItem)) {
+		if (!(this.verificaItem(idItem))) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		return itens.get(idItem).toString();
+	}
+	
+	public Item getItemOb(int id) {
+		return itens.get(id);
 	}
 	
 	private void procuraItem(Item item, int quantidade, String tags) {
@@ -59,11 +63,19 @@ public class Doador extends Usuario {
         return itens.get(idItem).toString();
     }
 	
+	public boolean verificaItem(int idItem) {
+		if(!(this.itens.containsKey(idItem))) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public void removeItem(int idItem) {
 		if(this.itens.isEmpty()) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
-		if(!(this.itens.containsKey(idItem))) {
+		if(!(this.verificaItem(idItem))) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		this.itens.remove(idItem);

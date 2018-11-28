@@ -90,4 +90,13 @@ public abstract class Usuario {
 		
 	}
 	
+	public Item getItemOb(int idItem) {
+		return new Item(0,"a",0,"a");
+	}
+	
+	public boolean verificaItem(int idItem) {
+		
+		return true;
+	}
+	
 }
