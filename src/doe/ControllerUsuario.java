@@ -196,5 +196,10 @@ public class ControllerUsuario {
 		
 
 	}
+
+	public void adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+		this.validador.verificaCadastroDeItem(idReceptor, descricaoItem, quantidade);
+		
+	}
 	
 }
