@@ -30,6 +30,7 @@ public class ControllerItem {
 	}
 	
 	public void adicionaDescritor(String descricao) {
+		
 		this.validador.validaDescritor(descricao);
 		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
@@ -55,8 +56,24 @@ public class ControllerItem {
 	}
 	
 	public void adicionaItem(Item item) {
+		for(int k=0; k < this.itensSistema.size(); k++) {
+			if(item.equals(this.itensSistema.get(k))) {
+				this.itensSistema.get(k).setQuantidade(item.getQuantidade());
+				Collections.sort(this.itensSistema, new ComparatorItemQuantidade());
+				return;
+			}
+		}
 		this.itensSistema.add(item);
 		Collections.sort(this.itensSistema,new ComparatorItemQuantidade());
+	}
+	
+	public void removeItemSistema(int idItem) {
+		for(int j=0; j <this.itensSistema.size(); j++) {
+			if(this.itensSistema.get(j).getId() == idItem) {
+				this.itensSistema.remove(j);
+				return;
+			}
+		}
 	}
 	
 	

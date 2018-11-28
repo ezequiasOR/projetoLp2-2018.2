@@ -192,6 +192,7 @@ public class ControllerUsuario {
 		}
 		
 		this.usuarios.get(idDoador).removeItem(idItemInt);
+		ctlItem.removeItemSistema(idItemInt);
 		
 
 	}
