@@ -8,15 +8,20 @@ public class Item {
 	private int id;
 	private String descricaoItem;
 	private String[] tags;
+	private String nomeDoador;
+	private String idDoador;
 	
 	/*
 	 * faltam as exce��es.
 	 */
-	public Item(int id, String descricao, int quantidade, String tags) {
+	
+	public Item(int id, String descricao, int quantidade, String tags, String nomeDoador, String idDoador) {
 		this.descricaoItem = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
 		this.id = id;
+		this.nomeDoador = nomeDoador;
+		this.idDoador = idDoador;
 	}
 	
 	public void adicionaQuantidade(int quant) {
@@ -86,6 +91,11 @@ public class Item {
 
 	public String toString() {
 		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade);
+	}
+	
+	public String toStringSistema() {
+		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeDoador,this.idDoador);
+
 	}
 	
 	

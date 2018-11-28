@@ -70,11 +70,12 @@ public class Facade {
 	public String listaDescritorDeItensParaDoacao() {
 		return ctlItem.listarDescritores();
 	}
-	/*
-	public void listaItensParaDoacao() {
-		
+	
+	public String listaItensParaDoacao() {
+		return ctlItem.listarItensNoSistema();
 	}
 	
+	/*
 	public void pesquisaItemParaDoacaoPorDescricao(String descricao) {
 		
 	}

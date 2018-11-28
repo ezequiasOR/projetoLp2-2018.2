@@ -144,6 +144,7 @@ public class ControllerUsuario {
 		}
 		
 		this.usuarios.get(id).adicionaItem(idItem, descricao, quantidade, tags);
+		ctlItem.adicionaItem(new Item(idItem, descricao, quantidade,tags,this.usuarios.get(id).getNome(),id));
 		
 		return idItem;
 	}

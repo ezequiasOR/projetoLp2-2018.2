@@ -1,5 +1,6 @@
 package doe;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ public class ControllerItem {
 	
 	private Set<String> descritores;
 	private Set<Descritor> descritoresSistema;
+	private ArrayList<Item> itensSistema;
 	private int id;
 	private Validador validador;
 	
@@ -23,6 +25,7 @@ public class ControllerItem {
 		this.validador = new Validador();
 		this.descritoresSistema = new HashSet<>();
 		this.descritores = new HashSet<>();
+		this.itensSistema = new ArrayList<>();
 		this.id = 0;
 	}
 	
@@ -51,6 +54,10 @@ public class ControllerItem {
 		}
 	}
 	
+	public void adicionaItem(Item item) {
+		this.itensSistema.add(item);
+		Collections.sort(this.itensSistema,new ComparatorItemQuantidade());
+	}
 	
 	
 	public boolean contemDescritor(String descricao) {
@@ -66,55 +73,48 @@ public class ControllerItem {
 	
 	public String listarDescritores() {
 		
-		ArrayList<Descritor> itensOrdenadosPorNome = new ArrayList<>();
+		ArrayList<Descritor> descritoresOrdenadosPorNome = new ArrayList<>();
 		
 		for(Descritor d: this.descritoresSistema) {
-			itensOrdenadosPorNome.add(d);
+			descritoresOrdenadosPorNome.add(d);
 		}
 		
-		Collections.sort(itensOrdenadosPorNome, new ComparatorDescritor());
+		Collections.sort(descritoresOrdenadosPorNome, new ComparatorDescritor());
 		
-		String itensOrdenados = "";
+		String descritoresOrdenados = "";
 		
-		for(int i = 0; i < itensOrdenadosPorNome.size(); i++) {
-			if(i == itensOrdenadosPorNome.size()-1) {
-				itensOrdenados = itensOrdenados + itensOrdenadosPorNome.get(i).toString();
+		for(int i = 0; i < descritoresOrdenadosPorNome.size(); i++) {
+			if(i == descritoresOrdenadosPorNome.size()-1) {
+				descritoresOrdenados = descritoresOrdenados + descritoresOrdenadosPorNome.get(i).toString();
 			}
 			else {
-				itensOrdenados = itensOrdenados + itensOrdenadosPorNome.get(i).toString() + " | ";
+				descritoresOrdenados = descritoresOrdenados + descritoresOrdenadosPorNome.get(i).toString() + " | ";
 			}
 		}
 		
-		return itensOrdenados;
+		return descritoresOrdenados;
 		
-		
-	}
-	/*
-	public boolean cadastraItemSistema(int idItem, String descricao, int quantidade, String tags) {
-		
-		Item novoItem = new Item(idItem, descricao, quantidade, tags);
-		
-		for(Item itemSistema: this.itensCadastrados) {
-			if(itemSistema.equals(novoItem)) {
-				this.procuraItemCadastrado(itemSistema, quantidade);
-				return false;
-			}
-		}
-		
-		this.itensCadastrados.add(novoItem);
-		return true;
 		
 	}
 	
-	private void procuraItemCadastrado(Item item, int quantidade) {
-		for (Item itemSistema : this.itensCadastrados) {
-			if (itemSistema.equals(item)) {
-				itemSistema.setQuantidade(quantidade);
-			
+	public String listarItensNoSistema() {
+		
+		String itensOrdenados = "";
+		
+		for(int u = 0; u < this.itensSistema.size();u++) {
+			if(u == this.itensSistema.size()-1) {
+				itensOrdenados = itensOrdenados + this.itensSistema.get(u).toStringSistema();
+			}
+			else {
+				itensOrdenados = itensOrdenados + this.itensSistema.get(u).toStringSistema() + " | ";
 			}
 			
-	*/		
+		}
 		
+		return itensOrdenados;
 	}
+
+		
+}
 	
 

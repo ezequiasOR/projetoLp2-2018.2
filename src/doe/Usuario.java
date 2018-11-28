@@ -131,7 +131,7 @@ public class Usuario {
 	
 	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
 		
-		Item item = new Item(id, descricao, quantidade, tags);
+		Item item = new Item(id, descricao, quantidade, tags, this.nome,this.id);
 		
 		if (itens.containsValue(item)) {
 			this.procuraItem(item, quantidade, tags);
