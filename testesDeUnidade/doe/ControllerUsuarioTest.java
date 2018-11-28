@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
 class ControllerUsuarioTest {
 	
 	private ControllerUsuario controllerUsuario;
+	private ControllerItem controllerItem;
 	
 	@BeforeEach
 	public void Before() {
 		controllerUsuario = new ControllerUsuario();
+		controllerItem = new ControllerItem();
 		controllerUsuario.cadastraDoador("59238650111", "Satya", "satya@br", "(83) 99221-2571", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("50270271338", "Lucas", "lucas12@br", "(83) 99982-9231", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("10357071312", "Lucas", "lucas34@br", "(83) 98249-1298", "PESSOA_FISICA");
@@ -261,6 +263,24 @@ class ControllerUsuarioTest {
 		controllerUsuario.removeUsuario("50270271338");
 		assertEquals("Lucas/10357071312, lucas34@br, (83) 98249-1298, status: doador | Lucas/12094912484, lucas56@br, (83) 94813-4871, status: doador", 
 				controllerUsuario.pesquisaUsuarioPorNome("Lucas"));
+	}
+	
+	@Test
+	public void testadicionaItemIdNulo() {
+		try {
+			controllerUsuario.adicionaItem(null, "camiseta", 2, "outfit,algodao", controllerItem);
+			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		}catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testadicionaItemIdVazio() {
+		try {
+			controllerUsuario.adicionaItem("", "camiseta", 2, "outfit,algodao", controllerItem);
+			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		}catch (IllegalArgumentException iae) {
+		}
 	}
 	
 }
