@@ -143,8 +143,8 @@ public class ControllerUsuario {
 			ctlItem.modificaDescritorSistemaQuantidade(descricao, quantidade);
 		}
 		
-		this.usuarios.get(id).adicionaItem(idItem, descricao, quantidade, tags);
-		ctlItem.adicionaItem(new Item(idItem, descricao, quantidade,tags,this.usuarios.get(id).getNome(),id));
+		this.usuarios.get(id).adicionaItem(idItem, descricao.trim().toLowerCase(), quantidade, tags);
+		ctlItem.adicionaItemSistema(new Item(idItem, descricao.trim().toLowerCase(), quantidade,tags,this.usuarios.get(id).getNome(),id));
 		
 		return idItem;
 	}
@@ -171,6 +171,11 @@ public class ControllerUsuario {
         
         if(quantidade > 0) {
         	ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idDoador).getItemOb(idItem).getDescricaoItem(), quantidade);
+        	ctlItem.modificaQuantidadeItemSistema(idItem, quantidade);
+        }
+        
+        if(!(tags == null)) {
+        	ctlItem.modificaTagsItemSistema(idItem, tags);
         }
         
         return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);

@@ -55,7 +55,7 @@ public class ControllerItem {
 		}
 	}
 	
-	public void adicionaItem(Item item) {
+	public void adicionaItemSistema(Item item) {
 		for(int k=0; k < this.itensSistema.size(); k++) {
 			if(item.equals(this.itensSistema.get(k))) {
 				this.itensSistema.get(k).setQuantidade(item.getQuantidade());
@@ -65,6 +65,26 @@ public class ControllerItem {
 		}
 		this.itensSistema.add(item);
 		Collections.sort(this.itensSistema,new ComparatorItemQuantidade());
+	}
+	
+	public void modificaQuantidadeItemSistema(int idItem, int quantidade) {
+		for(int k=0; k < this.itensSistema.size(); k++) {
+			if(this.itensSistema.get(k).getId() == idItem) {
+				this.itensSistema.get(k).setQuantidade(quantidade);
+				Collections.sort(this.itensSistema, new ComparatorItemQuantidade());
+				return;
+			}
+		}
+	}
+	
+	public void modificaTagsItemSistema(int idItem, String tags) {
+		for(int k=0; k < this.itensSistema.size(); k++) {
+			if(this.itensSistema.get(k).getId() == idItem) {
+				this.itensSistema.get(k).setTags(tags);
+				Collections.sort(this.itensSistema, new ComparatorItemQuantidade());
+				return;
+			}
+		}
 	}
 	
 	public void removeItemSistema(int idItem) {
