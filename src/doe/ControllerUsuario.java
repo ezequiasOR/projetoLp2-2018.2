@@ -26,7 +26,7 @@ public class ControllerUsuario {
 		if (this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario ja existente: " + id + ".");
 		}
-		this.usuarios.put(id, new Doador(id, nome, email, celular, classe));
+		this.usuarios.put(id, new Usuario(id, nome, email, celular, classe, "doador"));
 		return id;
 	}
 
@@ -43,8 +43,8 @@ public class ControllerUsuario {
 			this.validador.validaCadastro(dadosReceptor[0], dadosReceptor[1], dadosReceptor[2], dadosReceptor[3],
 					dadosReceptor[4]);
 
-			this.usuarios.put(dadosReceptor[0], new Receptor(dadosReceptor[0], dadosReceptor[1], dadosReceptor[2],
-					dadosReceptor[3], dadosReceptor[4]));
+			this.usuarios.put(dadosReceptor[0], new Usuario(dadosReceptor[0], dadosReceptor[1], dadosReceptor[2],
+					dadosReceptor[3], dadosReceptor[4], "receptor"));
 		}
 
 	}
