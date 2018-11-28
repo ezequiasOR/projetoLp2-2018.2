@@ -18,6 +18,7 @@ class ControllerUsuarioTest {
 		controllerUsuario.cadastraDoador("50270271338", "Lucas", "lucas12@br", "(83) 99982-9231", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("10357071312", "Lucas", "lucas34@br", "(83) 98249-1298", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("12094912484", "Lucas", "lucas56@br", "(83) 94813-4871", "PESSOA_FISICA");
+		controllerUsuario.adicionaItem("59238650111", "cobertor", 5, "lencol,conforto", controllerItem);
 	}
 
 	@Test
@@ -266,7 +267,7 @@ class ControllerUsuarioTest {
 	}
 	
 	@Test
-	public void testadicionaItemIdNulo() {
+	public void testAdicionaItemIdNulo() {
 		try {
 			controllerUsuario.adicionaItem(null, "camiseta", 2, "outfit,algodao", controllerItem);
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
@@ -275,12 +276,78 @@ class ControllerUsuarioTest {
 	}
 	
 	@Test
-	public void testadicionaItemIdVazio() {
+	public void testAdicionaItemIdVazio() {
 		try {
 			controllerUsuario.adicionaItem("", "camiseta", 2, "outfit,algodao", controllerItem);
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}catch (IllegalArgumentException iae) {
 		}
 	}
+	
+	@Test
+	public void testAdicionaItemDescricaoNula() {
+		try {
+			controllerUsuario.adicionaItem("59238650111", null, 2, "outfit,algodao", controllerItem);
+			fail("Entrada invalida: descricao nao pode ser vazia ou nula.");
+		}catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemDescricaoVazia() {
+		try {
+			controllerUsuario.adicionaItem("59238650111", "", 2, "outfit,algodao", controllerItem);
+			fail("Entrada invalida: descricao nao pode ser vazia ou nula.");
+		}catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemQuantidadeInvalida() {
+		try {
+			controllerUsuario.adicionaItem("59238650111", "camiseta", -1, "outfit,algodao", controllerItem);
+			fail("Entrada invalida: quantidade deve ser maior que zero.");
+		}catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemUsuarioNaoCadastrado() {
+		try {
+			controllerUsuario.adicionaItem("123123123", "camiseta", 2, "outfit,algodao", controllerItem);
+			fail("Usuario nao encontrado.");
+		}catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItem() {
+		assertEquals(2, controllerUsuario.adicionaItem("59238650111", "camiseta", 2, "outfit,algodao", controllerItem));
+	}
+	
+	@Test
+	public void testExibeItemDoadorNaoEmcontrado() {
+		try {
+			controllerUsuario.exibeItem(1, "123123123");
+			fail("Usuario nao encontrado.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testExibeItemNaoEncontrado() {
+		try {
+			controllerUsuario.exibeItem(50, "59238650111");
+			fail("Item nao encontrado.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testExibeItem() {
+		assertEquals("1 - cobertor, tags: [lencol, conforto], quantidade: 5", controllerUsuario.exibeItem(1, "59238650111"));
+	}
+	
+	
 	
 }
