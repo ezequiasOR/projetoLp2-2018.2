@@ -1,7 +1,9 @@
-package doe;
+package Facade;
 
 import java.io.IOException;
 
+import Controllers.ControllerItem;
+import Controllers.ControllerUsuario;
 import easyaccept.EasyAccept;
 
 public class Facade {
@@ -11,7 +13,7 @@ public class Facade {
 
 	
 	public static void main(String[] args) {
-		args = new String[] { "doe.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt"};
+		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt"};
 		EasyAccept.main(args);
 	}
 	

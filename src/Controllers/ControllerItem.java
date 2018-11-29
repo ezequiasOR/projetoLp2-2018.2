@@ -1,4 +1,4 @@
-package doe;
+package Controllers;
 
 import java.awt.List;
 import java.util.ArrayList;
@@ -7,6 +7,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
+
+import Comparators.ComparatorDescritor;
+import Comparators.ComparatorItemNome;
+import Comparators.ComparatorItemQuantidade;
+import Validador.Validador;
+import doe.Descritor;
+import doe.Item;
 
 public class ControllerItem {
 	

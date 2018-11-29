@@ -1,6 +1,8 @@
-package doe;
+package Comparators;
 
 import java.util.Comparator;
+
+import doe.Descritor;
 
 public class ComparatorDescritor implements Comparator<Descritor>{
 	

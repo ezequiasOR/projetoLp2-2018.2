@@ -1,4 +1,4 @@
-package doe;
+package Validador;
 
 public class Validador {
 
