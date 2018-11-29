@@ -68,14 +68,14 @@ public class Usuario {
 	}
 	
 	/**
-	 * @return o Id do usuário.
+	 * @return Retorna o Id do usuário.
 	 */
 	public String getId() {
 		return id;
 	}
 	
 	/**
-	 * @return o Nome do usuário.
+	 * @return Retorna o Nome do usuário.
 	 */
 	public String getNome() {
 		return nome;
@@ -84,31 +84,45 @@ public class Usuario {
 	/**
 	 * Altera o nome do usuário.
 	 * 
-	 * @param nome Nome a ser alterado.
+	 * @param nome novo Nome a ser alterado.
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
 	/**
-	 * @return o Email do usuário.
+	 * @return Retorna o Email do usuário.
 	 */
 	public String getEmail() {
 		return email;
 	}
-
+	
+	/**
+	 * Altera o email do usuário
+	 * @param email novo email a ser alterado.
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	/**
+	 * @return Retorna o número do celular do usuário.
+	 */
 	public String getCelular() {
 		return celular;
 	}
-
+	
+	/**
+	 * Altera o número do celular do usuário.
+	 * @param celular Novo celular a ser alterado.
+	 */
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
+	/**
+	 * @return Retorna o tipo de "classe" do usuário.
+	 */
 	public String getClasse() {
 		return classe;
 	}
@@ -137,7 +151,16 @@ public class Usuario {
 			return false;
 		return true;
 	}
-
+	
+	/**
+	 * Atualiza um item a ser doado, podendo alterar seu Id, sua quantidade e suas tags.
+	 * 
+	 * @param idItem novo Id a ser alterado.
+	 * @param quantidade nova Quantidade a ser alterada.
+	 * @param tags novas Tags a serem alteradas.
+	 * @return Retorna a representação atual do item alterado.
+	 * 
+	 */
 	public String atualizaItem(int idItem, int quantidade, String tags) {
 		if (!(tags == null) && !(tags.equals(""))) {
 			this.itens.get(idItem).setTags(tags);
@@ -148,7 +171,15 @@ public class Usuario {
 
 		return itens.get(idItem).toString();
 	}
-
+	
+	/**
+	 * Procura um item e o altera quando um novo item igual for ser adicionado.
+	 * 
+	 * @param item Item a ser alterado.
+	 * @param quantidade Nova quantidade a ser alterada.
+	 * @param tags Novas tasg a serem alteradas.
+	 * 
+	 */
 	private void procuraItem(Item item, int quantidade, String tags) {
 		for (Item itemSistema : itens.values()) {
 			if (itemSistema.equals(item)) {
@@ -157,14 +188,22 @@ public class Usuario {
 			}
 		}
 	}
-
+	
+	/**
+	 * @param idItem id do item a ser retornado.
+	 * @return Retorna a representação textual de um item.
+	 */
 	public String getItem(int idItem) {
 		if (!(this.verificaItem(idItem))) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		return itens.get(idItem).toString();
 	}
-
+	
+	/**
+	 * Remove um item do usuário.
+	 * @param idItem Id do item a ser removido.
+	 */
 	public void removeItem(int idItem) {
 		if (this.itens.isEmpty()) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
@@ -174,11 +213,21 @@ public class Usuario {
 		}
 		this.itens.remove(idItem);
 	}
-
+	
+	/**
+	 * @param id Id do item a ser retornado.
+	 * @return Retorna o objeto completo do item desejado.
+	 */
 	public Item getItemOb(int id) {
 		return itens.get(id);
 	}
-
+	
+	/**
+	 * Verifica se um item existe no usuário.
+	 * 
+	 * @param idItem Id do item a ser verificado.
+	 * @return true caso exista e false caso não exista.
+	 */
 	public boolean verificaItem(int idItem) {
 		if (!(this.itens.containsKey(idItem))) {
 			return false;
@@ -187,6 +236,15 @@ public class Usuario {
 		return true;
 	}
 
+	/**
+	 * Adiciona um novo item no usuário.
+	 * O método adiciona no Map (Integer => Item) o novo item, sendo identificado pelo seu id.
+	 * 
+	 * @param id Id do novo item.
+	 * @param descricao Descricao do novo item.
+	 * @param quantidade Quantidade do novo item.
+	 * @param tags Tags do novo item.
+	 */
 	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
 
 		Item item = new Item(id, descricao, quantidade, tags, this.nome, this.id);
@@ -198,11 +256,22 @@ public class Usuario {
 		}
 	}
 
+	/**
+	 * @return A representação em String do usuário, no formato: (nome)/(id), (email), (celular), status: (status).
+	 */
 	@Override
 	public String toString() {
 		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status);
 	}
-
+	
+	/**
+	 * Atualiza um item necessario (em que há interesse).
+	 * 
+	 * @param idItem Novo id a ser alterado.
+	 * @param novaQuantidade Nova quantidade a ser alterada.
+	 * @param novasTags Novas tags a serem alteradas.
+	 * @return Retorna a atual representação em string do objeto.
+	 */
 	public String atualizaItemNecessario(int idItem, int novaQuantidade, String novasTags) {
 		if (!this.itens.containsKey(idItem)) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
@@ -218,7 +287,12 @@ public class Usuario {
 		return itens.get(idItem).toString();
 
 	}
-
+	
+	/**
+	 * Remove um item necessário a partir de seu id.
+	 * 
+	 * @param idItem
+	 */
 	public void removeItemNecessario(int idItem) {
 		this.itens.remove(idItem);
 	}
