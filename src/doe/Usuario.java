@@ -180,13 +180,15 @@ public class Usuario {
 	 * @param tags Novas tasg a serem alteradas.
 	 * 
 	 */
-	private void procuraItem(Item item, int quantidade, String tags) {
+	private int procuraItem(Item item, int quantidade, String tags) {
 		for (Item itemSistema : itens.values()) {
 			if (itemSistema.equals(item)) {
 				itemSistema.setQuantidade(quantidade);
 				itemSistema.setTags(tags);
+				return itemSistema.getId();
 			}
 		}
+		return 0;
 	}
 	
 	/**
@@ -245,14 +247,15 @@ public class Usuario {
 	 * @param quantidade Quantidade do novo item.
 	 * @param tags Tags do novo item.
 	 */
-	public void adicionaItem(int id, String descricao, int quantidade, String tags) {
+	public int adicionaItem(int id, String descricao, int quantidade, String tags) {
 
 		Item item = new Item(id, descricao, quantidade, tags, this.nome, this.id);
 
 		if (itens.containsValue(item)) {
-			this.procuraItem(item, quantidade, tags);
+			return this.procuraItem(item, quantidade, tags);
 		} else {
 			this.itens.put(id, item);
+			return id;
 		}
 	}
 

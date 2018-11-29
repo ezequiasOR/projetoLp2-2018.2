@@ -210,15 +210,15 @@ public class ControllerUsuario {
 		}
 		
 		int idItem = ctlItem.identificador();
+
+		return this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags);
 		
-		this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags);
-		return idItem;
 	}
 
 	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
 		this.validador.validaId(idReceptor);
         this.validador.validaIdItem(idItem);
-        
+
         if (!this.usuarios.containsKey(idReceptor)) {
             throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
         }
