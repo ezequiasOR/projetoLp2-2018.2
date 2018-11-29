@@ -47,24 +47,44 @@ public class Descritor {
 		return true;
 	}
 	
+	/**
+	 * Construtor do descritor.
+	 * @param descritor Descritor do item.
+	 */
 	public Descritor(String descritor) {
 		this.descritor = descritor;
 		this.quantidade = 0;
 	}
 	
+	/**
+	 * Construtor do descritor.
+	 * @param descritor Descritor do item.
+	 * @param quantidade Quantidade do item.
+	 */
 	public Descritor(String descritor, int quantidade) {
 		this.descritor = descritor;
 		this.quantidade = quantidade;
 	}
 	
+	/**
+	 * @return Retorna o descritor.
+	 */
 	public String getDescritor() {
 		return this.descritor;
 	}
 	
+	/**
+	 * Altera a quantidade do item.
+	 * 
+	 * @param quantidade Nova quantidade.
+	 */
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 	
+	/**
+	 * @return A representacao em String do descritor, no formato: (quantidade) - (descritor).
+	 */
 	public String toString() {
 		return this.quantidade + " - " + this.descritor;
 	}

@@ -250,8 +250,8 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
 		}
 		
-		this.usuarios.get(idReceptor).removeItemNecessario(idItem);
 		ctlItem.removeItemSistemaNecessario(idItem);
+		this.usuarios.get(idReceptor).removeItemNecessario(idItem);
 		
 	}
 }
