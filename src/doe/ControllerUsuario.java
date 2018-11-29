@@ -233,18 +233,6 @@ public class ControllerUsuario {
 		if (!this.usuarios.containsKey(idReceptor)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
 		}
-		if (this.usuarios.get(idReceptor).getItem(idItem) == null) {
-			throw new IllegalArgumentException("Item na encontrado: " + idItem + ".");
-		}
-		if (idReceptor == null || idReceptor.equals("")) {
-			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
-		}
-		if (idItem < 0) {
-			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
-		}
-		if (this.usuarios.get(idReceptor).vazio()) {
-			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
-		}
 		
 		this.usuarios.get(idReceptor).removeItemNecessario(idItem);
 	}
