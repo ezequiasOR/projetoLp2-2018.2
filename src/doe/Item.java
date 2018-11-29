@@ -18,22 +18,27 @@ public class Item {
 	 * Quantidade do item.
 	 */
 	private int quantidade;
+	
 	/**
 	 * Id do item.
 	 */
 	private int id;
+	
 	/**
 	 * Descricao do item.
 	 */
 	private String descricaoItem;
+	
 	/**
 	 * Tags do item.
 	 */
 	private String[] tags;
+	
 	/**
 	 * Nome do doador do item.
 	 */
 	private String nomeDoador;
+	
 	/**
 	 * Id do doador do item.
 	 */
@@ -169,14 +174,14 @@ public class Item {
 	}
 
 	/**
-	 * @return Retorna a representacao do item, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade).
+	 * @return A representacao do item, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade).
 	 */
 	public String toString() {
 		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade);
 	}
 	
 	/**
-	 * @return Retorna a representacao do sistema, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade), doador: (nome do doador)/(id do doador)"
+	 * @return A representacao do sistema, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade), doador: (nome do doador)/(id do doador)"
 	 */
 	public String toStringSistema() {
 		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeDoador,this.idDoador);
