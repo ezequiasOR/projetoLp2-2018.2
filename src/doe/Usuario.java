@@ -303,12 +303,5 @@ public class Usuario {
 		this.itens.remove(idItem);
 		
 	}
-	
-	
-	public boolean vazio() {
-		if (this.itens.size() == 0){
-			return true;
-		}
-		return false;
-	}
+
 }
