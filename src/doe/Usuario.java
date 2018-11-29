@@ -289,9 +289,9 @@ public class Usuario {
 	}
 	
 	/**
-	 * Remove um item necessário a partir de seu id.
+	 * Remove um item necessário (existente) a partir de seu id.
 	 * 
-	 * @param idItem
+	 * @param idItem Id do item a ser removido.
 	 */
 	public void removeItemNecessario(int idItem) {
 		if (this.itens.isEmpty()) {
@@ -303,6 +303,7 @@ public class Usuario {
 		this.itens.remove(idItem);
 		
 	}
+	
 	
 	public boolean vazio() {
 		if (this.itens.size() == 0){
