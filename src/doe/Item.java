@@ -59,6 +59,10 @@ public class Item {
 	public int getQuantidade() {
 		return quantidade;
 	}
+	
+	public void setNomeUsuario(String nome) {
+		this.nomeDoador = nome;
+	}
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;

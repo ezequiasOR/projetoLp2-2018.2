@@ -3,16 +3,60 @@ package doe;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * Representação de um usuário no sistema.
+ * Cada usuário poderá ser ou doador ou receptor de itens.
+ * Todo usuário deverá ter um Id, Nome, Email e uma classe a seres informados, além do status.
+ * 
+ * @author João Vitor de Melo Cavalcante e Souza
+ * @author Ezequias de Oliveira Rocha
+ * @author Felipe Jerônimo Bernardo da Silva
+ *
+ */
 public class Usuario {
-
+	
+	/**
+	 * Id do usuário.
+	 */
 	private String id;
+	/**
+	 * Nome do usuário.
+	 */
 	private String nome;
+	/**
+	 * Email do usuário.
+	 */
 	private String email;
+	/**
+	 * Celular do usuário.
+	 */
 	private String celular;
+	/**
+	 * Classe do usuário(ex: pessoa física, ONG).
+	 */
 	private String classe;
+	/**
+	 * Status do usuário(doador ou receptor).
+	 */
 	private String status;
+	/**
+	 * Map contendo os itens a serem doados ou com interesse de receber, dependendo
+	 * do status do usuário.
+	 */
 	private Map<Integer, Item> itens;
-
+	
+	
+	/**
+	 * Construtor do usuário.
+	 * 
+	 * @param id Id do usuário.
+	 * @param nome Nome do usuário.
+	 * @param email Email do usuário.
+	 * @param celular Celular do usuário.
+	 * @param classe Classe do usuário (só poderá ser PESSOA_FISICA, IGREJA, ONG, ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO FEDERAL, ASSOCIACAO, SOCIEDADE.
+	 * @param status Status do usuário (sí poderá ser doador ou receptor).
+	 */
 	public Usuario(String id, String nome, String email, String celular, String classe, String status) {
 		this.id = id;
 		this.nome = nome;
@@ -22,19 +66,33 @@ public class Usuario {
 		this.status = status;
 		this.itens = new HashMap<>();
 	}
-
+	
+	/**
+	 * @return o Id do usuário.
+	 */
 	public String getId() {
 		return id;
 	}
-
+	
+	/**
+	 * @return o Nome do usuário.
+	 */
 	public String getNome() {
 		return nome;
 	}
-
+	
+	/**
+	 * Altera o nome do usuário.
+	 * 
+	 * @param nome Nome a ser alterado.
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	
+	/**
+	 * @return o Email do usuário.
+	 */
 	public String getEmail() {
 		return email;
 	}
