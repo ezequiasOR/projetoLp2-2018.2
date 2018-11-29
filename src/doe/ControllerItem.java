@@ -99,6 +99,7 @@ public class ControllerItem {
 		}
 	}
 	
+	
 	public void removeItemSistema(int idItem) {
 		for(int j=0; j <this.itensSistema.size(); j++) {
 			if(this.itensSistema.get(j).getId() == idItem) {
