@@ -211,7 +211,7 @@ public class ControllerUsuario {
 		
 		int idItem = ctlItem.identificador();
 		
-		this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags.toLowerCase());
+		this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags);
 		return idItem;
 	}
 
