@@ -146,6 +146,10 @@ public class Usuario {
 	}
 
 	public String atualizaItemNecessario(int idItem, int novaQuantidade, String novasTags) {
+		if (!this.itens.containsKey(idItem)) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
+		
 		if (!(novasTags == null) && !(novasTags.equals(""))) {
 			this.itens.get(idItem).setTags(novasTags);
 		}

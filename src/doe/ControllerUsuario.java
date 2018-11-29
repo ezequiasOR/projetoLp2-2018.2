@@ -211,7 +211,7 @@ public class ControllerUsuario {
 		
 		int idItem = ctlItem.identificador();
 		
-		this.usuarios.get(idReceptor).adicionaItem(ctlItem.identificador(), descricaoItem, quantidade, tags);
+		this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags.toLowerCase());
 		return idItem;
 	}
 
@@ -221,18 +221,6 @@ public class ControllerUsuario {
         
         if (!this.usuarios.containsKey(idReceptor)) {
             throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
-        }
-        if (this.usuarios.get(idReceptor).getItem(idItem) == null) {
-            throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
-        }
-        
-        if(novaQuantidade > 0) {
-        	ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idReceptor).getItemOb(idItem).getDescricaoItem(), novaQuantidade);
-        	ctlItem.modificaQuantidadeItemSistema(idItem, novaQuantidade);
-        }
-        
-        if(!(novasTags == null)) {
-        	ctlItem.modificaTagsItemSistema(idItem, novasTags);
         }
         
         return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
