@@ -207,19 +207,22 @@ public class ControllerUsuario {
 
 	}
 
-	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags, ControllerItem ctlItem) {
 		this.validador.verificaCadastroDeItem(idReceptor, descricaoItem, quantidade);
+		
 		if (!this.usuarios.containsKey(idReceptor)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
 		}
 		
 		int idItem = ctlItem.identificador();
-
+		
+		ctlItem.adicionaItemSistemaNecessario(new Item(idItem, descricaoItem.toLowerCase(), quantidade, tags, this.usuarios.get(idReceptor).getNome(), idReceptor));
+		
 		return this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags);
 		
 	}
 
-	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
+	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags, ControllerItem ctlItem) {
 		this.validador.validaId(idReceptor);
         this.validador.validaIdItem(idItem);
 
@@ -227,10 +230,19 @@ public class ControllerUsuario {
             throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
         }
         
+        if(novaQuantidade > 0) {
+        	ctlItem.modificaQuantidadeItemSistema(idItem, novaQuantidade);
+        }
+        
+        if(!(novasTags == null)) {
+        	ctlItem.modificaTagsItemSistemaNecessario(idItem, novasTags);
+        }
+        
+        
         return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
 	}
 	
-	public void removeItemNecessario(String idReceptor, int idItem) {
+	public void removeItemNecessario(String idReceptor, int idItem, ControllerItem ctlItem) {
 		this.validador.validaId(idReceptor);
 		this.validador.validaIdItem(idItem);
 		
@@ -239,5 +251,7 @@ public class ControllerUsuario {
 		}
 		
 		this.usuarios.get(idReceptor).removeItemNecessario(idItem);
+		ctlItem.removeItemSistemaNecessario(idItem);
+		
 	}
 }

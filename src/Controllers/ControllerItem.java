@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+import Comparators.ComparatorItemId;
 import Comparators.ComparatorDescritor;
 import Comparators.ComparatorItemNome;
 import Comparators.ComparatorItemQuantidade;
@@ -20,6 +21,7 @@ public class ControllerItem {
 	private Set<String> descritores;
 	private Set<Descritor> descritoresSistema;
 	private ArrayList<Item> itensSistema;
+	private ArrayList<Item> itensSistemaNecessario;
 	private int id;
 	private Validador validador;
 	
@@ -45,6 +47,7 @@ public class ControllerItem {
 		this.descritoresSistema = new HashSet<>();
 		this.descritores = new HashSet<>();
 		this.itensSistema = new ArrayList<>();
+		this.itensSistemaNecessario = new ArrayList<>();
 		this.id = 0;
 	}
 	
@@ -86,11 +89,36 @@ public class ControllerItem {
 		Collections.sort(this.itensSistema,new ComparatorItemQuantidade());
 	}
 	
+	public void adicionaItemSistemaNecessario(Item item) {
+		
+		for(int k=0; k < this.itensSistemaNecessario.size(); k++) {
+			if(item.equals(this.itensSistemaNecessario.get(k))) {
+				this.itensSistemaNecessario.get(k).setQuantidade(item.getQuantidade());
+				
+				Collections.sort(this.itensSistemaNecessario, new ComparatorItemId());
+				return;
+			}
+		}
+		
+		this.itensSistemaNecessario.add(item);
+		Collections.sort(this.itensSistemaNecessario,new ComparatorItemId());
+	}
+	
 	public void modificaQuantidadeItemSistema(int idItem, int quantidade) {
 		for(int k=0; k < this.itensSistema.size(); k++) {
 			if(this.itensSistema.get(k).getId() == idItem) {
 				this.itensSistema.get(k).setQuantidade(quantidade);
 				Collections.sort(this.itensSistema, new ComparatorItemQuantidade());
+				return;
+			}
+		}
+	}
+	
+	public void modificaQuantidadeItemSistemaNecessario(int idItem, int quantidade) {
+		for(int k=0; k < this.itensSistemaNecessario.size(); k++) {
+			if(this.itensSistemaNecessario.get(k).getId() == idItem) {
+				this.itensSistemaNecessario.get(k).setQuantidade(quantidade);
+				Collections.sort(this.itensSistemaNecessario, new ComparatorItemId());
 				return;
 			}
 		}
@@ -106,11 +134,30 @@ public class ControllerItem {
 		}
 	}
 	
+	public void modificaTagsItemSistemaNecessario(int idItem, String tags) {
+		for(int k=0; k < this.itensSistemaNecessario.size(); k++) {
+			if(this.itensSistemaNecessario.get(k).getId() == idItem) {
+				this.itensSistemaNecessario.get(k).setTags(tags);
+				Collections.sort(this.itensSistemaNecessario, new ComparatorItemId());
+				return;
+			}
+		}
+	}
+	
 	
 	public void removeItemSistema(int idItem) {
 		for(int j=0; j <this.itensSistema.size(); j++) {
 			if(this.itensSistema.get(j).getId() == idItem) {
 				this.itensSistema.remove(j);
+				return;
+			}
+		}
+	}
+	
+	public void removeItemSistemaNecessario(int idItem) {
+		for(int j=0; j <this.itensSistemaNecessario.size(); j++) {
+			if(this.itensSistemaNecessario.get(j).getId() == idItem) {
+				this.itensSistemaNecessario.remove(j);
 				return;
 			}
 		}
@@ -176,6 +223,24 @@ public class ControllerItem {
 		
 		return itensOrdenados;
 	}
+	
+public String listaItensNecessarios() {
+		
+		String itensOrdenadosNecessarios = "";
+		
+		for(int u = 0; u < this.itensSistemaNecessario.size();u++) {
+			if(u == this.itensSistemaNecessario.size()-1) {
+				itensOrdenadosNecessarios = itensOrdenadosNecessarios + this.itensSistemaNecessario.get(u).toStringSistemaNecessario();
+			}
+			else {
+				itensOrdenadosNecessarios = itensOrdenadosNecessarios + this.itensSistemaNecessario.get(u).toStringSistemaNecessario() + " | ";
+			}
+			
+		}
+		
+		return itensOrdenadosNecessarios;
+	}
+	
 	
 	public String listaItemPorDescricao(String descricao) {
 		

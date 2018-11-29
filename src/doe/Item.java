@@ -102,5 +102,10 @@ public class Item {
 
 	}
 	
+	public String toStringSistemaNecessario() {
+		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeDoador,this.idDoador);
+
+	}
+	
 	
 }
