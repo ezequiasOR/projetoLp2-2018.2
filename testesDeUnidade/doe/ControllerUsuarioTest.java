@@ -2,6 +2,8 @@ package doe;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +16,7 @@ class ControllerUsuarioTest {
 	private ControllerItem controllerItem;
 	
 	@BeforeEach
-	public void Before() {
+	public void Before() throws Exception {
 		controllerUsuario = new ControllerUsuario();
 		controllerItem = new ControllerItem();
 		controllerUsuario.cadastraDoador("59238650111", "Satya", "satya@br", "(83) 99221-2571", "PESSOA_FISICA");
@@ -22,6 +24,9 @@ class ControllerUsuarioTest {
 		controllerUsuario.cadastraDoador("10357071312", "Lucas", "lucas34@br", "(83) 98249-1298", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("12094912484", "Lucas", "lucas56@br", "(83) 94813-4871", "PESSOA_FISICA");
 		controllerUsuario.adicionaItem("59238650111", "cobertor", 5, "lencol,conforto", controllerItem);
+		controllerUsuario.lerReceptores("testesDeUnidade/doe/testesDeUnidade.csv");
+		controllerUsuario.adicionaItemNecessario("84473712044", "Toalha de Banho", 2, "Adulto,TAM G,Azul");
+		
 	}
 
 	@Test
@@ -351,6 +356,193 @@ class ControllerUsuarioTest {
 		assertEquals("1 - cobertor, tags: [lencol, conforto], quantidade: 5", controllerUsuario.exibeItem(1, "59238650111"));
 	}
 	
+	@Test
+	public void testAtualizaItemParaDoacaoIdItemNegativo() {
+		try {
+			controllerUsuario.atualizaItemParaDoacao(-5, "59238650111", 5, "lencol,conforto", controllerItem);
+			fail("Entrada invalida: id do item nao pode ser negativo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemParaDoacaoIdDoadorNulo() {
+		try {
+			controllerUsuario.atualizaItemParaDoacao(1, null, 5, "lencol,conforto", controllerItem);
+			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+
+	@Test
+	public void testAtualizaItemParaDoacaoIdDoadorVazio() {
+		try {
+			controllerUsuario.atualizaItemParaDoacao(1, "", 5, "lencol,conforto", controllerItem);
+			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemParaDoacaoQuantidade() {
+		controllerUsuario.atualizaItemParaDoacao(1, "59238650111", 3, "", controllerItem);
+		assertEquals("1 - cobertor, tags: [lencol, conforto], quantidade: 3", controllerUsuario.exibeItem(1, "59238650111"));
+	}
+	
+	@Test
+	public void testAtualizaItemParaDoacaoTags() {
+		controllerUsuario.atualizaItemParaDoacao(1, "59238650111", 0, "lencol", controllerItem);
+		assertEquals("1 - cobertor, tags: [lencol], quantidade: 5", controllerUsuario.exibeItem(1, "59238650111"));
+	}
+	
+	@Test
+	public void testRemoveItemParaDoacaoIdDoadorNulo() {
+		try {
+			controllerUsuario.removeItemParaDoacao("1", null, controllerItem);
+			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemParaDoacaoIdDoadorVazio() {
+		try {
+			controllerUsuario.removeItemParaDoacao("1", "", controllerItem);
+			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemParaDoacaoIdItemNulo() {
+		try {
+			controllerUsuario.removeItemParaDoacao(null, "59238650111", controllerItem);
+			fail("Entrada invalida: id do item nao pode ser vazio ou nulo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemParaDoacaoIdItemVazio() {
+		try {
+			controllerUsuario.removeItemParaDoacao("", "59238650111", controllerItem);
+			fail("Entrada invalida: id do item nao pode ser vazio ou nulo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemParaDoacaoIdItemNegativo() {
+		try {
+			controllerUsuario.removeItemParaDoacao("-1", "59238650111", controllerItem);
+			fail("Entrada invalida: id do item nao pode ser negativo.");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+
+	@Test
+	public void testAdicionaItemNecessarioIdReceptorNulo() {
+		try {
+			controllerUsuario.adicionaItemNecessario(null, "cobertor", 3, "lencol,conforto");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemNecessarioIdReceptorVazio() {
+		try {
+			controllerUsuario.adicionaItemNecessario("", "cobertor", 3, "lencol,conforto");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemNecessarioIdReceptorNaoCadastrado() {
+		try {
+			controllerUsuario.adicionaItemNecessario("123123123", "cobertor", 3, "lencol,conforto");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemNecessarioIdReceptorDescricaoNula() {
+		try {
+			controllerUsuario.adicionaItemNecessario("84473712044", null, 3, "lencol,conforto");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	
+	@Test
+	public void testAdicionaItemNecessarioIdReceptorDescricaoVazia() {
+		try {
+			controllerUsuario.adicionaItemNecessario("84473712044", "", 3, "lencol,conforto");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemNecessarioIdReceptorQuantidadeInvalida() {
+		try {
+			controllerUsuario.adicionaItemNecessario("84473712044", null, -5, "lencol,conforto");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAdicionaItemNecessario() {
+		controllerUsuario.adicionaItemNecessario("84473712044", "Livro", 1, "Infantil,Matematica,Didatico");
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioIdReceptorNulo() {
+		try {
+			controllerUsuario.atualizaItemNecessario(null, 1, 5, "Adulto,TAM G,Azul");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioIdReceptorVazio() {
+		try {
+			controllerUsuario.atualizaItemNecessario("", 1, 5, "Adulto,TAM G,Azul");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioIdItemNegativo() {
+		try {
+			controllerUsuario.atualizaItemNecessario("84473712044", -1, 5, "Adulto,TAM G,Azul");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioQuantidadeNegativa() {
+		try {
+			controllerUsuario.atualizaItemNecessario("84473712044", 1, -5, "Adulto,TAM G,Azul");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioReceptorNaoCadastrado() {
+		try {
+			controllerUsuario.atualizaItemNecessario("123123123", 1, 5, "Adulto,TAM G,Azul");
+		} catch (IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioQuantidade() {
+		controllerUsuario.atualizaItemNecessario("84473712044", 1, 5, "");
+	}
+	
+	@Test
+	public void testAtualizaItemNecessarioTags() {
+		controllerUsuario.atualizaItemNecessario("84473712044", 1, 0, "TAM G,Azul");
+	}
 	
 	
 }

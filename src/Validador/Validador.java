@@ -64,7 +64,7 @@ public class Validador {
 		}
 		
 		else if(idItem == 0) {
-			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser vazio ou nulo.");
 		}
 	}
 	
