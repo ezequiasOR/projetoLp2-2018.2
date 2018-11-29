@@ -92,10 +92,10 @@ public class Facade {
 	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
 		return ctlUsuarios.atualizaItemNecessario(idReceptor, idItem, novaQuantidade, novasTags);
 	}
-	/*
+	
 	public void removeItemNecessario(String idReceptor, int idItem) {
-		
+		ctlUsuarios.removeItemNecessario(idReceptor, idItem);
 	}
-	*/
+	
 }
 

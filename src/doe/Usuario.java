@@ -157,4 +157,14 @@ public class Usuario {
 
 	}
 
+	public void removeItemNecessario(int idItem) {
+		this.itens.remove(idItem);
+	}
+	
+	public boolean vazio() {
+		if(itens.keySet().size() == 0) {
+			return true;
+		}
+		return false;
+	}
 }
