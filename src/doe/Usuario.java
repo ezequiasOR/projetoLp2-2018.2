@@ -294,11 +294,18 @@ public class Usuario {
 	 * @param idItem
 	 */
 	public void removeItemNecessario(int idItem) {
+		if (this.itens.isEmpty()) {
+			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
+		}
+		if (!this.itens.containsKey(idItem)){
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
 		this.itens.remove(idItem);
+		
 	}
 	
 	public boolean vazio() {
-		if(itens.keySet().size() == 0) {
+		if (this.itens.size() == 0){
 			return true;
 		}
 		return false;
