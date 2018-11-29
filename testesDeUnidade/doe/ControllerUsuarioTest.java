@@ -544,5 +544,41 @@ class ControllerUsuarioTest {
 		controllerUsuario.atualizaItemNecessario("84473712044", 1, 0, "TAM G,Azul");
 	}
 	
+	@Test
+	public void testRemoveItemNecessarioIdReceptorNulo() {
+		try {
+			controllerUsuario.removeItemNecessario(null, 1);
+		} catch(IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemNecessarioIdReceptorVazio() {
+		try {
+			controllerUsuario.removeItemNecessario("", 1);
+		} catch(IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemNecessarioIdItemNegativo() {
+		try {
+			controllerUsuario.removeItemNecessario("84473712044", -1);
+		} catch(IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemNecessarioIdReceptorNaoCadastrado() {
+		try {
+			controllerUsuario.removeItemNecessario("123123123", 1);
+		} catch(IllegalArgumentException iae) {
+		}
+	}
+	
+	@Test
+	public void testRemoveItemNecessario() {
+		controllerUsuario.removeItemNecessario("84473712044", 1);
+	}
 	
 }
