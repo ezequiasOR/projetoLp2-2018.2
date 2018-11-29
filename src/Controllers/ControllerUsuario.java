@@ -1,4 +1,4 @@
-package doe;
+package Controllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,6 +9,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+
+import Validador.Validador;
+import doe.Item;
+import doe.Usuario;
 
 public class ControllerUsuario {
 	private Validador validador;

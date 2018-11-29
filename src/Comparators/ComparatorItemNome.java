@@ -1,6 +1,8 @@
-package doe;
+package Comparators;
 
 import java.util.Comparator;
+
+import doe.Item;
 
 public class ComparatorItemNome implements Comparator<Item>{
 	
