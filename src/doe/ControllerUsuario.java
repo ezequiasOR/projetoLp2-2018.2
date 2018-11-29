@@ -13,10 +13,12 @@ import java.util.Set;
 public class ControllerUsuario {
 	private Validador validador;
 	private LinkedHashMap<String, Usuario> usuarios;
+	private ControllerItem ctlItem;
 	
 	public ControllerUsuario() {
 		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();
+		this.ctlItem = new ControllerItem();
 	}
 
 	public String cadastraDoador(String id, String nome, String email, String celular, String classe) {
@@ -125,7 +127,6 @@ public class ControllerUsuario {
 	
 	public int adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem ctlItem) {
 		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
-	
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
@@ -202,9 +203,39 @@ public class ControllerUsuario {
 
 	}
 
-	public void adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(idReceptor, descricaoItem, quantidade);
+		if (!this.usuarios.containsKey(idReceptor)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
+		}
 		
+		int idItem = ctlItem.identificador();
+		
+		this.usuarios.get(idReceptor).adicionaItem(ctlItem.identificador(), descricaoItem, quantidade, tags);
+		return idItem;
+	}
+
+	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
+		this.validador.validaId(idReceptor);
+        this.validador.validaIdItem(idItem);
+        
+        if (!this.usuarios.containsKey(idReceptor)) {
+            throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
+        }
+        if (this.usuarios.get(idReceptor).getItem(idItem) == null) {
+            throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+        }
+        
+        if(novaQuantidade > 0) {
+        	ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idReceptor).getItemOb(idItem).getDescricaoItem(), novaQuantidade);
+        	ctlItem.modificaQuantidadeItemSistema(idItem, novaQuantidade);
+        }
+        
+        if(!(novasTags == null)) {
+        	ctlItem.modificaTagsItemSistema(idItem, novasTags);
+        }
+        
+        return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
 	}
 	
 }

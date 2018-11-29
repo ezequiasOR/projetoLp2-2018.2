@@ -81,18 +81,18 @@ public class Facade {
 	}
 	
 	
-	public void adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
-		ctlUsuarios.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
+	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+		return ctlUsuarios.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
 	}
 	/*
-	public void listaItensNecessarios() {
-		
+	public String listaItensNecessarios() {
+		return ctlItem.listaItensNecessarios();
 	}
-	
-	public void atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
-		
+	*/
+	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
+		return ctlUsuarios.atualizaItemNecessario(idReceptor, idItem, novaQuantidade, novasTags);
 	}
-	
+	/*
 	public void removeItemNecessario(String idReceptor, int idItem) {
 		
 	}
