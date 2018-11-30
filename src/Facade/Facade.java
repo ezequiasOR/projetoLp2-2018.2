@@ -11,7 +11,7 @@ public class Facade {
 	private ControllerItem ctlItem;
 	private ControllerUsuario ctlUsuarios;
 
-	
+		
 	public static void main(String[] args) {
 		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt"};
 		EasyAccept.main(args);
