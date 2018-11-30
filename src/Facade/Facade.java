@@ -26,15 +26,13 @@ public class Facade {
 	 */
 	private ControllerUsuario ctlUsuarios;
 
-<<<<<<< HEAD
+
 	
 	/**
 	 * Main com easyaccept
 
 	 */
-=======
-		
->>>>>>> e8df13f1dd3c758e71a5498b589a3b83d3fb9c9d
+
 	public static void main(String[] args) {
 		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt"};
 		EasyAccept.main(args);
