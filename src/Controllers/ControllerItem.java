@@ -31,7 +31,6 @@ public class ControllerItem {
 	}
 	
 	private boolean inDescritor(Item item, String palavra) {
-		
 		String[] descritores = item.getDescricaoItem().split(" ");
 		
 		for(int h = 0; h < descritores.length; h++) {
@@ -52,7 +51,6 @@ public class ControllerItem {
 	}
 	
 	public void adicionaDescritor(String descricao) {
-		
 		this.validador.validaDescritor(descricao);
 		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
@@ -67,8 +65,6 @@ public class ControllerItem {
 	public void modificaDescritorSistemaQuantidade(String descricao, int quantidade) {
 		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
-		
-		
 		
 		for(Descritor d: this.descritoresSistema) {
 			if(d.getDescritor().equals(descricaoAdicionar)) {
@@ -176,8 +172,6 @@ public class ControllerItem {
 	}
 	
 	private String concatenador(ArrayList arrayItens) {
-		
-	
 		String stringDeItens = "";
 		
 		for(int i = 0; i < arrayItens.size(); i++) {
@@ -193,7 +187,6 @@ public class ControllerItem {
 	}
 	
 	public String listarDescritores() {
-		
 		ArrayList<Descritor> descritoresOrdenadosPorNome = new ArrayList<>();
 		
 		for(Descritor d: this.descritoresSistema) {
@@ -201,14 +194,10 @@ public class ControllerItem {
 		}
 		
 		Collections.sort(descritoresOrdenadosPorNome, new ComparatorDescritor());
-		
 		return this.concatenador(descritoresOrdenadosPorNome);
-		
-		
 	}
 	
 	public String listarItensNoSistema() {
-		
 		String itensOrdenados = "";
 		
 		for(int u = 0; u < this.itensSistema.size();u++) {
@@ -218,14 +207,11 @@ public class ControllerItem {
 			else {
 				itensOrdenados = itensOrdenados + this.itensSistema.get(u).toStringSistema() + " | ";
 			}
-			
 		}
-		
 		return itensOrdenados;
 	}
 	
 public String listaItensNecessarios() {
-		
 		String itensOrdenadosNecessarios = "";
 		
 		for(int u = 0; u < this.itensSistemaNecessario.size();u++) {
@@ -235,17 +221,13 @@ public String listaItensNecessarios() {
 			else {
 				itensOrdenadosNecessarios = itensOrdenadosNecessarios + this.itensSistemaNecessario.get(u).toStringSistemaNecessario() + " | ";
 			}
-			
 		}
-		
 		return itensOrdenadosNecessarios;
 	}
 	
 	
 	public String listaItemPorDescricao(String descricao) {
-		
 		this.validador.validaPesquisa(descricao);
-		
 		ArrayList<Item> itensSelecionados = new ArrayList<>();
 		
 		for(int i = 0; i < this.itensSistema.size(); i ++) {
@@ -255,12 +237,7 @@ public String listaItensNecessarios() {
 		}
 		
 		Collections.sort(itensSelecionados, new ComparatorItemNome());
-		
 		return this.concatenador(itensSelecionados);
 	}
 
-
-		
 }
-	
-
