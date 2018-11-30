@@ -200,6 +200,7 @@ public class ControllerItem {
 	
 	/**
 	 * Modifica as tags do item.
+	 * 
 	 * @param idItem Id do item
 	 * @param tags Tags do item.
 	 */
@@ -216,6 +217,7 @@ public class ControllerItem {
 	
 	/**
 	 * Modifica as tags do item necesario.
+	 * 
 	 * @param idItem Id do item
 	 * @param tags Tags do item.
 	 */
@@ -231,7 +233,8 @@ public class ControllerItem {
 	
 	
 	/**
-	 * Remove item do sistema atraves
+	 * Remove item do sistema atraves do id.
+	 * 
 	 * @param idItem Id para identificar o item.
 	 */
 	public void removeItemSistema(int idItem) {
@@ -245,7 +248,8 @@ public class ControllerItem {
 	
 	
 	/**
-	 * Remove item do sistema atraves
+	 * Remove item necessario do sistema atraves do id.
+	 * 
 	 * @param idItem Id para identificar o item.
 	 */
 	public void removeItemSistemaNecessario(int idItem) {
@@ -260,6 +264,7 @@ public class ControllerItem {
 	
 	/**
 	 * Verifica se a descricao ja existe.
+	 * 
 	 * @param descricao Descricao do item.
 	 * @return true se o item foi encontrado.
 	 */
@@ -280,6 +285,7 @@ public class ControllerItem {
 	
 	
 	/**
+	 * Concatena um array de itens em uma string.
 	 * 
 	 * @param arrayItens
 	 * @return Representacao em string de um array de itens
@@ -301,6 +307,7 @@ public class ControllerItem {
 	
 	
 	/**
+	 * Lista os descritores.
 	 * 
 	 * @return Representacao em string de descritores
 	 */
@@ -317,6 +324,7 @@ public class ControllerItem {
 	
 	
 	/**
+	 * Lista os itens presentes no sistema de forma ordenada.
 	 * 
 	 * @return Representacao em string de itens no sistema
 	 */
@@ -336,8 +344,9 @@ public class ControllerItem {
 	
 	
 	/**
+	 * Lista os itens necessarios de forma ordenada.
 	 * 
-	 * @return Representacao em string de uma lista de itens necessarios ordenados.
+	 * @return Representacao em string de uma lista de itens necessarios.
 	 */
 public String listaItensNecessarios() {
 		String itensOrdenadosNecessarios = "";
@@ -355,6 +364,7 @@ public String listaItensNecessarios() {
 	
 	
 	/**
+	 * Lista os itens de forma ordenada.
 	 * 
 	 * @param descricao Descricao do item
 	 * @return itens ordenados pela descricao.
