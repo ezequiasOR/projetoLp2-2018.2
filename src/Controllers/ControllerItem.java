@@ -16,20 +16,62 @@ import Validador.Validador;
 import doe.Descritor;
 import doe.Item;
 
+/**
+ * Representacao do controle de itens.
+ * 
+ * @author João Vitor de Melo Cavalcante e Souza
+ * @author Ezequias de Oliveira Rocha
+ * @author Felipe Jerônimo Bernardo da Silva
+ */
 public class ControllerItem {
 	
+	/**
+	 * Descritores do controle de itens
+	 */
 	private Set<String> descritores;
+	
+	/**
+	 * Descritores do sistema do controle de itens
+	 */
 	private Set<Descritor> descritoresSistema;
+	
+	/**
+	 * Item do sistema do controle de itens
+	 */
 	private ArrayList<Item> itensSistema;
+	
+	/**
+	 * Item do sistema necessario do controle de itens.
+	 */
 	private ArrayList<Item> itensSistemaNecessario;
+	
+	/**
+	 * Id do controle de iten.
+	 */
 	private int id;
+	
+	/**
+	 * Validadror de controle de item.
+	 */
 	private Validador validador;
 	
+	
+	/**
+	 * @return O id atualizado.
+	 */
 	public int identificador() {
 		this.id += 1;
 		return this.id;
 	}
 	
+	
+	/**
+	 * Confere se um descritor 
+	 * 
+	 * @param item
+	 * @param palavra
+	 * @return
+	 */
 	private boolean inDescritor(Item item, String palavra) {
 		String[] descritores = item.getDescricaoItem().split(" ");
 		
@@ -41,6 +83,9 @@ public class ControllerItem {
 		return false;
 	}
 	
+	/**
+	 * Construtor do controle de item.
+	 */
 	public ControllerItem() {
 		this.validador = new Validador();
 		this.descritoresSistema = new HashSet<>();
@@ -50,6 +95,10 @@ public class ControllerItem {
 		this.id = 0;
 	}
 	
+	/**
+	 * Adiciona um descritor .
+	 * @param descricao Descricao a ser adicionada.
+	 */
 	public void adicionaDescritor(String descricao) {
 		this.validador.validaDescritor(descricao);
 		
@@ -62,6 +111,12 @@ public class ControllerItem {
 		this.descritoresSistema.add(new Descritor(descricaoAdicionar));
 	}
 	
+	
+	/**
+	 * Modifica o descritor.
+	 * @param descricao 
+	 * @param quantidade
+	 */
 	public void modificaDescritorSistemaQuantidade(String descricao, int quantidade) {
 		
 		String descricaoAdicionar = descricao.toLowerCase().trim();
@@ -73,6 +128,11 @@ public class ControllerItem {
 		}
 	}
 	
+	
+	/**
+	 * Adiciona item no sistema.
+	 * @param item Item para ser adicionado
+	 */
 	public void adicionaItemSistema(Item item) {
 		for(int k=0; k < this.itensSistema.size(); k++) {
 			if(item.equals(this.itensSistema.get(k))) {
@@ -85,6 +145,11 @@ public class ControllerItem {
 		Collections.sort(this.itensSistema,new ComparatorItemQuantidade());
 	}
 	
+	/**
+	 * 
+	 * Adiciona item necessario no sistema.
+	 * @param item Item necessario para ser adicionado
+	 */
 	public void adicionaItemSistemaNecessario(Item item) {
 		
 		for(int k=0; k < this.itensSistemaNecessario.size(); k++) {
@@ -100,6 +165,12 @@ public class ControllerItem {
 		Collections.sort(this.itensSistemaNecessario,new ComparatorItemId());
 	}
 	
+	
+	/**
+	 * Altera a quantidade do item no sistema.
+	 * @param idItem Id do iten
+	 * @param quantidade Quantidade para alterar
+	 */
 	public void modificaQuantidadeItemSistema(int idItem, int quantidade) {
 		for(int k=0; k < this.itensSistema.size(); k++) {
 			if(this.itensSistema.get(k).getId() == idItem) {
@@ -110,6 +181,12 @@ public class ControllerItem {
 		}
 	}
 	
+	/**
+	 * Altera a quantidade do item necessario no sistema.
+	 * 
+	 * @param idItem Id do item
+	 * @param quantidade Quantidade para alterar
+	 */
 	public void modificaQuantidadeItemSistemaNecessario(int idItem, int quantidade) {
 		for(int k=0; k < this.itensSistemaNecessario.size(); k++) {
 			if(this.itensSistemaNecessario.get(k).getId() == idItem) {
@@ -120,6 +197,12 @@ public class ControllerItem {
 		}
 	}
 	
+	
+	/**
+	 * Modifica as tags do item.
+	 * @param idItem Id do item
+	 * @param tags Tags do item.
+	 */
 	public void modificaTagsItemSistema(int idItem, String tags) {
 		for(int k=0; k < this.itensSistema.size(); k++) {
 			if(this.itensSistema.get(k).getId() == idItem) {
@@ -130,6 +213,12 @@ public class ControllerItem {
 		}
 	}
 	
+	
+	/**
+	 * Modifica as tags do item necesario.
+	 * @param idItem Id do item
+	 * @param tags Tags do item.
+	 */
 	public void modificaTagsItemSistemaNecessario(int idItem, String tags) {
 		for(int k=0; k < this.itensSistemaNecessario.size(); k++) {
 			if(this.itensSistemaNecessario.get(k).getId() == idItem) {
@@ -141,6 +230,10 @@ public class ControllerItem {
 	}
 	
 	
+	/**
+	 * Remove item do sistema atraves
+	 * @param idItem Id para identificar o item.
+	 */
 	public void removeItemSistema(int idItem) {
 		for(int j=0; j <this.itensSistema.size(); j++) {
 			if(this.itensSistema.get(j).getId() == idItem) {
@@ -150,6 +243,11 @@ public class ControllerItem {
 		}
 	}
 	
+	
+	/**
+	 * Remove item do sistema atraves
+	 * @param idItem Id para identificar o item.
+	 */
 	public void removeItemSistemaNecessario(int idItem) {
 		for(int j=0; j <this.itensSistemaNecessario.size(); j++) {
 			if(this.itensSistemaNecessario.get(j).getId() == idItem) {
@@ -160,6 +258,11 @@ public class ControllerItem {
 	}
 	
 	
+	/**
+	 * Verifica se a descricao ja existe.
+	 * @param descricao Descricao do item.
+	 * @return true se o item foi encontrado.
+	 */
 	public boolean contemDescritor(String descricao) {
 		if(this.descritores.contains(descricao)) {
 			return true;
@@ -167,10 +270,20 @@ public class ControllerItem {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @return Os descritores.
+	 */
 	public Set<String> getDescritores() {
 		return descritores;
 	}
 	
+	
+	/**
+	 * 
+	 * @param arrayItens
+	 * @return Representacao em string de um array de itens
+	 */
 	private String concatenador(ArrayList arrayItens) {
 		String stringDeItens = "";
 		
@@ -186,6 +299,11 @@ public class ControllerItem {
 		return stringDeItens;
 	}
 	
+	
+	/**
+	 * 
+	 * @return Representacao em string de descritores
+	 */
 	public String listarDescritores() {
 		ArrayList<Descritor> descritoresOrdenadosPorNome = new ArrayList<>();
 		
@@ -197,6 +315,11 @@ public class ControllerItem {
 		return this.concatenador(descritoresOrdenadosPorNome);
 	}
 	
+	
+	/**
+	 * 
+	 * @return Representacao em string de itens no sistema
+	 */
 	public String listarItensNoSistema() {
 		String itensOrdenados = "";
 		
@@ -211,6 +334,11 @@ public class ControllerItem {
 		return itensOrdenados;
 	}
 	
+	
+	/**
+	 * 
+	 * @return Representacao em string de uma lista de itens necessarios ordenados.
+	 */
 public String listaItensNecessarios() {
 		String itensOrdenadosNecessarios = "";
 		
@@ -226,6 +354,11 @@ public String listaItensNecessarios() {
 	}
 	
 	
+	/**
+	 * 
+	 * @param descricao Descricao do item
+	 * @return itens ordenados pela descricao.
+	 */
 	public String listaItemPorDescricao(String descricao) {
 		this.validador.validaPesquisa(descricao);
 		ArrayList<Item> itensSelecionados = new ArrayList<>();
