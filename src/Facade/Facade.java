@@ -8,7 +8,7 @@ import easyaccept.EasyAccept;
 
 
 /**
- * Representaçao da fachada com os metodos publicos.
+ * Representacao da fachada com os metodos publicos.
  *  
  * @author Joao Vitor de Melo Cavalcante e Souza
  * @author Ezequias de Oliveira Rocha
@@ -22,17 +22,14 @@ public class Facade {
 	 */
 	private ControllerItem ctlItem;
 	/**
-	 * Controlador dos usuários.
+	 * Controlador dos usuarios.
 	 */
 	private ControllerUsuario ctlUsuarios;
 
-
-	
 	/**
 	 * Main com easyaccept
-
+	 * @param args testes do easyaccept.
 	 */
-
 	public static void main(String[] args) {
 		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt"};
 		EasyAccept.main(args);
@@ -51,7 +48,7 @@ public class Facade {
 	 * 
 	 * @param caminho Conteudo do arquivo csv.
 	 * 
-	 * @throws IOException
+	 * @throws IOException lanca excecao.
 	 */
 	public void lerReceptores(String caminho) throws IOException {
 		ctlUsuarios.lerReceptores(caminho);
@@ -75,8 +72,8 @@ public class Facade {
 	/**
 	 * Pesquisa um usuario no sistema pelo id.
 	 * 
-	 * @param id Id do usuário.
- 	 * @return Retorna a representação textual do usuário.
+	 * @param id Id do usuario.
+ 	 * @return Retorna a representacao textual do usuï¿½rio.
 	 */
 	public String pesquisaUsuarioPorId(String id) {
 		return ctlUsuarios.pesquisaUsuarioPorId(id);
@@ -85,8 +82,8 @@ public class Facade {
 	/**
 	 * Pesquisa um usuario no sistema pelo nome.
 	 * 
-	 * @param id Id do usuario.
- 	 * @return Retorna a representação textual do usuario.
+	 * @param nome Nome do usuario.
+ 	 * @return Retorna a representacao textual do usuario.
 	 */
 	public String pesquisaUsuarioPorNome(String nome) {
 		return ctlUsuarios.pesquisaUsuarioPorNome(nome);
@@ -176,7 +173,7 @@ public class Facade {
 	}
 	
 	/**
-	 * @return Retorna representacao textual de  todos os itens cadastrados no sistema por ordem de quantidade. Caso haja quantidades iguais, o sistema ordenará alfabeticamente pelo descritor.
+	 * @return Retorna representacao textual de  todos os itens cadastrados no sistema por ordem de quantidade. Caso haja quantidades iguais, o sistema ordenara alfabeticamente pelo descritor.
 	 */
 	public String listaItensParaDoacao() {
 		return ctlItem.listarItensNoSistema();
@@ -192,7 +189,7 @@ public class Facade {
 	}
 	
 	/**
-	 * Adiciona um novo item necessario/em que há interesse de se receber.
+	 * Adiciona um novo item necessario/em que ha interesse de se receber.
 	 * @param idReceptor Id do receptor.
 	 * @param descricaoItem Descricao do item desejado.
 	 * @param quantidade Quantidade desejada.
