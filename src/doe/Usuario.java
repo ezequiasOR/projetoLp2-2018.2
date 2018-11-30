@@ -5,9 +5,9 @@ import java.util.Map;
 
 
 /**
- * Representação de um usuário no sistema.
- * Cada usuário poderá ser ou doador ou receptor de itens.
- * Todo usuário deverá ter um Id, Nome, Email e uma classe a seres informados, além do status.
+ * Representacao de um usuario no sistema.
+ * Cada usuario podera ser ou doador ou receptor de itens.
+ * Todo usuario devera ter um Id, Nome, Email e uma classe a seres informados, alem do status.
  * 
  * @author João Vitor de Melo Cavalcante e Souza
  * @author Ezequias de Oliveira Rocha
@@ -17,45 +17,45 @@ import java.util.Map;
 public class Usuario {
 	
 	/**
-	 * Id do usuário.
+	 * Id do usuario.
 	 */
 	private String id;
 	/**
-	 * Nome do usuário.
+	 * Nome do usuario.
 	 */
 	private String nome;
 	/**
-	 * Email do usuário.
+	 * Email do usuario.
 	 */
 	private String email;
 	/**
-	 * Celular do usuário.
+	 * Celular do usuario.
 	 */
 	private String celular;
 	/**
-	 * Classe do usuário(ex: pessoa física, ONG).
+	 * Classe do usuario(ex: pessoa fisica, ONG).
 	 */
 	private String classe;
 	/**
-	 * Status do usuário(doador ou receptor).
+	 * Status do usuario(doador ou receptor).
 	 */
 	private String status;
 	/**
 	 * Map contendo os itens a serem doados ou com interesse de receber, dependendo
-	 * do status do usuário.
+	 * do status do usuario.
 	 */
 	private Map<Integer, Item> itens;
 	
 	
 	/**
-	 * Construtor do usuário.
+	 * Construtor do usuario.
 	 * 
-	 * @param id Id do usuário.
-	 * @param nome Nome do usuário.
-	 * @param email Email do usuário.
-	 * @param celular Celular do usuário.
-	 * @param classe Classe do usuário (só poderá ser PESSOA_FISICA, IGREJA, ONG, ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO FEDERAL, ASSOCIACAO, SOCIEDADE.
-	 * @param status Status do usuário (sí poderá ser doador ou receptor).
+	 * @param id Id do usuario.
+	 * @param nome Nome do usuario.
+	 * @param email Email do usuario.
+	 * @param celular Celular do usuario.
+	 * @param classe Classe do usuario (so podera ser PESSOA_FISICA, IGREJA, ONG, ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO FEDERAL, ASSOCIACAO, SOCIEDADE.
+	 * @param status Status do usuário (so podera ser doador ou receptor).
 	 */
 	public Usuario(String id, String nome, String email, String celular, String classe, String status) {
 		this.id = id;
@@ -68,21 +68,21 @@ public class Usuario {
 	}
 	
 	/**
-	 * @return Retorna o Id do usuário.
+	 * @return Retorna o Id do usuario.
 	 */
 	public String getId() {
 		return id;
 	}
 	
 	/**
-	 * @return Retorna o Nome do usuário.
+	 * @return Retorna o Nome do usuario.
 	 */
 	public String getNome() {
 		return nome;
 	}
 	
 	/**
-	 * Altera o nome do usuário.
+	 * Altera o nome do usuario.
 	 * 
 	 * @param nome novo Nome a ser alterado.
 	 */
@@ -91,14 +91,14 @@ public class Usuario {
 	}
 	
 	/**
-	 * @return Retorna o Email do usuário.
+	 * @return Retorna o Email do usuario.
 	 */
 	public String getEmail() {
 		return email;
 	}
 	
 	/**
-	 * Altera o email do usuário
+	 * Altera o email do usuario
 	 * @param email novo email a ser alterado.
 	 */
 	public void setEmail(String email) {
@@ -106,14 +106,14 @@ public class Usuario {
 	}
 	
 	/**
-	 * @return Retorna o número do celular do usuário.
+	 * @return Retorna o numero do celular do usuario.
 	 */
 	public String getCelular() {
 		return celular;
 	}
 	
 	/**
-	 * Altera o número do celular do usuário.
+	 * Altera o usuario do celular do usuario.
 	 * @param celular Novo celular a ser alterado.
 	 */
 	public void setCelular(String celular) {
@@ -121,7 +121,7 @@ public class Usuario {
 	}
 
 	/**
-	 * @return Retorna o tipo de "classe" do usuário.
+	 * @return Retorna o tipo de "classe" do usuario.
 	 */
 	public String getClasse() {
 		return classe;
@@ -203,7 +203,7 @@ public class Usuario {
 	}
 	
 	/**
-	 * Remove um item do usuário.
+	 * Remove um item do usuario.
 	 * @param idItem Id do item a ser removido.
 	 */
 	public void removeItem(int idItem) {
@@ -225,10 +225,10 @@ public class Usuario {
 	}
 	
 	/**
-	 * Verifica se um item existe no usuário.
+	 * Verifica se um item existe no usuario.
 	 * 
 	 * @param idItem Id do item a ser verificado.
-	 * @return true caso exista e false caso não exista.
+	 * @return true caso exista e false caso nao exista.
 	 */
 	public boolean verificaItem(int idItem) {
 		if (!(this.itens.containsKey(idItem))) {
@@ -239,8 +239,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Adiciona um novo item no usuário.
-	 * O método adiciona no Map (Integer => Item) o novo item, sendo identificado pelo seu id.
+	 * Adiciona um novo item no usuario.
+	 * O metodo adiciona no Map (Integer => Item) o novo item, sendo identificado pelo seu id.
 	 * 
 	 * @param id Id do novo item.
 	 * @param descricao Descricao do novo item.
@@ -260,7 +260,7 @@ public class Usuario {
 	}
 
 	/**
-	 * @return A representação em String do usuário, no formato: (nome)/(id), (email), (celular), status: (status).
+	 * @return A representacao em String do usuario, no formato: (nome)/(id), (email), (celular), status: (status).
 	 */
 	@Override
 	public String toString() {
@@ -268,7 +268,7 @@ public class Usuario {
 	}
 	
 	/**
-	 * Atualiza um item necessario (em que há interesse).
+	 * Atualiza um item necessario (em que ha interesse).
 	 * 
 	 * @param idItem Novo id a ser alterado.
 	 * @param novaQuantidade Nova quantidade a ser alterada.
@@ -292,7 +292,7 @@ public class Usuario {
 	}
 	
 	/**
-	 * Remove um item necessário (existente) a partir de seu id.
+	 * Remove um item necessario (existente) a partir de seu id.
 	 * 
 	 * @param idItem Id do item a ser removido.
 	 */
