@@ -14,11 +14,34 @@ import Validador.Validador;
 import doe.Item;
 import doe.Usuario;
 
+/**
+ * Representacao do controle de usuarios.
+ * 
+ * @author João Vitor de Melo Cavalcante e Souza
+ * @author Ezequias de Oliveira Rocha
+ * @author Felipe Jerônimo Bernardo da Silva
+ *
+ */
 public class ControllerUsuario {
+	
+	/**
+	 * Validador de controle de usuario.
+	 */
 	private Validador validador;
+	
+	/**
+	 * Map responsavel por armazenar usuarios.
+	 */
 	private LinkedHashMap<String, Usuario> usuarios;
+	
+	/**
+	 * Atributo responsavel por controlar item.
+	 */
 	private ControllerItem ctlItem;
 	
+	/**
+	 * Construtor de controle de usuario.
+	 */
 	public ControllerUsuario() {
 		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();

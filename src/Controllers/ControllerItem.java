@@ -85,6 +85,7 @@ public class ControllerItem {
 	
 	/**
 	 * Construtor do controle de item.
+	 * 
 	 */
 	public ControllerItem() {
 		this.validador = new Validador();
@@ -97,6 +98,7 @@ public class ControllerItem {
 	
 	/**
 	 * Adiciona um descritor .
+	 * 
 	 * @param descricao Descricao a ser adicionada.
 	 */
 	public void adicionaDescritor(String descricao) {
@@ -114,6 +116,7 @@ public class ControllerItem {
 	
 	/**
 	 * Modifica o descritor.
+	 * 
 	 * @param descricao 
 	 * @param quantidade
 	 */
@@ -131,6 +134,7 @@ public class ControllerItem {
 	
 	/**
 	 * Adiciona item no sistema.
+	 * 
 	 * @param item Item para ser adicionado
 	 */
 	public void adicionaItemSistema(Item item) {
@@ -148,6 +152,7 @@ public class ControllerItem {
 	/**
 	 * 
 	 * Adiciona item necessario no sistema.
+	 * 
 	 * @param item Item necessario para ser adicionado
 	 */
 	public void adicionaItemSistemaNecessario(Item item) {
@@ -168,6 +173,7 @@ public class ControllerItem {
 	
 	/**
 	 * Altera a quantidade do item no sistema.
+	 * 
 	 * @param idItem Id do iten
 	 * @param quantidade Quantidade para alterar
 	 */
