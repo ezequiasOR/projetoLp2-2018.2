@@ -31,7 +31,7 @@ public class Facade {
 	 * @param args testes do easyaccept.
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt"};
+		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt", "testes/acceptance_tests/use_case_5.txt"};
 		EasyAccept.main(args);
 	}
 	

@@ -56,7 +56,7 @@ public class Item {
 	 * @param idDoador Id do doador do item.
 	 */
 	
-	public Item(int id, String descricao, int quantidade, String tags, String nomeDoador, String idDoador) {
+	public Item(int id, String descricao, int quantidade, String tags, String nomeUsuario, String idDoador) {
 		this.descricaoItem = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
