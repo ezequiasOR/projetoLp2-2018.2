@@ -18,15 +18,15 @@ class ControllerItemTest {
 	
 	@BeforeEach
 	public void Before() throws Exception {
-		controllerUsuario = new ControllerUsuario();
+		controllerUsuario = new ControllerUsuario(controllerItem);
 		controllerItem = new ControllerItem();
 		controllerUsuario.cadastraDoador("123123123", "Daniel", "daniel@com", "(54) 95545-4545", "PESSOA_FISICA");
 		controllerItem.adicionaDescritor("Livro");
 		controllerItem.adicionaDescritor("jaqueta de couro");
 		controllerItem.adicionaDescritor("curso de programacao");
 		controllerUsuario.lerReceptores("testesDeUnidade/doe/testesDeUnidade.csv");
-		controllerUsuario.adicionaItemNecessario("84473712044", "Livro", 2, "programacao", controllerItem);
-		controllerUsuario.adicionaItem("123123123", "livro", 2, "", controllerItem);
+		controllerUsuario.adicionaItemNecessario("84473712044", "Livro", 2, "programacao");
+		controllerUsuario.adicionaItem("123123123", "livro", 2, "");
 	}
 
 	@Test

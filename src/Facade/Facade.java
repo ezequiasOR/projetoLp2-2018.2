@@ -40,7 +40,7 @@ public class Facade {
 	 */
 	public Facade() {
 		ctlItem = new ControllerItem();
-		ctlUsuarios = new ControllerUsuario();
+		ctlUsuarios = new ControllerUsuario(ctlItem);
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class Facade {
 	 * @return Retorna o id do item.
 	 */
 	public int adicionaItemParaDoacao(String idDoador, String descricao, int quantidade, String tags) {
-		return ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags, ctlItem);
+		return ctlUsuarios.adicionaItem(idDoador, descricao, quantidade, tags);
 	}
 	
 	/**
@@ -153,7 +153,7 @@ public class Facade {
 	 * @return Retorna a nova representacao textual do item.
 	 */
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
-		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags,ctlItem);
+		return ctlUsuarios.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
 	}
 	
 	/**
@@ -162,7 +162,7 @@ public class Facade {
 	 * @param idDoador Id do doador que possui o item.
 	 */
 	public void removeItemParaDoacao(String idItem, String idDoador) {
-		ctlUsuarios.removeItemParaDoacao(idItem, idDoador, ctlItem);
+		ctlUsuarios.removeItemParaDoacao(idItem, idDoador);
 	}
 	
 	/**
@@ -197,7 +197,7 @@ public class Facade {
 	 * @return Retorna representacao textual do pedido do item.
 	 */
 	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
-		return ctlUsuarios.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags, ctlItem);
+		return ctlUsuarios.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
 	}
 	
 	/**
@@ -216,7 +216,7 @@ public class Facade {
 	 * @return Retorna a nova representacao textual do pedido.
 	 */
 	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
-		return ctlUsuarios.atualizaItemNecessario(idReceptor, idItem, novaQuantidade, novasTags, ctlItem);
+		return ctlUsuarios.atualizaItemNecessario(idReceptor, idItem, novaQuantidade, novasTags);
 	}
 	
 	/**
@@ -225,7 +225,11 @@ public class Facade {
 	 * @param idItem Id do pedido.
 	 */
 	public void removeItemNecessario(String idReceptor, int idItem) {
-		ctlUsuarios.removeItemNecessario(idReceptor, idItem, ctlItem);
+		ctlUsuarios.removeItemNecessario(idReceptor, idItem);
+	}
+	
+	public String match(String idReceptor, int idItemNecessario) {
+		return ctlItem.match(idReceptor, idItemNecessario);
 	}
 	
 }

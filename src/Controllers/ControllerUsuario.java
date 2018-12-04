@@ -41,11 +41,12 @@ public class ControllerUsuario {
 	
 	/**
 	 * Construtor de controle de usuario.
+	 * @param ctlItem 
 	 */
-	public ControllerUsuario() {
+	public ControllerUsuario(ControllerItem ctlItem) {
 		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();
-		this.ctlItem = new ControllerItem();
+		this.ctlItem = ctlItem;
 	}
 
 	public String cadastraDoador(String id, String nome, String email, String celular, String classe) {
@@ -152,7 +153,7 @@ public class ControllerUsuario {
 		this.usuarios.remove(id);
 	}
 	
-	public int adicionaItem(String id, String descricao, int quantidade, String tags, ControllerItem ctlItem) {
+	public int adicionaItem(String id, String descricao, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
@@ -186,7 +187,7 @@ public class ControllerUsuario {
 		return this.usuarios.get(idDoador).getItem(idItem);
 	}
 	
-	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags, ControllerItem ctlItem) {
+	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
         this.validador.validaId(idDoador);
         this.validador.validaIdItem(idItem);
         
@@ -209,7 +210,7 @@ public class ControllerUsuario {
         return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
     }
 	
-	public void removeItemParaDoacao(String idItem, String idDoador, ControllerItem ctlItem) {
+	public void removeItemParaDoacao(String idItem, String idDoador) {
 		this.validador.validaId(idDoador);
 		this.validador.validaId(idItem);
 		this.validador.validaIdItem(Integer.parseInt(idItem));
@@ -230,7 +231,7 @@ public class ControllerUsuario {
 
 	}
 
-	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags, ControllerItem ctlItem) {
+	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(idReceptor, descricaoItem, quantidade);
 		
 		if (!this.usuarios.containsKey(idReceptor)) {
@@ -245,7 +246,7 @@ public class ControllerUsuario {
 		
 	}
 
-	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags, ControllerItem ctlItem) {
+	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
 		this.validador.validaId(idReceptor);
         this.validador.validaIdItem(idItem);
 
@@ -265,7 +266,7 @@ public class ControllerUsuario {
         return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
 	}
 	
-	public void removeItemNecessario(String idReceptor, int idItem, ControllerItem ctlItem) {
+	public void removeItemNecessario(String idReceptor, int idItem) {
 		this.validador.validaId(idReceptor);
 		this.validador.validaIdItem(idItem);
 		
