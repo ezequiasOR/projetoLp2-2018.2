@@ -34,7 +34,7 @@ public class ComparatorMatchItens implements Comparator<Item> {
 			int i1Id = i1.getId();
 			int i2Id = i2.getId();
 			
-			if(i1Pontos > i2Pontos) {
+			if(i1Id > i2Id) {
 				return 1;
 			}
 			else {
