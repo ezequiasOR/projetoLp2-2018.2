@@ -44,6 +44,8 @@ public class Item {
 	 */
 	private String idDoador;
 	
+	private int pontos;
+	
 	
 	/**
 	 * Construtor do item.
@@ -63,6 +65,7 @@ public class Item {
 		this.id = id;
 		this.nomeUsuario = nomeUsuario;
 		this.idDoador = idDoador;
+		this.pontos = 0;
 	}
 	
 	/**
@@ -164,6 +167,14 @@ public class Item {
 		return id;
 	}
 	
+	public int getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(int pontos) {
+		this.pontos += pontos;
+	}
+
 	/**
 	 * 
 	 * @return Retorna a quantidade e a descricao do item

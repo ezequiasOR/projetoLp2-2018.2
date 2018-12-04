@@ -374,13 +374,10 @@ public class ControllerItem {
 	}
 
 	public String match(String idReceptor, int idItemNecessario) {
-
 		Item itemNecessario = null;
 
 		for (Item i : this.itensSistemaNecessario) {
-
 			if (i.getId() == idItemNecessario) {
-
 				itemNecessario = i;
 			}
 		}
@@ -390,6 +387,8 @@ public class ControllerItem {
 		for(Item i: this.itensSistema) {
 			if(i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
 				itensMatch.add(i);
+				i.setPontos(20);
+				
 			}
 		}
 		
