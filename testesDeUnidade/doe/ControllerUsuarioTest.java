@@ -17,15 +17,15 @@ class ControllerUsuarioTest {
 	
 	@BeforeEach
 	public void Before() throws Exception {
-		controllerUsuario = new ControllerUsuario();
+		controllerUsuario = new ControllerUsuario(controllerItem);
 		controllerItem = new ControllerItem();
 		controllerUsuario.cadastraDoador("59238650111", "Satya", "satya@br", "(83) 99221-2571", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("50270271338", "Lucas", "lucas12@br", "(83) 99982-9231", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("10357071312", "Lucas", "lucas34@br", "(83) 98249-1298", "PESSOA_FISICA");
 		controllerUsuario.cadastraDoador("12094912484", "Lucas", "lucas56@br", "(83) 94813-4871", "PESSOA_FISICA");
-		controllerUsuario.adicionaItem("59238650111", "cobertor", 5, "lencol,conforto", controllerItem);
+		controllerUsuario.adicionaItem("59238650111", "cobertor", 5, "lencol,conforto");
 		controllerUsuario.lerReceptores("testesDeUnidade/doe/testesDeUnidade.csv");
-		controllerUsuario.adicionaItemNecessario("84473712044", "Toalha de Banho", 2, "Adulto,TAM G,Azul", controllerItem);
+		controllerUsuario.adicionaItemNecessario("84473712044", "Toalha de Banho", 2, "Adulto,TAM G,Azul");
 		
 	}
 
@@ -277,7 +277,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemIdNulo() {
 		try {
-			controllerUsuario.adicionaItem(null, "camiseta", 2, "outfit,algodao", controllerItem);
+			controllerUsuario.adicionaItem(null, "camiseta", 2, "outfit,algodao");
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}catch (IllegalArgumentException iae) {
 		}
@@ -286,7 +286,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemIdVazio() {
 		try {
-			controllerUsuario.adicionaItem("", "camiseta", 2, "outfit,algodao", controllerItem);
+			controllerUsuario.adicionaItem("", "camiseta", 2, "outfit,algodao");
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}catch (IllegalArgumentException iae) {
 		}
@@ -295,7 +295,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemDescricaoNula() {
 		try {
-			controllerUsuario.adicionaItem("59238650111", null, 2, "outfit,algodao", controllerItem);
+			controllerUsuario.adicionaItem("59238650111", null, 2, "outfit,algodao");
 			fail("Entrada invalida: descricao nao pode ser vazia ou nula.");
 		}catch (IllegalArgumentException iae) {
 		}
@@ -304,7 +304,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemDescricaoVazia() {
 		try {
-			controllerUsuario.adicionaItem("59238650111", "", 2, "outfit,algodao", controllerItem);
+			controllerUsuario.adicionaItem("59238650111", "", 2, "outfit,algodao");
 			fail("Entrada invalida: descricao nao pode ser vazia ou nula.");
 		}catch (IllegalArgumentException iae) {
 		}
@@ -313,7 +313,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemQuantidadeInvalida() {
 		try {
-			controllerUsuario.adicionaItem("59238650111", "camiseta", -1, "outfit,algodao", controllerItem);
+			controllerUsuario.adicionaItem("59238650111", "camiseta", -1, "outfit,algodao");
 			fail("Entrada invalida: quantidade deve ser maior que zero.");
 		}catch (IllegalArgumentException iae) {
 		}
@@ -322,7 +322,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemUsuarioNaoCadastrado() {
 		try {
-			controllerUsuario.adicionaItem("123123123", "camiseta", 2, "outfit,algodao", controllerItem);
+			controllerUsuario.adicionaItem("123123123", "camiseta", 2, "outfit,algodao");
 			fail("Usuario nao encontrado.");
 		}catch (IllegalArgumentException iae) {
 		}
@@ -330,7 +330,7 @@ class ControllerUsuarioTest {
 	
 	@Test
 	public void testAdicionaItem() {
-		assertEquals(3, controllerUsuario.adicionaItem("59238650111", "camiseta", 2, "outfit,algodao", controllerItem));
+		assertEquals(3, controllerUsuario.adicionaItem("59238650111", "camiseta", 2, "outfit,algodao"));
 	}
 	
 	@Test
@@ -359,7 +359,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemParaDoacaoIdItemNegativo() {
 		try {
-			controllerUsuario.atualizaItemParaDoacao(-5, "59238650111", 5, "lencol,conforto", controllerItem);
+			controllerUsuario.atualizaItemParaDoacao(-5, "59238650111", 5, "lencol,conforto");
 			fail("Entrada invalida: id do item nao pode ser negativo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -368,7 +368,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemParaDoacaoIdDoadorNulo() {
 		try {
-			controllerUsuario.atualizaItemParaDoacao(1, null, 5, "lencol,conforto", controllerItem);
+			controllerUsuario.atualizaItemParaDoacao(1, null, 5, "lencol,conforto");
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -377,7 +377,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemParaDoacaoIdDoadorVazio() {
 		try {
-			controllerUsuario.atualizaItemParaDoacao(1, "", 5, "lencol,conforto", controllerItem);
+			controllerUsuario.atualizaItemParaDoacao(1, "", 5, "lencol,conforto");
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -385,20 +385,20 @@ class ControllerUsuarioTest {
 	
 	@Test
 	public void testAtualizaItemParaDoacaoQuantidade() {
-		controllerUsuario.atualizaItemParaDoacao(1, "59238650111", 3, "", controllerItem);
+		controllerUsuario.atualizaItemParaDoacao(1, "59238650111", 3, "");
 		assertEquals("1 - cobertor, tags: [lencol, conforto], quantidade: 3", controllerUsuario.exibeItem(1, "59238650111"));
 	}
 	
 	@Test
 	public void testAtualizaItemParaDoacaoTags() {
-		controllerUsuario.atualizaItemParaDoacao(1, "59238650111", 0, "lencol", controllerItem);
+		controllerUsuario.atualizaItemParaDoacao(1, "59238650111", 0, "lencol");
 		assertEquals("1 - cobertor, tags: [lencol], quantidade: 5", controllerUsuario.exibeItem(1, "59238650111"));
 	}
 	
 	@Test
 	public void testRemoveItemParaDoacaoIdDoadorNulo() {
 		try {
-			controllerUsuario.removeItemParaDoacao("1", null, controllerItem);
+			controllerUsuario.removeItemParaDoacao("1", null);
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -407,7 +407,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemParaDoacaoIdDoadorVazio() {
 		try {
-			controllerUsuario.removeItemParaDoacao("1", "", controllerItem);
+			controllerUsuario.removeItemParaDoacao("1", "");
 			fail("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -416,7 +416,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemParaDoacaoIdItemNulo() {
 		try {
-			controllerUsuario.removeItemParaDoacao(null, "59238650111", controllerItem);
+			controllerUsuario.removeItemParaDoacao(null, "59238650111");
 			fail("Entrada invalida: id do item nao pode ser vazio ou nulo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -425,7 +425,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemParaDoacaoIdItemVazio() {
 		try {
-			controllerUsuario.removeItemParaDoacao("", "59238650111", controllerItem);
+			controllerUsuario.removeItemParaDoacao("", "59238650111");
 			fail("Entrada invalida: id do item nao pode ser vazio ou nulo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -434,7 +434,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemParaDoacaoIdItemNegativo() {
 		try {
-			controllerUsuario.removeItemParaDoacao("-1", "59238650111", controllerItem);
+			controllerUsuario.removeItemParaDoacao("-1", "59238650111");
 			fail("Entrada invalida: id do item nao pode ser negativo.");
 		} catch (IllegalArgumentException iae) {
 		}
@@ -443,7 +443,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemNecessarioIdReceptorNulo() {
 		try {
-			controllerUsuario.adicionaItemNecessario(null, "cobertor", 3, "lencol,conforto", controllerItem);
+			controllerUsuario.adicionaItemNecessario(null, "cobertor", 3, "lencol,conforto");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -451,7 +451,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemNecessarioIdReceptorVazio() {
 		try {
-			controllerUsuario.adicionaItemNecessario("", "cobertor", 3, "lencol,conforto", controllerItem);
+			controllerUsuario.adicionaItemNecessario("", "cobertor", 3, "lencol,conforto");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -459,7 +459,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemNecessarioIdReceptorNaoCadastrado() {
 		try {
-			controllerUsuario.adicionaItemNecessario("123123123", "cobertor", 3, "lencol,conforto", controllerItem);
+			controllerUsuario.adicionaItemNecessario("123123123", "cobertor", 3, "lencol,conforto");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -467,7 +467,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemNecessarioIdReceptorDescricaoNula() {
 		try {
-			controllerUsuario.adicionaItemNecessario("84473712044", null, 3, "lencol,conforto", controllerItem);
+			controllerUsuario.adicionaItemNecessario("84473712044", null, 3, "lencol,conforto");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -476,7 +476,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemNecessarioIdReceptorDescricaoVazia() {
 		try {
-			controllerUsuario.adicionaItemNecessario("84473712044", "", 3, "lencol,conforto", controllerItem);
+			controllerUsuario.adicionaItemNecessario("84473712044", "", 3, "lencol,conforto");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -484,20 +484,20 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAdicionaItemNecessarioIdReceptorQuantidadeInvalida() {
 		try {
-			controllerUsuario.adicionaItemNecessario("84473712044", null, -5, "lencol,conforto", controllerItem);
+			controllerUsuario.adicionaItemNecessario("84473712044", null, -5, "lencol,conforto");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
 	
 	@Test
 	public void testAdicionaItemNecessario() {
-		assertEquals(3, controllerUsuario.adicionaItemNecessario("84473712044", "Livro", 1, "Infantil,Matematica,Didatico", controllerItem));
+		assertEquals(3, controllerUsuario.adicionaItemNecessario("84473712044", "Livro", 1, "Infantil,Matematica,Didatico"));
 	}
 	
 	@Test
 	public void testAtualizaItemNecessarioIdReceptorNulo() {
 		try {
-			controllerUsuario.atualizaItemNecessario(null, 1, 5, "Adulto,TAM G,Azul", controllerItem);
+			controllerUsuario.atualizaItemNecessario(null, 1, 5, "Adulto,TAM G,Azul");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -505,7 +505,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemNecessarioIdReceptorVazio() {
 		try {
-			controllerUsuario.atualizaItemNecessario("", 1, 5, "Adulto,TAM G,Azul", controllerItem);
+			controllerUsuario.atualizaItemNecessario("", 1, 5, "Adulto,TAM G,Azul");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -513,7 +513,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemNecessarioIdItemNegativo() {
 		try {
-			controllerUsuario.atualizaItemNecessario("84473712044", -1, 5, "Adulto,TAM G,Azul", controllerItem);
+			controllerUsuario.atualizaItemNecessario("84473712044", -1, 5, "Adulto,TAM G,Azul");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -521,7 +521,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemNecessarioQuantidadeNegativa() {
 		try {
-			controllerUsuario.atualizaItemNecessario("84473712044", 1, -5, "Adulto,TAM G,Azul", controllerItem);
+			controllerUsuario.atualizaItemNecessario("84473712044", 1, -5, "Adulto,TAM G,Azul");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
@@ -529,26 +529,26 @@ class ControllerUsuarioTest {
 	@Test
 	public void testAtualizaItemNecessarioReceptorNaoCadastrado() {
 		try {
-			controllerUsuario.atualizaItemNecessario("123123123", 1, 5, "Adulto,TAM G,Azul", controllerItem);
+			controllerUsuario.atualizaItemNecessario("123123123", 1, 5, "Adulto,TAM G,Azul");
 		} catch (IllegalArgumentException iae) {
 		}
 	}
 	
 	@Test
 	public void testAtualizaItemNecessarioQuantidade() {
-		controllerUsuario.atualizaItemNecessario("84473712044", 2, 5, "", controllerItem);
-		assertEquals("2 - toalha de banho, tags: [Adulto, TAM G, Azul], quantidade: 5", controllerUsuario.atualizaItemNecessario("84473712044", 2, 5, "", controllerItem));
+		controllerUsuario.atualizaItemNecessario("84473712044", 2, 5, "");
+		assertEquals("2 - toalha de banho, tags: [Adulto, TAM G, Azul], quantidade: 5", controllerUsuario.atualizaItemNecessario("84473712044", 2, 5, ""));
 	}
 	
 	@Test
 	public void testAtualizaItemNecessarioTags() {
-		assertEquals("2 - toalha de banho, tags: [TAM G, Azul], quantidade: 2", controllerUsuario.atualizaItemNecessario("84473712044", 2, 0, "TAM G,Azul", controllerItem));
+		assertEquals("2 - toalha de banho, tags: [TAM G, Azul], quantidade: 2", controllerUsuario.atualizaItemNecessario("84473712044", 2, 0, "TAM G,Azul"));
 	}
 	
 	@Test
 	public void testRemoveItemNecessarioIdReceptorNulo() {
 		try {
-			controllerUsuario.removeItemNecessario(null, 1, controllerItem);
+			controllerUsuario.removeItemNecessario(null, 1);
 		} catch(IllegalArgumentException iae) {
 		}
 	}
@@ -556,7 +556,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemNecessarioIdReceptorVazio() {
 		try {
-			controllerUsuario.removeItemNecessario("", 1, controllerItem);
+			controllerUsuario.removeItemNecessario("", 1);
 		} catch(IllegalArgumentException iae) {
 		}
 	}
@@ -564,7 +564,7 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemNecessarioIdItemNegativo() {
 		try {
-			controllerUsuario.removeItemNecessario("84473712044", -1, controllerItem);
+			controllerUsuario.removeItemNecessario("84473712044", -1);
 		} catch(IllegalArgumentException iae) {
 		}
 	}
@@ -572,14 +572,14 @@ class ControllerUsuarioTest {
 	@Test
 	public void testRemoveItemNecessarioIdReceptorNaoCadastrado() {
 		try {
-			controllerUsuario.removeItemNecessario("123123123", 1, controllerItem);
+			controllerUsuario.removeItemNecessario("123123123", 1);
 		} catch(IllegalArgumentException iae) {
 		}
 	}
 	
 	@Test
 	public void testRemoveItemNecessario() {
-		controllerUsuario.removeItemNecessario("84473712044", 2, controllerItem);
+		controllerUsuario.removeItemNecessario("84473712044", 2);
 		assertEquals("", controllerItem.listaItensNecessarios());
 	}
 	

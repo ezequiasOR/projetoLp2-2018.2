@@ -389,4 +389,17 @@ public String listaItensNecessarios() {
 		return this.concatenador(itensSelecionados);
 	}
 
+	public String match(String idReceptor, int idItemNecessario) {
+		Item itemNecessario;
+		for (Item i : this.itensSistemaNecessario) {
+			if (i.getId() == idItemNecessario) {
+				itemNecessario = i;
+			}
+		}
+		
+		
+		
+		return null;
+	}
+
 }
