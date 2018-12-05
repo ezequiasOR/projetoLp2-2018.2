@@ -56,8 +56,6 @@ public class ControllerItem {
 	 * Validadror de controle de item.
 	 */
 	private Validador validador;
-	
-	
 
 	/**
 	 * @return O id atualizado.
@@ -376,41 +374,41 @@ public class ControllerItem {
 		Collections.sort(itensSelecionados, new ComparatorItemNome());
 		return this.concatenador(itensSelecionados);
 	}
-	
+
 	private void verificaItemNecessario(int idItem) {
-		for(int i = 0; i < this.itensSistemaNecessario.size(); i++) {
-			if(this.itensSistemaNecessario.get(i).getId() == idItem) {
+		for (int i = 0; i < this.itensSistemaNecessario.size(); i++) {
+			if (this.itensSistemaNecessario.get(i).getId() == idItem) {
 				return;
 			}
 		}
-		
+
 		throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 	}
-	
+
 	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
-		
-		for(Item i: itensMatch) {
+
+		for (Item i : itensMatch) {
 			
-			if(i.getTags().equals(itemNecessario.getTags())) {
-					i.setPontos(10);
-				}
+			if (i.getTags().equals(itemNecessario.getTags())) {
+				i.setPontos(10);
+			}
+
+			else {
 				
-				else {
-					String[] a = i.getTags();
-					String[] b = itemNecessario.getTags();
-					
-					Arrays.sort(a);
-					Arrays.sort(b);
-					
-					if(a.equals(b)) {
-						i.setPontos(5);
-					}
+				String[] a = i.getTags();
+				String[] b = itemNecessario.getTags();
+
+				Arrays.sort(a);
+				Arrays.sort(b);
+
+				if (a.equals(b)) {
+					i.setPontos(5);
 				}
-				
 				
 			}
+		
 		}
-	
+	}
 
 	public String match(String idReceptor, int idItemNecessario, ControllerUsuario ctlUsuario) {
 		this.validador.validaId(idReceptor);
@@ -418,34 +416,33 @@ public class ControllerItem {
 		ctlUsuario.pesquisaUsuarioPorId(idReceptor);
 		this.verificaItemNecessario(idItemNecessario);
 		ctlUsuario.verificaStatusReceptor(idReceptor);
-	
+
 		Item itemNecessario = null;
-		
-		
+
 		for (Item i : this.itensSistemaNecessario) {
 			if (i.getId() == idItemNecessario) {
 				itemNecessario = i;
 			}
 		}
-		
-		ArrayList<Item> itensMatch= new ArrayList<>();
-		
-		for(Item i: this.itensSistema) {
-			if(i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+
+		ArrayList<Item> itensMatch = new ArrayList<>();
+
+		for (Item i : this.itensSistema) {
+			if (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
 				itensMatch.add(i);
 				i.setPontos(20);
-				
+
 			}
 		}
-		
+
 		this.pontuacao(itensMatch, itemNecessario);
 		Collections.sort(itensMatch, new ComparatorItensMatch());
-		
+
 		String match = "";
 
 		for (int i = 0; i < itensMatch.size(); i++) {
 
-			if (i == itensMatch.size()-1) {
+			if (i == itensMatch.size() - 1) {
 				if (itensMatch.get(i).getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
 					match = match + itensMatch.get(i).toStringSistema();
 				}
@@ -453,7 +450,7 @@ public class ControllerItem {
 
 			else {
 				if (itensMatch.get(i).getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
-					match = match +  itensMatch.get(i).toStringSistema() + " | ";
+					match = match + itensMatch.get(i).toStringSistema() + " | ";
 				}
 			}
 		}

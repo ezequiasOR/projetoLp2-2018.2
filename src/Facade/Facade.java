@@ -232,5 +232,13 @@ public class Facade {
 		return ctlItem.match(idReceptor, idItemNecessario,this.ctlUsuarios);
 	}
 	
+	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+		return ctlItem.realizaDoacao(idItemNec, idItemDoado, data);
+	}
+	
+	public String listaDoacoes() {
+		return ctlItem.listaDoacoes();
+	}
+	
 }
 
