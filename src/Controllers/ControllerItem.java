@@ -389,6 +389,17 @@ public class ControllerItem {
 
 		for (Item i : itensMatch) {
 			
+			for (int j =0; j < itemNecessario.getTags().length-1; j++) {
+				for (int k = 0; k < i.getTags().length-1; k++) {
+					if(k == j && i.getTags()[k].equals(itemNecessario.getTags()[j])) {
+						i.setPontos(10);
+					}
+					else if (k != j && i.getTags()[k].equals(itemNecessario.getTags()[j])) {
+						i.setPontos(5);
+					}
+				}
+			}
+			/*
 			if (i.getTags().equals(itemNecessario.getTags())) {
 				i.setPontos(10);
 			}
@@ -406,7 +417,7 @@ public class ControllerItem {
 				}
 				
 			}
-		
+			*/
 		}
 	}
 

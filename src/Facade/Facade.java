@@ -231,7 +231,7 @@ public class Facade {
 	public String match(String idReceptor, int idItemNecessario) {
 		return ctlItem.match(idReceptor, idItemNecessario,this.ctlUsuarios);
 	}
-	
+	/*
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		return ctlItem.realizaDoacao(idItemNec, idItemDoado, data);
 	}
@@ -239,6 +239,6 @@ public class Facade {
 	public String listaDoacoes() {
 		return ctlItem.listaDoacoes();
 	}
-	
+	*/
 }
 
