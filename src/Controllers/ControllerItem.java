@@ -13,7 +13,7 @@ import Comparators.ComparatorItemId;
 import Comparators.ComparatorDescritor;
 import Comparators.ComparatorItemNome;
 import Comparators.ComparatorItemQuantidade;
-import Comparators.ComparatorItensMatch;
+import Comparators.ComparatorMatchItens;
 import Validador.Validador;
 import doe.Descritor;
 import doe.Item;
@@ -384,43 +384,32 @@ public class ControllerItem {
 
 		throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 	}
-
+	
+	
 	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
 
 		for (Item i : itensMatch) {
 			
-			for (int j =0; j < itemNecessario.getTags().length-1; j++) {
-				for (int k = 0; k < i.getTags().length-1; k++) {
-					if(k == j && i.getTags()[k].equals(itemNecessario.getTags()[j])) {
-						i.setPontos(10);
-					}
-					else if (k != j && i.getTags()[k].equals(itemNecessario.getTags()[j])) {
-						i.setPontos(5);
-					}
-				}
-			}
-			/*
-			if (i.getTags().equals(itemNecessario.getTags())) {
+			if (Arrays.equals(i.getTags(),itemNecessario.getTags())) {
 				i.setPontos(10);
 			}
 
 			else {
 				
-				String[] a = i.getTags();
-				String[] b = itemNecessario.getTags();
+				String[] a = i.getTags().clone();
+				String[] b = itemNecessario.getTags().clone();
 
 				Arrays.sort(a);
 				Arrays.sort(b);
-
-				if (a.equals(b)) {
+				if(Arrays.equals(a, b)) {
 					i.setPontos(5);
 				}
-				
 			}
-			*/
 		}
 	}
 
+				
+				
 	public String match(String idReceptor, int idItemNecessario, ControllerUsuario ctlUsuario) {
 		this.validador.validaId(idReceptor);
 		this.validador.validaIdItem(idItemNecessario);
@@ -447,24 +436,36 @@ public class ControllerItem {
 		}
 
 		this.pontuacao(itensMatch, itemNecessario);
-		Collections.sort(itensMatch, new ComparatorItensMatch());
+		Collections.sort(itensMatch, new ComparatorMatchItens());
 
 		String match = "";
-
+		
+		/*
 		for (int i = 0; i < itensMatch.size(); i++) {
 
 			if (i == itensMatch.size() - 1) {
-				if (itensMatch.get(i).getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
-					match = match + itensMatch.get(i).toStringSistema();
+				 match = match + itensMatch.get(i).toStringSistema();
 				}
-			}
+			
 
 			else {
-				if (itensMatch.get(i).getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+				
 					match = match + itensMatch.get(i).toStringSistema() + " | ";
 				}
-			}
+			
+		
 		}
+		return match;
+		*/
+		
+		
+		
+		for (int i = 0; i < itensMatch.size(); i++) {
+			match = match + Integer.toString(itensMatch.get(i).getPontos());
+		}
+		
 		return match;
 	}
 }
+
+
