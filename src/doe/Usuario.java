@@ -90,6 +90,10 @@ public class Usuario {
 		this.nome = nome;
 	}
 	
+	public String getStatus() {
+		return this.status;
+	}
+	
 	/**
 	 * @return Retorna o Email do usuario.
 	 */

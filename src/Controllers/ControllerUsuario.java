@@ -278,4 +278,11 @@ public class ControllerUsuario {
 		this.usuarios.get(idReceptor).removeItemNecessario(idItem);
 		
 	}
+	
+	public void verificaStatusReceptor(String idUsuario) {
+		this.pesquisaUsuarioPorId(idUsuario);
+		if(this.usuarios.get(idUsuario).getStatus().equals("doador")) {
+			throw new IllegalArgumentException("O Usuario deve ser um receptor: " + idUsuario + ".");
+		}
+	}
 }

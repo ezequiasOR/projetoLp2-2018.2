@@ -54,6 +54,8 @@ public class ControllerItem {
 	 * Validadror de controle de item.
 	 */
 	private Validador validador;
+	
+	
 
 	/**
 	 * @return O id atualizado.
@@ -372,10 +374,27 @@ public class ControllerItem {
 		Collections.sort(itensSelecionados, new ComparatorItemNome());
 		return this.concatenador(itensSelecionados);
 	}
+	
+	private void verificaItemNecessario(int idItem) {
+		for(int i = 0; i < this.itensSistemaNecessario.size(); i++) {
+			if(this.itensSistemaNecessario.get(i).getId() == idItem) {
+				return;
+			}
+		}
+		
+		throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+	}
 
-	public String match(String idReceptor, int idItemNecessario) {
+	public String match(String idReceptor, int idItemNecessario, ControllerUsuario ctlUsuario) {
+		this.validador.validaId(idReceptor);
+		this.validador.validaIdItem(idItemNecessario);
+		ctlUsuario.pesquisaUsuarioPorId(idReceptor);
+		this.verificaItemNecessario(idItemNecessario);
+		ctlUsuario.verificaStatusReceptor(idReceptor);
+	
 		Item itemNecessario = null;
-
+		
+		
 		for (Item i : this.itensSistemaNecessario) {
 			if (i.getId() == idItemNecessario) {
 				itemNecessario = i;

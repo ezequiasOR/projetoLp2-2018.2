@@ -229,7 +229,7 @@ public class Facade {
 	}
 	
 	public String match(String idReceptor, int idItemNecessario) {
-		return ctlItem.match(idReceptor, idItemNecessario);
+		return ctlItem.match(idReceptor, idItemNecessario,this.ctlUsuarios);
 	}
 	
 }
