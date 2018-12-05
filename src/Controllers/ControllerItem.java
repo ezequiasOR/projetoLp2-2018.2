@@ -2,6 +2,7 @@ package Controllers;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import Comparators.ComparatorItemId;
 import Comparators.ComparatorDescritor;
 import Comparators.ComparatorItemNome;
 import Comparators.ComparatorItemQuantidade;
+import Comparators.ComparatorItensMatch;
 import Validador.Validador;
 import doe.Descritor;
 import doe.Item;
@@ -384,6 +386,31 @@ public class ControllerItem {
 		
 		throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 	}
+	
+	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
+		
+		for(Item i: itensMatch) {
+			
+			if(i.getTags().equals(itemNecessario.getTags())) {
+					i.setPontos(10);
+				}
+				
+				else {
+					String[] a = i.getTags();
+					String[] b = itemNecessario.getTags();
+					
+					Arrays.sort(a);
+					Arrays.sort(b);
+					
+					if(a.equals(b)) {
+						i.setPontos(5);
+					}
+				}
+				
+				
+			}
+		}
+	
 
 	public String match(String idReceptor, int idItemNecessario, ControllerUsuario ctlUsuario) {
 		this.validador.validaId(idReceptor);
@@ -411,7 +438,9 @@ public class ControllerItem {
 			}
 		}
 		
-
+		this.pontuacao(itensMatch, itemNecessario);
+		Collections.sort(itensMatch, new ComparatorItensMatch());
+		
 		String match = "";
 
 		for (int i = 0; i < itensMatch.size(); i++) {

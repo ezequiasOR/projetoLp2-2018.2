@@ -4,14 +4,7 @@ import java.util.Comparator;
 
 import doe.Item;
 
-/**
- * Classe para comparar dois items pela quantidade.
- * 
- * @author João Vitor de Melo Cavalcante e Souza
- * @author Ezequias de Oliveira Rocha
- * @author Felipe Jerônimo Bernardo da Silva
- *
- */
+
 public class ComparatorMatchItens implements Comparator<Item> {
 	
 	/**
