@@ -56,6 +56,11 @@ public class ControllerItem {
 	 * Validadror de controle de item.
 	 */
 	private Validador validador;
+	
+	/**
+	 * Atributo responsavel por controlar item.
+	 */
+	private ControllerUsuario ctlUsuario;
 
 	/**
 	 * @return O id atualizado.
@@ -87,13 +92,14 @@ public class ControllerItem {
 	 * Construtor do controle de item.
 	 * 
 	 */
-	public ControllerItem() {
+	public ControllerItem(ControllerUsuario ctlUsuario) {
 		this.validador = new Validador();
 		this.descritoresSistema = new HashSet<>();
 		this.descritores = new HashSet<>();
 		this.itensSistema = new ArrayList<>();
 		this.itensSistemaNecessario = new ArrayList<>();
 		this.id = 0;
+		this.ctlUsuario = ctlUsuario;
 	}
 
 	/**
@@ -391,11 +397,25 @@ public class ControllerItem {
 		for (Item i : itensMatch) {
 			
 			if (Arrays.equals(i.getTags(),itemNecessario.getTags())) {
-				i.setPontos(10);
+				i.setPontos(10*i.getTags().length);
 			}
 
 			else {
-				
+				for (int j = 0; j < itensMatch.size()-1; j++) {
+					for (int k = 0; k < itemNecessario.getTags().length; k++) {
+						for (int m = 0; m < itensMatch.get(j).getTags().length; m++) {
+							if (m != k && itemNecessario.getTags()[k].equals(itensMatch.get(j).getTags()[m])) {
+								itensMatch.get(j).setPontos(5);
+								break;
+							}
+							else if (m == k && itemNecessario.getTags()[k].equals(itensMatch.get(j).getTags()[m])) {
+								itensMatch.get(j).setPontos(10);
+								break;
+							}
+						}
+					}
+				}
+				/*
 				String[] a = i.getTags().clone();
 				String[] b = itemNecessario.getTags().clone();
 
@@ -403,7 +423,9 @@ public class ControllerItem {
 				Arrays.sort(b);
 				if(Arrays.equals(a, b)) {
 					i.setPontos(5);
+				
 				}
+			*/
 			}
 		}
 	}
@@ -440,7 +462,7 @@ public class ControllerItem {
 
 		String match = "";
 		
-		/*
+		
 		for (int i = 0; i < itensMatch.size(); i++) {
 
 			if (i == itensMatch.size() - 1) {
@@ -456,15 +478,16 @@ public class ControllerItem {
 		
 		}
 		return match;
-		*/
 		
 		
 		
+		/*
 		for (int i = 0; i < itensMatch.size(); i++) {
 			match = match + Integer.toString(itensMatch.get(i).getPontos());
 		}
 		
 		return match;
+		*/
 	}
 }
 

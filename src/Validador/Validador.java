@@ -3,19 +3,19 @@ package Validador;
 public class Validador {
 
 	public void validaCadastro(String id, String nome, String email, String celular, String classe) {
-		if (id == null || id.equals("")) {
+		if (id == null || id.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
-		if (nome == null || nome.equals("")) {
+		if (nome == null || nome.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: nome nao pode ser vazio ou nulo.");
 		}
-		if (email == null || email.equals("")) {
+		if (email == null || email.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: email nao pode ser vazio ou nulo.");
 		}
-		if (celular == null || celular.equals("")) {
+		if (celular == null || celular.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: celular nao pode ser vazio ou nulo.");
 		}
-		if (classe == null || classe.equals("")) {
+		if (classe == null || classe.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: classe nao pode ser vazia ou nula.");
 		}
 	}
@@ -29,28 +29,28 @@ public class Validador {
 	}
 
 	public void validaId(String id) {
-		if (id == null || id.equals("")) {
+		if (id == null || id.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
 	}
 
 	public void validaNome(String nome) {
-		if (nome == null || nome.equals("")) {
+		if (nome == null || nome.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: nome nao pode ser vazio ou nulo.");
 		}
 	}
 
 	public void validaDescritor(String descricao) {
-		if (descricao == null || descricao.equals("")) {
+		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: descricao nao pode ser vazia ou nula.");
 		}
 	}
 
 	public void verificaCadastroDeItem(String id, String descricao, int quantidade) {
-		if (id == null || id.equals("")) {
+		if (id == null || id.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
-		if (descricao == null || descricao.equals("")) {
+		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: descricao nao pode ser vazia ou nula.");
 		}
 		if (quantidade <= 0) {
@@ -69,7 +69,7 @@ public class Validador {
 	}
 	
 	public void validaPesquisa(String descricao) {
-		if (descricao == null || descricao.equals("")) {
+		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: texto da pesquisa nao pode ser vazio ou nulo.");
 		}
 	}

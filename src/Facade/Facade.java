@@ -39,7 +39,7 @@ public class Facade {
 	 * Construtor da fachada.
 	 */
 	public Facade() {
-		ctlItem = new ControllerItem();
+		ctlItem = new ControllerItem(ctlUsuarios);
 		ctlUsuarios = new ControllerUsuario(ctlItem);
 	}
 	

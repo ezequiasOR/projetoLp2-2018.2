@@ -17,9 +17,9 @@ import doe.Usuario;
 /**
  * Representacao do controle de usuarios.
  * 
- * @author João Vitor de Melo Cavalcante e Souza
+ * @author Joao Vitor de Melo Cavalcante e Souza
  * @author Ezequias de Oliveira Rocha
- * @author Felipe Jerônimo Bernardo da Silva
+ * @author Felipe Jeronimo Bernardo da Silva
  *
  */
 public class ControllerUsuario {
@@ -76,6 +76,7 @@ public class ControllerUsuario {
 			this.usuarios.put(dadosReceptor[0], new Usuario(dadosReceptor[0], dadosReceptor[1], dadosReceptor[2],
 					dadosReceptor[3], dadosReceptor[4], "receptor"));
 		}
+		sc.close();
 
 	}
 
@@ -106,7 +107,6 @@ public class ControllerUsuario {
 		}
 
 		for (int i = 0; i < chaveUsuarios.size(); i++) {
-			System.out.println();
 			if (this.usuarios.get(chaveUsuarios.get(i)).getNome().equals(nome)) {
 				if (qtdMesmoNome == aux - 1) {
 					saida += this.usuarios.get(chaveUsuarios.get(i)).toString();
