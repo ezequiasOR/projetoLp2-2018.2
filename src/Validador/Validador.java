@@ -109,15 +109,23 @@ public class Validador {
 	}
 	
 	/**
-	 * Valida o descritor
-	 * @param descricao
+	 * Valida uma descricao a ser cadastrada, de um descritor ou item(doacao ou recepcao).
+	 * 
+	 * @param descricao Descricao a ser validada, nao podendo ser null nem vazia.
 	 */
 	public void validaDescritor(String descricao) {
 		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: descricao nao pode ser vazia ou nula.");
 		}
 	}
-
+	
+	/**
+	 * Valida os parametros do cadastro de um item.
+	 * 
+	 * @param id Id do usuario a ser validado, nao podendo ser null nem vazio.
+	 * @param descricao Descricao do item a ser validada, nao podedo ser null nem vazio.
+	 * @param quantidade Quantidade do item a ser validada, nao podendo ser negativa.
+	 */
 	public void verificaCadastroDeItem(String id, String descricao, int quantidade) {
 		if (id == null || id.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
@@ -130,6 +138,11 @@ public class Validador {
 		}
 	}
 	
+	/**
+	 * Valida o Id de um item.
+	 * 
+	 * @param idItem Id do item, nao podendo ser nem vazio nem negativo.
+	 */
 	public void validaIdItem(int idItem) {
 		if(idItem < 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
@@ -140,6 +153,11 @@ public class Validador {
 		}
 	}
 	
+	/**
+	 * Valida os parametros de uma pequisa sobre itens com a mesma descricao(descritores).
+	 * 
+	 * @param descricao Descricao a ser validada, nao podendo ser null nem vazia.
+	 */
 	public void validaPesquisa(String descricao) {
 		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: texto da pesquisa nao pode ser vazio ou nulo.");
