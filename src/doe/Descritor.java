@@ -5,9 +5,9 @@ package doe;
  * Cada descritor e unico.
  * Todo descritor possui descricao e quantidade.
  * 
- * @author João Vitor de Melo Cavalcante e Souza
- * @author Ezequias de Oliveira Rocha
- * @author Felipe Jerônimo Bernardo da Silva
+ * @author Joao Vitor de Melo Cavalcante e Souza.
+ * @author Ezequias de Oliveira Rocha.
+ * @author Felipe Jeronimo Bernardo da Silva.
  *
  */
 public class Descritor {

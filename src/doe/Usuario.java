@@ -4,18 +4,23 @@ import java.util.HashMap;
 
 import java.util.Map;
 import java.io.Serializable;
+<<<<<<< HEAD
 
 import Validador.Validador;
 
 
+=======
+import Validador.Validador;
+
+>>>>>>> a6317e828972728c45ded420e8aa77c6d1e52ea0
 /**
  * Representacao de um usuario no sistema.
  * Cada usuario podera ser ou doador ou receptor de itens.
  * Todo usuario devera ter um Id, Nome, Email e uma classe a seres informados, alem do status.
  * 
- * @author João Vitor de Melo Cavalcante e Souza
- * @author Ezequias de Oliveira Rocha
- * @author Felipe Jerônimo Bernardo da Silva
+ * @author Joao Vitor de Melo Cavalcante e Souza.
+ * @author Ezequias de Oliveira Rocha.
+ * @author Felipe Jeronimo Bernardo da Silva.
  *
  */
 public class Usuario implements Serializable{
