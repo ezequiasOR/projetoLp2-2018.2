@@ -56,7 +56,7 @@ public class Usuario implements Serializable{
 	private Map<Integer, Item> itens;
 	
 	/**
-	 * Validador de controle de usuario.
+	 * Validador de usuario.
 	 */
 	private Validador validador = new Validador();
 	

@@ -3,6 +3,8 @@ package doe;
 import java.io.Serializable;
 import java.util.Arrays;
 
+import Validador.Validador;
+
 /**
  * Representação de um item no sistema.
  * Cada item pertence a um doador ou um receptor.
@@ -50,6 +52,11 @@ public class Item implements Serializable{
 	 */
 	private String idUsuario;
 	
+	/**
+	 * Validador de usuario.
+	 */
+	private Validador validador = new Validador();
+	
 	private int pontos;
 	
 	
@@ -65,6 +72,10 @@ public class Item implements Serializable{
 	 */
 	
 	public Item(int id, String descricao, int quantidade, String tags, String nomeUsuario, String idDoador) {
+		this.validador.validaIdItem(id);
+		this.validador.validaDescritor(descricao);
+		this.validador.validaQuantidade(quantidade);
+		
 		this.descricaoItem = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
@@ -79,8 +90,9 @@ public class Item implements Serializable{
 	 * 
 	 * @param quant Quantidade do item.
 	 */
-	public void adicionaQuantidade(int quant) {
-		this.quantidade = this.quantidade + quant;
+	public void adicionaQuantidade(int quantidade) {
+		this.validador.validaQuantidade(quantidade);
+		this.quantidade = this.quantidade + quantidade;
 	}
 	
 	@Override
@@ -123,6 +135,8 @@ public class Item implements Serializable{
 	 * @param nome Novo nome a ser alterado.
 	 */
 	public void setNomeUsuario(String nome) {
+		this.validador.validaNome(nome);
+		
 		this.nomeUsuario = nome;
 	}
 
@@ -131,6 +145,8 @@ public class Item implements Serializable{
 	 * @param quantidade Nova quantidade a ser alterada.
 	 */
 	public void setQuantidade(int quantidade) {
+		this.validador.validaQuantidade(quantidade);
+		
 		this.quantidade = quantidade;
 	}
 
@@ -146,6 +162,8 @@ public class Item implements Serializable{
 	 * @param descricaoItem Nova descricao do item.
 	 */
 	public void setDescricaoItem(String descricaoItem) {
+		this.validador.validaDescritor(descricaoItem);
+		
 		this.descricaoItem = descricaoItem;
 	}
 
