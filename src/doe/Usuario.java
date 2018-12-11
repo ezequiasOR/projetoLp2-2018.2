@@ -2,9 +2,13 @@ package doe;
 
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
+import java.io.Serializable;
+=======
 
 import Validador.Validador;
 
+>>>>>>> c26b99cbd5a8bfa7a317975df7883512205eff83
 
 /**
  * Representacao de um usuario no sistema.
@@ -16,7 +20,12 @@ import Validador.Validador;
  * @author Felipe Jerônimo Bernardo da Silva
  *
  */
-public class Usuario {
+public class Usuario implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7872987635271353383L;
 	
 	/**
 	 * Id do usuario.
