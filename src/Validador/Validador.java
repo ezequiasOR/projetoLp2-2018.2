@@ -39,7 +39,25 @@ public class Validador {
 			throw new IllegalArgumentException("Entrada invalida: nome nao pode ser vazio ou nulo.");
 		}
 	}
-
+	
+	public void validaEmail(String email) {
+		if (email == null || email.trim().equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: email nao pode ser vazio ou nulo.");
+		}
+	}
+	
+	public void validaCelular(String celular) {
+		if (celular == null || celular.trim().equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: email nao pode ser vazio ou nulo.");
+		}
+	}
+	
+	public void validaQuantidade(int quantidade) {
+		if (quantidade <= 0) {
+			throw new IllegalArgumentException("Entrada invalida: quantidade deve ser maior que zero.");
+		}
+	}
+	
 	public void validaDescritor(String descricao) {
 		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: descricao nao pode ser vazia ou nula.");

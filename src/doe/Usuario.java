@@ -2,7 +2,13 @@ package doe;
 
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
 import java.io.Serializable;
+=======
+
+import Validador.Validador;
+
+>>>>>>> c26b99cbd5a8bfa7a317975df7883512205eff83
 
 /**
  * Representacao de um usuario no sistema.
@@ -51,6 +57,11 @@ public class Usuario implements Serializable{
 	 */
 	private Map<Integer, Item> itens;
 	
+	/**
+	 * Validador de controle de usuario.
+	 */
+	private Validador validador = new Validador();
+	
 	
 	/**
 	 * Construtor do usuario.
@@ -63,6 +74,8 @@ public class Usuario implements Serializable{
 	 * @param status Status do usuário (so podera ser doador ou receptor).
 	 */
 	public Usuario(String id, String nome, String email, String celular, String classe, String status) {
+		this.validador.validaCadastro(id, nome, email, celular, classe);
+		
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -92,6 +105,7 @@ public class Usuario implements Serializable{
 	 * @param nome novo Nome a ser alterado.
 	 */
 	public void setNome(String nome) {
+		this.validador.validaNome(nome);
 		this.nome = nome;
 	}
 	
@@ -111,6 +125,7 @@ public class Usuario implements Serializable{
 	 * @param email novo email a ser alterado.
 	 */
 	public void setEmail(String email) {
+		this.validador.validaEmail(email);
 		this.email = email;
 	}
 	
@@ -126,6 +141,7 @@ public class Usuario implements Serializable{
 	 * @param celular Novo celular a ser alterado.
 	 */
 	public void setCelular(String celular) {
+		this.validador.validaCelular(celular);
 		this.celular = celular;
 	}
 
@@ -205,6 +221,8 @@ public class Usuario implements Serializable{
 	 * @return Retorna a representação textual de um item.
 	 */
 	public String getItem(int idItem) {
+		this.validador.validaIdItem(idItem);
+		
 		if (!(this.verificaItem(idItem))) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
@@ -216,6 +234,8 @@ public class Usuario implements Serializable{
 	 * @param idItem Id do item a ser removido.
 	 */
 	public void removeItem(int idItem) {
+		this.validador.validaIdItem(idItem);
+		
 		if (this.itens.isEmpty()) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
@@ -240,6 +260,8 @@ public class Usuario implements Serializable{
 	 * @return true caso exista e false caso nao exista.
 	 */
 	public boolean verificaItem(int idItem) {
+		this.validador.validaIdItem(idItem);
+		
 		if (!(this.itens.containsKey(idItem))) {
 			return false;
 		}
@@ -257,6 +279,9 @@ public class Usuario implements Serializable{
 	 * @param tags Tags do novo item.
 	 */
 	public int adicionaItem(int id, String descricao, int quantidade, String tags) {
+		this.validador.validaIdItem(id);
+		this.validador.validaDescritor(descricao);
+		this.validador.validaQuantidade(quantidade);
 
 		Item item = new Item(id, descricao, quantidade, tags, this.nome, this.id);
 
@@ -285,6 +310,8 @@ public class Usuario implements Serializable{
 	 * @return Retorna a atual representação em string do objeto.
 	 */
 	public String atualizaItemNecessario(int idItem, int novaQuantidade, String novasTags) {
+		this.validador.validaIdItem(idItem);
+		
 		if (!this.itens.containsKey(idItem)) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
@@ -306,6 +333,8 @@ public class Usuario implements Serializable{
 	 * @param idItem Id do item a ser removido.
 	 */
 	public void removeItemNecessario(int idItem) {
+		this.validador.validaIdItem(idItem);
+		
 		if (this.itens.isEmpty()) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
