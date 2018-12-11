@@ -4,15 +4,10 @@ import java.util.HashMap;
 
 import java.util.Map;
 import java.io.Serializable;
-<<<<<<< HEAD
 
 import Validador.Validador;
 
 
-=======
-import Validador.Validador;
-
->>>>>>> a6317e828972728c45ded420e8aa77c6d1e52ea0
 /**
  * Representacao de um usuario no sistema.
  * Cada usuario podera ser ou doador ou receptor de itens.
