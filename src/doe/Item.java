@@ -7,9 +7,9 @@ import java.util.Arrays;
  * Cada item pertence a um doador ou um receptor.
  * Todo item é representado por Id, Quantidade, Descrição e Tags.
  * 
- * @author João Vitor de Melo Cavalcante e Souza
- * @author Ezequias de Oliveira Rocha
- * @author Felipe Jerônimo Bernardo da Silva
+ * @author Joao Vitor de Melo Cavalcante e Souza.
+ * @author Ezequias de Oliveira Rocha.
+ * @author Felipe Jeronimo Bernardo da Silva.
  * 
  */
 public class Item {
@@ -167,10 +167,18 @@ public class Item {
 		return id;
 	}
 	
+	/**
+	 * 
+	 * @return Retorna a pontuacao em um match.
+	 */
 	public int getPontos() {
 		return pontos;
 	}
 
+	/**
+	 * 
+	 * @param pontos Altera a pontuacao enquanto realiza um match.
+	 */
 	public void setPontos(int pontos) {
 		this.pontos += pontos;
 	}
@@ -185,20 +193,24 @@ public class Item {
 	}
 
 	/**
-	 * @return A representacao do item, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade).
+	 * @return Retorna a representacao do item, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade).
 	 */
 	public String toString() {
 		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade);
 	}
 	
 	/**
-	 * @return A representacao do sistema, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade), doador: (nome do doador)/(id do doador)"
+	 * @return Retorna a  representacao do sistema, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade), doador: (nome do doador)/(id do doador)"
 	 */
 	public String toStringSistema() {
 		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idDoador);
 
 	}
 	
+	/**
+	 * 
+	 * @return Retorna a representacao de um item pedido por um receptor, no formato: (id) - (descricao), tags: (tags), quantidade: (quantidade), Receptor: (nomeReceptor)/id(idUsuario).
+	 */
 	public String toStringSistemaNecessario() {
 		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idDoador);
 
