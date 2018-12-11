@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Representação de um item no sistema.
  * Cada item pertence a um doador ou um receptor.
- * Todo item é representado por Id, Quantidade, Descrição e Tags.
+ * Todo item e representado por Id, Quantidade, Descricao e Tags.
  * 
  * @author Joao Vitor de Melo Cavalcante e Souza.
  * @author Ezequias de Oliveira Rocha.
