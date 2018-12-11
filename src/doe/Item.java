@@ -42,7 +42,7 @@ public class Item {
 	/**
 	 * Id do doador do item.
 	 */
-	private String idDoador;
+	private String idUsuario;
 	
 	private int pontos;
 	
@@ -64,7 +64,7 @@ public class Item {
 		this.tags = tags.split(",");
 		this.id = id;
 		this.nomeUsuario = nomeUsuario;
-		this.idDoador = idDoador;
+		this.idUsuario = idDoador;
 		this.pontos = 0;
 	}
 	
@@ -203,7 +203,7 @@ public class Item {
 	 * @return Retorna a  representacao do sistema, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade), doador: (nome do doador)/(id do doador)"
 	 */
 	public String toStringSistema() {
-		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idDoador);
+		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idUsuario);
 
 	}
 	
@@ -212,7 +212,7 @@ public class Item {
 	 * @return Retorna a representacao de um item pedido por um receptor, no formato: (id) - (descricao), tags: (tags), quantidade: (quantidade), Receptor: (nomeReceptor)/id(idUsuario).
 	 */
 	public String toStringSistemaNecessario() {
-		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idDoador);
+		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idUsuario);
 
 	}
 	
