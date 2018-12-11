@@ -506,6 +506,34 @@ public class ControllerItem {
 		}
 		
 	}
+
+	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+		this.validador.validaIdItem(idItemNec);
+		this.validador.validaIdItem(idItemDoado);
+		this.validador.validaData(data);
+		
+		Item itemNecessario = null;
+		Item itemDoacao = null;
+		
+		for (Item i : this.itensSistemaNecessario) {
+			if (i.getId() == idItemNec) {
+				itemNecessario = i;
+			}
+		}
+		this.validador.validaItemNecessario(itemNecessario, idItemNec);
+		
+		for (Item i : this.itensSistema) {
+			if (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+				itemDoacao = i;
+				break;
+			}
+		}
+		this.validador.validaDoacao(itemDoacao, itemNecessario);
+		
+		
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 

@@ -31,7 +31,8 @@ public class Facade {
 	 * @param args testes do easyaccept.
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt", "testes/acceptance_tests/use_case_5.txt"};
+		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt", 
+				"testes/acceptance_tests/use_case_5.txt", "testes/acceptance_tests/use_case_6.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -231,11 +232,11 @@ public class Facade {
 	public String match(String idReceptor, int idItemNecessario) {
 		return ctlItem.match(idReceptor, idItemNecessario,this.ctlUsuarios);
 	}
-	/*
+	
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		return ctlItem.realizaDoacao(idItemNec, idItemDoado, data);
 	}
-	
+	/*
 	public String listaDoacoes() {
 		return ctlItem.listaDoacoes();
 	}

@@ -1,5 +1,7 @@
 package Validador;
 
+import doe.Item;
+
 /**
  * Classe auxiliar em que valida parametros de metodos de outras classes e objetos.
  * 
@@ -161,6 +163,24 @@ public class Validador {
 	public void validaPesquisa(String descricao) {
 		if (descricao == null || descricao.trim().equals("")) {
 			throw new IllegalArgumentException("Entrada invalida: texto da pesquisa nao pode ser vazio ou nulo.");
+		}
+	}
+
+	public void validaData(String data) {
+		if (data == null || data.trim().equals("")) {
+			throw new IllegalArgumentException("Entrada invalida: data nao pode ser vazia ou nula.");
+		}
+	}
+
+	public void validaItemNecessario(Item itemNecessario, int idItemNec) {
+		if (itemNecessario == null) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItemNec +".");
+		}
+	}
+
+	public void validaDoacao(Item itemDoacao, Item itemNecessario) {
+		if (!itemDoacao.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+			throw new IllegalArgumentException("Os itens nao tem descricoes iguais.");
 		}
 	}
 
