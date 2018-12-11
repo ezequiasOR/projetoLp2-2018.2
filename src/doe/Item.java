@@ -221,6 +221,10 @@ public class Item implements Serializable{
 		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idUsuario);
 
 	}
+
+	public void resetaPontos() {
+		this.pontos = 0;
+	}
 	
 	
 }

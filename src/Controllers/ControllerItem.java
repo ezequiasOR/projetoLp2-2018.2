@@ -400,27 +400,18 @@ public class ControllerItem {
 	
 	
 	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
-
+		this.resetaPontos(itensMatch);
+		
 		for (Item i : itensMatch) {
 			
 			if (Arrays.equals(i.getTags(),itemNecessario.getTags())) {
-				i.setPontos(10*i.getTags().length);
+				i.setPontos(10*itemNecessario.getTags().length);
 			}
 
 			else {
 				for (int j = 0; j < itensMatch.size()-1; j++) {
-					for (int k = 0; k < itemNecessario.getTags().length; k++) {
-						for (int m = 0; m < itensMatch.get(j).getTags().length; m++) {
-							if (m != k && itemNecessario.getTags()[k].equals(itensMatch.get(j).getTags()[m])) {
-								itensMatch.get(j).setPontos(5);
-								break;
-							}
-							else if (m == k && itemNecessario.getTags()[k].equals(itensMatch.get(j).getTags()[m])) {
-								itensMatch.get(j).setPontos(10);
-								break;
-							}
-						}
-					}
+					this.pontuaPelasTags(itensMatch.get(j), itemNecessario);
+					
 				}
 				/*
 				String[] a = i.getTags().clone();
@@ -439,6 +430,21 @@ public class ControllerItem {
 
 				
 				
+	private void pontuaPelasTags(Item item, Item itemNecessario) {
+		for (int k = 0; k <= itemNecessario.getTags().length-1; k++) {
+			for (int m = 0; m <= item.getTags().length-1; m++) {
+				if (m != k && itemNecessario.getTags()[k].equals(item.getTags()[m])) {
+					item.setPontos(5);
+					break;
+				}
+				else if (m == k && itemNecessario.getTags()[k].equals(item.getTags()[m])) {
+					item.setPontos(10);
+					break;
+				}
+			}
+		}
+	}
+
 	public String match(String idReceptor, int idItemNecessario, ControllerUsuario ctlUsuario) {
 		this.validador.validaId(idReceptor);
 		this.validador.validaIdItem(idItemNecessario);
@@ -459,8 +465,6 @@ public class ControllerItem {
 		for (Item i : this.itensSistema) {
 			if (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
 				itensMatch.add(i);
-				i.setPontos(20);
-
 			}
 		}
 
@@ -484,7 +488,6 @@ public class ControllerItem {
 			
 		
 		}
-		this.resetaPontos(itensMatch);
 		return match;
 		
 		
@@ -499,7 +502,7 @@ public class ControllerItem {
 
 	private void resetaPontos(ArrayList<Item> itensMatch) {
 		for (int i = 0; i < itensMatch.size(); i++) {
-		itensMatch.get(i).setPontos(-1*itensMatch.get(i).getPontos());
+			itensMatch.get(i).resetaPontos();
 		}
 		
 	}
