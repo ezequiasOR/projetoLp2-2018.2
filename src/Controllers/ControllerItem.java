@@ -1,6 +1,12 @@
 package Controllers;
 
 import java.awt.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,6 +23,7 @@ import Comparators.ComparatorMatchItens;
 import Validador.Validador;
 import doe.Descritor;
 import doe.Item;
+import doe.Usuario;
 
 /**
  * Representacao do controle de itens.
@@ -496,6 +503,7 @@ public class ControllerItem {
 		}
 		
 	}
+	
 }
 
 

@@ -1,5 +1,6 @@
 package doe;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -12,8 +13,13 @@ import java.util.Arrays;
  * @author Felipe Jeronimo Bernardo da Silva.
  * 
  */
-public class Item {
+public class Item implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3875270557684443654L;
+
 	/**
 	 * Quantidade do item.
 	 */
