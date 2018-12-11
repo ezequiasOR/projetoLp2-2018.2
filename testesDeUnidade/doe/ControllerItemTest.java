@@ -13,12 +13,11 @@ import Controllers.ControllerUsuario;
 
 class ControllerItemTest {
 	
-	private ControllerUsuario controllerUsuario;
 	private ControllerItem controllerItem;
+	private ControllerUsuario controllerUsuario = new ControllerUsuario(controllerItem);
 	
 	@BeforeEach
 	public void Before() throws Exception {
-		controllerUsuario = new ControllerUsuario(controllerItem);
 		controllerItem = new ControllerItem(controllerUsuario);
 		controllerUsuario.cadastraDoador("123123123", "Daniel", "daniel@com", "(54) 95545-4545", "PESSOA_FISICA");
 		controllerItem.adicionaDescritor("Livro");
