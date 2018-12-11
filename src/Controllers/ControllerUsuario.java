@@ -1,8 +1,12 @@
 package Controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -48,7 +52,17 @@ public class ControllerUsuario {
 		this.validador = new Validador();
 		this.ctlItem = ctlItem;
 	}
-
+	
+	/**
+	 * Cadastra um doador no sistema.
+	 * 
+	 * @param id Id do usuario (doador)
+	 * @param nome Nome do usuario.
+	 * @param email Email do usuario.
+	 * @param celular Numero do celular do usuario.
+	 * @param classe Classe do usuario (so podera ser PESSOA_FISICA, IGREJA, ONG, ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO FEDERAL, ASSOCIACAO, SOCIEDADE).
+	 * @return Retorna o Id do usuario cadastrado.
+	 */
 	public String cadastraDoador(String id, String nome, String email, String celular, String classe) {
 		this.validador.validaCadastro(id, nome, email, celular, classe);
 		this.validador.validaClasse(classe);
@@ -59,7 +73,13 @@ public class ControllerUsuario {
 		this.usuarios.put(id, new Usuario(id, nome, email, celular, classe, "doador"));
 		return id;
 	}
-
+	
+	/**
+	 * Le usuarios receptores de um arquivo de texto.
+	 * 
+	 * @param caminho Arquivo de texto em string.
+	 * @throws IOException
+	 */
 	public void lerReceptores(String caminho) throws IOException {
 		Scanner sc = new Scanner(new File(caminho));
 		String linha = null;
@@ -79,7 +99,13 @@ public class ControllerUsuario {
 		sc.close();
 
 	}
-
+	
+	/**
+	 * Pesquisa um usuario pelo seu id no sistema.
+	 * 
+	 * @param id Id do usuario a ser pesquisado.
+	 * @return Retorna a representacao textual do usuario pesquisado.
+	 */
 	public String pesquisaUsuarioPorId(String id) {
 		this.validador.validaId(id);
 
@@ -88,7 +114,13 @@ public class ControllerUsuario {
 		}
 		return this.usuarios.get(id).toString();
 	}
-
+	
+	/**
+	 * Pesquisa por todos os usuarios no sistema com um mesmo nome.
+	 * 
+	 * @param nome Nome a ser consultado no sistema.
+	 * @return Uma representacao em string de todos os usuarios com o mesmo nome.
+	 */
 	public String pesquisaUsuarioPorNome(String nome) {
 		this.validador.validaNome(nome);
 		List<String> chaveUsuarios = new ArrayList<>();
@@ -122,7 +154,16 @@ public class ControllerUsuario {
 		}
 		return saida;
 	}
-
+	
+	/**
+	 * Atualiza as informarcoes de um usuario ja cadastrado.
+	 * 
+	 * @param id Id do usuario (este e imutavel).
+	 * @param nome Novo nome desejado.
+	 * @param email Novo email desejado.
+	 * @param celular Novo numero de celular desejado.
+	 * @return Retorna a nova representacao textual do usuario.
+	 */
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		this.validador.validaId(id);
 
@@ -142,7 +183,12 @@ public class ControllerUsuario {
 
 		return this.usuarios.get(id).toString();
 	}
-
+	
+	/**
+	 * Remove um usuario cadastrado no sistema.
+	 * 
+	 * @param id Id do usuario a ser removido.
+	 */
 	public void removeUsuario(String id) {
 		this.validador.validaId(id);
 		
@@ -153,6 +199,16 @@ public class ControllerUsuario {
 		this.usuarios.remove(id);
 	}
 	
+	/**
+	 * Adiciona um item em um usuario (doador).
+	 * A Id do item e gerada automaticamente pelo sistema.
+	 * 
+	 * @param id Id do usuario a adicionar o item em sua conta (e no sistema).
+	 * @param descricao Descricao do item a ser cadastrado.
+	 * @param quantidade Quantidade do item a ser cadastrado.
+	 * @param tags Tags do item a ser cadastrado.
+	 * @return O Id gerado automaticamente do item(que e sua ordem de cadastrado no sistema).
+	 */
 	public int adicionaItem(String id, String descricao, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
 		if (!this.usuarios.containsKey(id)) {
@@ -179,7 +235,13 @@ public class ControllerUsuario {
 	}
 	
 	
-
+	/**
+	 * Exibe um item de um doador.
+	 * 
+	 * @param idItem Id do item a ser exibido.
+	 * @param idDoador Id do doador portado do item.
+	 * @return Retorna a representacao textual do item.
+	 */
 	public String exibeItem(int idItem, String idDoador) {
 		if (!this.usuarios.containsKey(idDoador)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idDoador + ".");
@@ -187,6 +249,15 @@ public class ControllerUsuario {
 		return this.usuarios.get(idDoador).getItem(idItem);
 	}
 	
+	/**
+	 * Atualiza um item de um doador.
+	 * 
+	 * @param Id do item (este e imutavel, assim como o ID do doador).
+	 * @param idDoador Id do doador portador do item a ser modificado.
+	 * @param quantidade Nova quantidade desejada do item.
+	 * @param tags Novas tags desejadas do item.
+	 * @return Retorna a nova representacao textual do Item.
+	 */
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
         this.validador.validaId(idDoador);
         this.validador.validaIdItem(idItem);
@@ -210,6 +281,12 @@ public class ControllerUsuario {
         return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
     }
 	
+	/**
+	 * Remove um item de um doador.
+	 * 
+	 * @param idItem Id do item a ser removido.
+	 * @param idDoador Id do doador portador do item a ser removido.
+	 */
 	public void removeItemParaDoacao(String idItem, String idDoador) {
 		this.validador.validaId(idDoador);
 		this.validador.validaId(idItem);
@@ -230,7 +307,16 @@ public class ControllerUsuario {
 		
 
 	}
-
+	
+	/**
+	 * Adiciona um item a um receptor, um pedido de um item em uma melhor descricao.
+	 * 
+	 * @param idReceptor Id do usuario receptor.
+	 * @param descricaoItem Descricao do item desejado.
+	 * @param quantidade Quantidade desejada do item desejado.
+	 * @param tags Tags do item desejado.
+	 * @return Retorna o id do item gerado automaticamente pelo sistema.
+	 */
 	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(idReceptor, descricaoItem, quantidade);
 		
@@ -246,6 +332,15 @@ public class ControllerUsuario {
 		
 	}
 
+	/**
+	 * Atualiza um pedido de um receptor.
+	 * 
+	 * @param idReceptor Id do receptor.
+	 * @param idItem Id do item (este e imutavel, assim como o ID do receptor).
+	 * @param novaQuantidade Nova quantidade do pedido.
+	 * @param novasTags Novas tags do pedido.
+	 * @return Retorna a nova representacao textual do pedido.
+	 */
 	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
 		this.validador.validaId(idReceptor);
         this.validador.validaIdItem(idItem);
@@ -266,6 +361,12 @@ public class ControllerUsuario {
         return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
 	}
 	
+	/**
+	 * Remove um pedido de um receptor.
+	 * 
+	 * @param idReceptor Id do receptor a ter seu pedido removido.
+	 * @param idItem Id do pedido a ser removido.
+	 */
 	public void removeItemNecessario(String idReceptor, int idItem) {
 		this.validador.validaId(idReceptor);
 		this.validador.validaIdItem(idItem);
@@ -279,10 +380,43 @@ public class ControllerUsuario {
 		
 	}
 	
+	/**
+	 * Verifica se um usuario e receptor ou doador.
+	 * 
+	 * @param idUsuario Id do usuario a ser checado.
+	 */
 	public void verificaStatusReceptor(String idUsuario) {
 		this.pesquisaUsuarioPorId(idUsuario);
 		if(this.usuarios.get(idUsuario).getStatus().equals("doador")) {
 			throw new IllegalArgumentException("O Usuario deve ser um receptor: " + idUsuario + ".");
 		}
+	}
+	
+	/**
+	 * Salva o Mapa de usuarios em um arquivo.
+	 * 
+	 * @throws IOException
+	 */
+	public void salvaDados() throws IOException{
+		ObjectOutputStream gravaObjeto;
+		gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "usuarios.txt" ));
+		gravaObjeto.writeObject(this.usuarios);
+		gravaObjeto.close();
+	}
+	
+	/**
+	 * Le e recupera o Mapa de usuarios de um arquivo.
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unchecked")
+	public void recuperaDados() throws ClassNotFoundException, IOException{
+		ObjectInputStream objeto;
+		objeto = new ObjectInputStream(new FileInputStream("srs" + File.separator + "usuarios.txt"));
+		Object objLeitura = objeto.readObject();
+		this.usuarios = (LinkedHashMap<String, Usuario>) objLeitura;
+		objeto.close();
+		
 	}
 }

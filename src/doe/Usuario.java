@@ -2,7 +2,7 @@ package doe;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.io.Serializable;
 
 /**
  * Representacao de um usuario no sistema.
@@ -14,7 +14,12 @@ import java.util.Map;
  * @author Felipe Jerônimo Bernardo da Silva
  *
  */
-public class Usuario {
+public class Usuario implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7872987635271353383L;
 	
 	/**
 	 * Id do usuario.
