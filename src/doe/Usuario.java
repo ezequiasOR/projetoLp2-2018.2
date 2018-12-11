@@ -1,9 +1,12 @@
 package doe;
 
 import java.util.HashMap;
+
 import java.util.Map;
 import java.io.Serializable;
+
 import Validador.Validador;
+
 
 /**
  * Representacao de um usuario no sistema.
