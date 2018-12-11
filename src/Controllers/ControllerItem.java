@@ -440,7 +440,7 @@ public class ControllerItem {
 		ctlUsuario.verificaStatusReceptor(idReceptor);
 
 		Item itemNecessario = null;
-
+		
 		for (Item i : this.itensSistemaNecessario) {
 			if (i.getId() == idItemNecessario) {
 				itemNecessario = i;
@@ -477,8 +477,8 @@ public class ControllerItem {
 			
 		
 		}
+		this.resetaPontos(itensMatch);
 		return match;
-		
 		
 		
 		/*
@@ -488,6 +488,13 @@ public class ControllerItem {
 		
 		return match;
 		*/
+	}
+
+	private void resetaPontos(ArrayList<Item> itensMatch) {
+		for (int i = 0; i < itensMatch.size(); i++) {
+		itensMatch.get(i).setPontos(-1*itensMatch.get(i).getPontos());
+		}
+		
 	}
 }
 
