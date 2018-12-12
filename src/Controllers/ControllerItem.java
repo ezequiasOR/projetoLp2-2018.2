@@ -541,7 +541,59 @@ public class ControllerItem {
 	}
 	
 	public void salvaDados() throws IOException{
+		this.salvaDescritores();
+		this.salvaItens();
+		this.salvaItensNecessarios();
+	}
+	
+	private void salvaDescritores() throws IOException{
+		ObjectOutputStream gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "descritores.txt"));
+		gravaObjeto.writeObject(this.descritoresSistema);
+		gravaObjeto.close();
 		
+	}
+	
+	private void salvaItens() throws IOException{
+		ObjectOutputStream gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "itens.txt"));
+		gravaObjeto.writeObject(this.itensSistema);
+		gravaObjeto.close();
+	}
+	
+	private void salvaItensNecessarios() throws IOException{
+		ObjectOutputStream gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "itensNecessarios.txt"));
+		gravaObjeto.writeObject(this.itensSistemaNecessario);
+		gravaObjeto.close();
+	}
+	
+	public void recuperaDados() throws ClassNotFoundException, IOException{
+		this.recuperaDescritores();
+		this.recuperaItens();
+		this.recuperaItensNecessarios();
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void recuperaDescritores() throws ClassNotFoundException, IOException{
+		ObjectInputStream objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "descritores.txt"));
+		Object objLeitura = objeto.readObject();
+		this.descritoresSistema = (Set<Descritor>) objLeitura;
+		objeto.close();
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void recuperaItens() throws ClassNotFoundException, IOException{
+		ObjectInputStream objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "itens.txt"));
+		Object objLeitura = objeto.readObject();
+		this.itensSistema = (ArrayList<Item>) objLeitura;
+		objeto.close();
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void recuperaItensNecessarios() throws ClassNotFoundException, IOException{
+		ObjectInputStream objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "itensNecessarios.txt"));
+		Object objLeitura = objeto.readObject();
+		this.itensSistemaNecessario = (ArrayList<Item>) objLeitura;
+		objeto.close();
 	}
 	
 	
