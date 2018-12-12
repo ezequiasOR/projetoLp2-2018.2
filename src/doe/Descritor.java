@@ -1,5 +1,7 @@
 package doe;
 
+import java.io.Serializable;
+
 /**
  * Representacao de um descritor no sistema.
  * Cada descritor e unico.
@@ -10,8 +12,13 @@ package doe;
  * @author Felipe Jeronimo Bernardo da Silva.
  *
  */
-public class Descritor {
+public class Descritor implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6777904562205984086L;
+
 	/**
 	 * Descritor do item.
 	 */

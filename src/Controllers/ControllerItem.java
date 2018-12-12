@@ -35,11 +35,6 @@ import doe.Usuario;
 public class ControllerItem {
 
 	/**
-	 * Descritores do controle de itens
-	 */
-	private Set<String> descritores;
-
-	/**
 	 * Descritores do sistema do controle de itens
 	 */
 	private Set<Descritor> descritoresSistema;
@@ -102,7 +97,6 @@ public class ControllerItem {
 	public ControllerItem(ControllerUsuario ctlUsuario) {
 		this.validador = new Validador();
 		this.descritoresSistema = new HashSet<>();
-		this.descritores = new HashSet<>();
 		this.itensSistema = new ArrayList<>();
 		this.itensSistemaNecessario = new ArrayList<>();
 		this.id = 0;
@@ -122,7 +116,6 @@ public class ControllerItem {
 			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricaoAdicionar + ".");
 		}
 
-		this.descritores.add(descricaoAdicionar);
 		this.descritoresSistema.add(new Descritor(descricaoAdicionar));
 	}
 
@@ -280,7 +273,13 @@ public class ControllerItem {
 	 * @return true se o item foi encontrado.
 	 */
 	public boolean contemDescritor(String descricao) {
-		if (this.descritores.contains(descricao)) {
+		HashSet<String> descritoresString = new HashSet<>();
+		
+		for(Descritor d: this.descritoresSistema) {
+			descritoresString.add(d.getDescritor());
+		}
+		
+		if (descritoresString.contains(descricao)) {
 			return true;
 		}
 		return false;
@@ -291,7 +290,13 @@ public class ControllerItem {
 	 * @return Os descritores.
 	 */
 	public Set<String> getDescritores() {
-		return descritores;
+		
+		HashSet<String> descritoresString = new HashSet<>();
+		
+		for(Descritor d: this.descritoresSistema) {
+			descritoresString.add(d.getDescritor());
+		}
+		return descritoresString;
 	}
 
 	/**
@@ -534,6 +539,11 @@ public class ControllerItem {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void salvaDados() throws IOException{
+		
+	}
+	
 	
 }
 
