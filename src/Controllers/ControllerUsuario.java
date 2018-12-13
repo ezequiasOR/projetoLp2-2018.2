@@ -399,7 +399,7 @@ public class ControllerUsuario {
 	 */
 	public void salvaDados() throws IOException{
 		ObjectOutputStream gravaObjeto;
-		gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "usuarios.txt" ));
+		gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "usuarios.txt"));
 		gravaObjeto.writeObject(this.usuarios);
 		gravaObjeto.close();
 	}
@@ -413,7 +413,7 @@ public class ControllerUsuario {
 	@SuppressWarnings("unchecked")
 	public void recuperaDados() throws ClassNotFoundException, IOException{
 		ObjectInputStream objeto;
-		objeto = new ObjectInputStream(new FileInputStream("srs" + File.separator + "usuarios.txt"));
+		objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "usuarios.txt"));
 		Object objLeitura = objeto.readObject();
 		this.usuarios = (LinkedHashMap<String, Usuario>) objLeitura;
 		objeto.close();

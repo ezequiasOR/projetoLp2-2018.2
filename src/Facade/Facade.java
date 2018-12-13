@@ -32,7 +32,7 @@ public class Facade {
 	 */
 	public static void main(String[] args) {
 		args = new String[] { "Facade.Facade", "testes/acceptance_tests/use_case_1.txt", "testes/acceptance_tests/use_case_2.txt", "testes/acceptance_tests/use_case_3.txt", "testes/acceptance_tests/use_case_4.txt", 
-				"testes/acceptance_tests/use_case_5.txt", "testes/acceptance_tests/use_case_6.txt"};
+				"testes/acceptance_tests/use_case_5.txt", "testes/acceptance_tests/use_case_6.txt", "testes/acceptance_tests/use_case_7.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -241,5 +241,16 @@ public class Facade {
 		return ctlItem.listaDoacoes();
 	}
 	*/
+	
+	public void finalizaSistema() throws IOException{
+		ctlUsuarios.salvaDados();
+		ctlItem.salvaDados();
+	}
+	
+	public void iniciaSistema() throws ClassNotFoundException, IOException{
+		ctlUsuarios.recuperaDados();
+		ctlItem.recuperaDados();
+	}
+	
 }
 
