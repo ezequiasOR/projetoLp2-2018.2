@@ -234,7 +234,7 @@ public class Facade {
 	}
 	
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
-		return ctlItem.realizaDoacao(idItemNec, idItemDoado, data);
+		return ctlUsuarios.realizaDoacao(idItemNec, idItemDoado, data);
 	}
 	/*
 	public String listaDoacoes() {

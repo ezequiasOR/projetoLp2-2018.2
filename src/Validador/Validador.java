@@ -112,7 +112,7 @@ public class Validador implements Serializable {
 	 * @param quantidade Quantidade de um item separadamente, a quantidade nao pode ser negativa.
 	 */
 	public void validaQuantidade(int quantidade) {
-		if (quantidade <= 0) {
+		if (quantidade < 0) {
 			throw new IllegalArgumentException("Entrada invalida: quantidade deve ser maior que zero.");
 		}
 	}
@@ -179,18 +179,19 @@ public class Validador implements Serializable {
 		}
 	}
 
-	public void validaItem(Item itemNecessario, Item itemDoacao, int idItemNec, int idItemDoado) {
-		if (itemNecessario == null) {
-			throw new IllegalArgumentException("Item nao encontrado: " + idItemNec +".");
-		}
-		if (itemDoacao == null) {
-			throw new IllegalArgumentException("Item nao encontrado: " + idItemDoado +".");
-		}
-	}
 
 	public void validaDoacao(Item itemDoacao, Item itemNecessario) {
 		if (!itemDoacao.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
 			throw new IllegalArgumentException("Os itens nao tem descricoes iguais.");
+		}
+	}
+
+	public void verificaItem(Item itemNecessario, Item itemDoacao, int idItemNec, int idItemDoado) {
+		if (itemNecessario == null) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItemNec + ".");
+		}
+		if (itemDoacao == null) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItemDoado + ".");
 		}
 	}
 

@@ -145,8 +145,6 @@ public class Item implements Serializable{
 	 * @param quantidade Nova quantidade a ser alterada.
 	 */
 	public void setQuantidade(int quantidade) {
-		this.validador.validaQuantidade(quantidade);
-		
 		this.quantidade = quantidade;
 	}
 
@@ -205,6 +203,15 @@ public class Item implements Serializable{
 	 */
 	public void setPontos(int pontos) {
 		this.pontos += pontos;
+	}
+	
+
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public String getIdUsuario() {
+		return idUsuario;
 	}
 
 	/**

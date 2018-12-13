@@ -8,24 +8,23 @@ import java.io.Serializable;
 
 import Validador.Validador;
 
-
 /**
- * Representacao de um usuario no sistema.
- * Cada usuario podera ser ou doador ou receptor de itens.
- * Todo usuario devera ter um Id, Nome, Email e uma classe a seres informados, alem do status.
+ * Representacao de um usuario no sistema. Cada usuario podera ser ou doador ou
+ * receptor de itens. Todo usuario devera ter um Id, Nome, Email e uma classe a
+ * seres informados, alem do status.
  * 
  * @author Joao Vitor de Melo Cavalcante e Souza.
  * @author Ezequias de Oliveira Rocha.
  * @author Felipe Jeronimo Bernardo da Silva.
  *
  */
-public class Usuario implements Serializable{
-	
+public class Usuario implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7872987635271353383L;
-	
+
 	/**
 	 * Id do usuario.
 	 */
@@ -55,26 +54,27 @@ public class Usuario implements Serializable{
 	 * do status do usuario.
 	 */
 	private Map<Integer, Item> itens;
-	
+
 	/**
 	 * Validador de usuario.
 	 */
 	private Validador validador = new Validador();
-	
-	
+
 	/**
 	 * Construtor do usuario.
 	 * 
-	 * @param id Id do usuario.
-	 * @param nome Nome do usuario.
-	 * @param email Email do usuario.
+	 * @param id      Id do usuario.
+	 * @param nome    Nome do usuario.
+	 * @param email   Email do usuario.
 	 * @param celular Celular do usuario.
-	 * @param classe Classe do usuario (so podera ser PESSOA_FISICA, IGREJA, ONG, ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO FEDERAL, ASSOCIACAO, SOCIEDADE.
-	 * @param status Status do usuário (so podera ser doador ou receptor).
+	 * @param classe  Classe do usuario (so podera ser PESSOA_FISICA, IGREJA, ONG,
+	 *                ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO
+	 *                FEDERAL, ASSOCIACAO, SOCIEDADE.
+	 * @param status  Status do usuário (so podera ser doador ou receptor).
 	 */
 	public Usuario(String id, String nome, String email, String celular, String classe, String status) {
 		this.validador.validaCadastro(id, nome, email, celular, classe);
-		
+
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -83,21 +83,21 @@ public class Usuario implements Serializable{
 		this.status = status;
 		this.itens = new HashMap<>();
 	}
-	
+
 	/**
 	 * @return Retorna o Id do usuario.
 	 */
 	public String getId() {
 		return id;
 	}
-	
+
 	/**
 	 * @return Retorna o Nome do usuario.
 	 */
 	public String getNome() {
 		return nome;
 	}
-	
+
 	/**
 	 * Altera o nome do usuario.
 	 * 
@@ -107,36 +107,38 @@ public class Usuario implements Serializable{
 		this.validador.validaNome(nome);
 		this.nome = nome;
 	}
-	
+
 	public String getStatus() {
 		return this.status;
 	}
-	
+
 	/**
 	 * @return Retorna o Email do usuario.
 	 */
 	public String getEmail() {
 		return email;
 	}
-	
+
 	/**
 	 * Altera o email do usuario
+	 * 
 	 * @param email novo email a ser alterado.
 	 */
 	public void setEmail(String email) {
 		this.validador.validaEmail(email);
 		this.email = email;
 	}
-	
+
 	/**
 	 * @return Retorna o numero do celular do usuario.
 	 */
 	public String getCelular() {
 		return celular;
 	}
-	
+
 	/**
 	 * Altera o usuario do celular do usuario.
+	 * 
 	 * @param celular Novo celular a ser alterado.
 	 */
 	public void setCelular(String celular) {
@@ -175,13 +177,14 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 	/**
-	 * Atualiza um item a ser doado, podendo alterar seu Id, sua quantidade e suas tags.
+	 * Atualiza um item a ser doado, podendo alterar seu Id, sua quantidade e suas
+	 * tags.
 	 * 
-	 * @param idItem novo Id a ser alterado.
+	 * @param idItem     novo Id a ser alterado.
 	 * @param quantidade nova Quantidade a ser alterada.
-	 * @param tags novas Tags a serem alteradas.
+	 * @param tags       novas Tags a serem alteradas.
 	 * @return Retorna a representação atual do item alterado.
 	 * 
 	 */
@@ -195,13 +198,13 @@ public class Usuario implements Serializable{
 
 		return itens.get(idItem).toString();
 	}
-	
+
 	/**
 	 * Procura um item e o altera quando um novo item igual for ser adicionado.
 	 * 
-	 * @param item Item a ser alterado.
+	 * @param item       Item a ser alterado.
 	 * @param quantidade Nova quantidade a ser alterada.
-	 * @param tags Novas tasg a serem alteradas.
+	 * @param tags       Novas tasg a serem alteradas.
 	 * 
 	 */
 	private int procuraItem(Item item, int quantidade, String tags) {
@@ -214,27 +217,28 @@ public class Usuario implements Serializable{
 		}
 		return 0;
 	}
-	
+
 	/**
 	 * @param idItem id do item a ser retornado.
 	 * @return Retorna a representação textual de um item.
 	 */
 	public String getItem(int idItem) {
 		this.validador.validaIdItem(idItem);
-		
+
 		if (!(this.verificaItem(idItem))) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		return itens.get(idItem).toString();
 	}
-	
+
 	/**
 	 * Remove um item do usuario.
+	 * 
 	 * @param idItem Id do item a ser removido.
 	 */
 	public void removeItem(int idItem) {
 		this.validador.validaIdItem(idItem);
-		
+
 		if (this.itens.isEmpty()) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
@@ -243,7 +247,7 @@ public class Usuario implements Serializable{
 		}
 		this.itens.remove(idItem);
 	}
-	
+
 	/**
 	 * @param id Id do item a ser retornado.
 	 * @return Retorna o objeto completo do item desejado.
@@ -251,7 +255,7 @@ public class Usuario implements Serializable{
 	public Item getItemOb(int id) {
 		return itens.get(id);
 	}
-	
+
 	/**
 	 * Verifica se um item existe no usuario.
 	 * 
@@ -260,7 +264,7 @@ public class Usuario implements Serializable{
 	 */
 	public boolean verificaItem(int idItem) {
 		this.validador.validaIdItem(idItem);
-		
+
 		if (!(this.itens.containsKey(idItem))) {
 			return false;
 		}
@@ -269,13 +273,13 @@ public class Usuario implements Serializable{
 	}
 
 	/**
-	 * Adiciona um novo item no usuario.
-	 * O metodo adiciona no Map (Integer => Item) o novo item, sendo identificado pelo seu id.
+	 * Adiciona um novo item no usuario. O metodo adiciona no Map (Integer => Item)
+	 * o novo item, sendo identificado pelo seu id.
 	 * 
-	 * @param id Id do novo item.
-	 * @param descricao Descricao do novo item.
+	 * @param id         Id do novo item.
+	 * @param descricao  Descricao do novo item.
 	 * @param quantidade Quantidade do novo item.
-	 * @param tags Tags do novo item.
+	 * @param tags       Tags do novo item.
 	 */
 	public int adicionaItem(int id, String descricao, int quantidade, String tags) {
 		this.validador.validaIdItem(id);
@@ -293,28 +297,29 @@ public class Usuario implements Serializable{
 	}
 
 	/**
-	 * @return A representacao em String do usuario, no formato: (nome)/(id), (email), (celular), status: (status).
+	 * @return A representacao em String do usuario, no formato: (nome)/(id),
+	 *         (email), (celular), status: (status).
 	 */
 	@Override
 	public String toString() {
 		return String.format("%s/%s, %s, %s, status: %s", this.nome, this.id, this.email, this.celular, this.status);
 	}
-	
+
 	/**
 	 * Atualiza um item necessario (em que ha interesse).
 	 * 
-	 * @param idItem Novo id a ser alterado.
+	 * @param idItem         Novo id a ser alterado.
 	 * @param novaQuantidade Nova quantidade a ser alterada.
-	 * @param novasTags Novas tags a serem alteradas.
+	 * @param novasTags      Novas tags a serem alteradas.
 	 * @return Retorna a atual representação em string do objeto.
 	 */
 	public String atualizaItemNecessario(int idItem, int novaQuantidade, String novasTags) {
 		this.validador.validaIdItem(idItem);
-		
+
 		if (!this.itens.containsKey(idItem)) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
-		
+
 		if (!(novasTags == null) && !(novasTags.equals(""))) {
 			this.itens.get(idItem).setTags(novasTags);
 		}
@@ -325,7 +330,7 @@ public class Usuario implements Serializable{
 		return itens.get(idItem).toString();
 
 	}
-	
+
 	/**
 	 * Remove um item necessario (existente) a partir de seu id.
 	 * 
@@ -333,15 +338,15 @@ public class Usuario implements Serializable{
 	 */
 	public void removeItemNecessario(int idItem) {
 		this.validador.validaIdItem(idItem);
-		
+
 		if (this.itens.isEmpty()) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
-		if (!this.itens.containsKey(idItem)){
+		if (!this.itens.containsKey(idItem)) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		this.itens.remove(idItem);
-		
+
 	}
 
 	public Map<Integer, Item> getItens() {
@@ -350,9 +355,9 @@ public class Usuario implements Serializable{
 
 	public ArrayList<Item> verificaMatch(Item itemNecessario) {
 		ArrayList<Item> itensMatch = new ArrayList<>();
-		
+		String descricaoItemNec = itemNecessario.getDescricaoItem();
 		for (Integer i : itens.keySet()) {
-			if (itens.get(i).getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+			if (itens.get(i).getDescricaoItem().equals(descricaoItemNec)) {
 				itensMatch.add(this.itens.get(i));
 			}
 		}

@@ -403,7 +403,7 @@ public class ControllerItem {
 		throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 	}
 	
-	
+	/*
 	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
 		this.resetaPontos(itensMatch);
 		
@@ -418,22 +418,22 @@ public class ControllerItem {
 					this.pontuaPelasTags(itensMatch.get(j), itemNecessario);
 					
 				}
-				/*
-				String[] a = i.getTags().clone();
-				String[] b = itemNecessario.getTags().clone();
+				
+				//String[] a = i.getTags().clone();
+				//String[] b = itemNecessario.getTags().clone();
 
-				Arrays.sort(a);
-				Arrays.sort(b);
-				if(Arrays.equals(a, b)) {
-					i.setPontos(5);
+				//Arrays.sort(a);
+				//Arrays.sort(b);
+				//if(Arrays.equals(a, b)) {
+					//i.setPontos(5);
 				
 				}
-			*/
+			
 			}
 		}
 	}
 
-				
+		
 				
 	private void pontuaPelasTags(Item item, Item itemNecessario) {
 		for (int k = 0; k <= itemNecessario.getTags().length-1; k++) {
@@ -496,13 +496,13 @@ public class ControllerItem {
 		return match;
 		
 		
-		/*
-		for (int i = 0; i < itensMatch.size(); i++) {
-			match = match + Integer.toString(itensMatch.get(i).getPontos());
-		}
 		
-		return match;
-		*/
+		//for (int i = 0; i < itensMatch.size(); i++) {
+			//match = match + Integer.toString(itensMatch.get(i).getPontos());
+		//}
+		
+		//return match;
+		
 	}
 
 	private void resetaPontos(ArrayList<Item> itensMatch) {
@@ -511,7 +511,8 @@ public class ControllerItem {
 		}
 		
 	}
-
+	*/
+	/*
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		this.validador.validaIdItem(idItemNec);
 		this.validador.validaIdItem(idItemDoado);
@@ -541,6 +542,7 @@ public class ControllerItem {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	*/
 	
 	public void salvaDados() throws IOException{
 		this.salvaDescritores();

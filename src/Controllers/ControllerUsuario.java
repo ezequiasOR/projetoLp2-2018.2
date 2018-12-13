@@ -46,6 +46,8 @@ public class ControllerUsuario {
 	 */
 	private ControllerItem ctlItem;
 
+	private List<String> itensDoados;
+
 	/**
 	 * Construtor de controle de usuario.
 	 * 
@@ -55,6 +57,7 @@ public class ControllerUsuario {
 		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();
 		this.ctlItem = ctlItem;
+		this.itensDoados = new ArrayList<>();
 	}
 
 	/**
@@ -409,13 +412,18 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
 		}
 		this.verificaStatusReceptor(idReceptor);
+		if (!this.usuarios.get(idReceptor).getItens().containsKey(idItemNecessario)) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItemNecessario + ".");
+		}
 
 		Item itemNecessario = this.usuarios.get(idReceptor).getItemOb(idItemNecessario);
 
 		ArrayList<Item> itensMatch = new ArrayList<>();
 
 		for (String chave : this.usuarios.keySet()) {
-			itensMatch.addAll(this.usuarios.get(chave).verificaMatch(itemNecessario));
+			if (this.usuarios.get(chave).getStatus().equals("doador")) {
+				itensMatch.addAll(this.usuarios.get(chave).verificaMatch(itemNecessario));
+			}
 		}
 
 		this.pontuacao(itensMatch, itemNecessario);
@@ -470,6 +478,70 @@ public class ControllerUsuario {
 		for (int i = 0; i < itensMatch.size(); i++) {
 			itensMatch.get(i).resetaPontos();
 		}
+	}
+
+	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+		this.validador.validaIdItem(idItemNec);
+		this.validador.validaIdItem(idItemDoado);
+		this.validador.validaData(data);
+		this.verificaExistenciaDoItem(idItemNec);
+		this.verificaExistenciaDoItem(idItemDoado);
+
+		Item itemNecessario = getItem(idItemNec);
+		Item itemDoacao = getItem(idItemDoado);
+		int quantidadeDoada;
+		if (itemNecessario.getQuantidade() <= itemDoacao.getQuantidade()) {
+			quantidadeDoada = itemNecessario.getQuantidade();
+		} else {
+			quantidadeDoada = itemDoacao.getQuantidade();
+		}
+
+		this.validador.validaDoacao(itemDoacao, itemNecessario);
+		String string = String.format("%s - doador: %s/%s, item: %s, quantidade: %d, receptor: %s/%s", data,
+				itemDoacao.getNomeUsuario(), itemDoacao.getIdUsuario(), itemNecessario.getDescricaoItem(),
+				quantidadeDoada, itemNecessario.getNomeUsuario(), itemNecessario.getIdUsuario());
+
+		if (itemNecessario.getQuantidade() - quantidadeDoada == 0) {
+			String id = itemNecessario.getIdUsuario();
+			this.usuarios.get(id).removeItemNecessario(idItemNec);
+		} else {
+			itemNecessario.setQuantidade(-1 * quantidadeDoada);
+		}
+
+		if (itemDoacao.getQuantidade() - quantidadeDoada == 0) {
+			String id = itemDoacao.getIdUsuario();
+			this.usuarios.get(id).removeItem(idItemDoado);
+		} else {
+			itemDoacao.setQuantidade(-1 * quantidadeDoada);
+		}
+
+		this.itensDoados.add(string);
+
+		return string;
+	}
+
+	private void verificaExistenciaDoItem(int idItem) {
+		boolean existencia = false;
+		for (Usuario u : usuarios.values()) {
+			if (u.getItens().containsKey(idItem)) {
+				existencia = true;
+				break;
+			}
+		}
+		if (!existencia) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
+	}
+
+	private Item getItem(int idItem) {
+		Item item = null;
+		for (Usuario u : usuarios.values()) {
+			if (u.getItens().containsKey(idItem)) {
+				item = u.getItemOb(idItem);
+				break;
+			}
+		}
+		return item;
 	}
 
 	/**
