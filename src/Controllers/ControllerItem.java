@@ -58,7 +58,7 @@ public class ControllerItem {
 	 * Validadror de controle de item.
 	 */
 	private Validador validador;
-	
+
 	/**
 	 * Atributo responsavel por controlar item.
 	 */
@@ -274,11 +274,11 @@ public class ControllerItem {
 	 */
 	public boolean contemDescritor(String descricao) {
 		HashSet<String> descritoresString = new HashSet<>();
-		
-		for(Descritor d: this.descritoresSistema) {
+
+		for (Descritor d : this.descritoresSistema) {
 			descritoresString.add(d.getDescritor());
 		}
-		
+
 		if (descritoresString.contains(descricao)) {
 			return true;
 		}
@@ -290,10 +290,10 @@ public class ControllerItem {
 	 * @return Os descritores.
 	 */
 	public Set<String> getDescritores() {
-		
+
 		HashSet<String> descritoresString = new HashSet<>();
-		
-		for(Descritor d: this.descritoresSistema) {
+
+		for (Descritor d : this.descritoresSistema) {
 			descritoresString.add(d.getDescritor());
 		}
 		return descritoresString;
@@ -402,205 +402,173 @@ public class ControllerItem {
 
 		throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 	}
-	
+
 	/*
-	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
-		this.resetaPontos(itensMatch);
-		
-		for (Item i : itensMatch) {
-			
-			if (Arrays.equals(i.getTags(),itemNecessario.getTags())) {
-				i.setPontos(10*itemNecessario.getTags().length);
-			}
-
-			else {
-				for (int j = 0; j < itensMatch.size()-1; j++) {
-					this.pontuaPelasTags(itensMatch.get(j), itemNecessario);
-					
-				}
-				
-				//String[] a = i.getTags().clone();
-				//String[] b = itemNecessario.getTags().clone();
-
-				//Arrays.sort(a);
-				//Arrays.sort(b);
-				//if(Arrays.equals(a, b)) {
-					//i.setPontos(5);
-				
-				}
-			
-			}
-		}
-	}
-
-		
-				
-	private void pontuaPelasTags(Item item, Item itemNecessario) {
-		for (int k = 0; k <= itemNecessario.getTags().length-1; k++) {
-			for (int m = 0; m <= item.getTags().length-1; m++) {
-				if (m != k && itemNecessario.getTags()[k].equals(item.getTags()[m])) {
-					item.setPontos(5);
-					break;
-				}
-				else if (m == k && itemNecessario.getTags()[k].equals(item.getTags()[m])) {
-					item.setPontos(10);
-					break;
-				}
-			}
-		}
-	}
-
-	public String match(String idReceptor, int idItemNecessario, ControllerUsuario ctlUsuario) {
-		this.validador.validaId(idReceptor);
-		this.validador.validaIdItem(idItemNecessario);
-		ctlUsuario.pesquisaUsuarioPorId(idReceptor);
-		this.verificaItemNecessario(idItemNecessario);
-		ctlUsuario.verificaStatusReceptor(idReceptor);
-
-		Item itemNecessario = null;
-		
-		for (Item i : this.itensSistemaNecessario) {
-			if (i.getId() == idItemNecessario) {
-				itemNecessario = i;
-			}
-		}
-
-		ArrayList<Item> itensMatch = new ArrayList<>();
-
-		for (Item i : this.itensSistema) {
-			if (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
-				itensMatch.add(i);
-			}
-		}
-
-		this.pontuacao(itensMatch, itemNecessario);
-		Collections.sort(itensMatch, new ComparatorMatchItens());
-
-		String match = "";
-		
-		
-		for (int i = 0; i < itensMatch.size(); i++) {
-
-			if (i == itensMatch.size() - 1) {
-				 match = match + itensMatch.get(i).toStringSistema();
-				}
-			
-
-			else {
-				
-					match = match + itensMatch.get(i).toStringSistema() + " | ";
-				}
-			
-		
-		}
-		return match;
-		
-		
-		
-		//for (int i = 0; i < itensMatch.size(); i++) {
-			//match = match + Integer.toString(itensMatch.get(i).getPontos());
-		//}
-		
-		//return match;
-		
-	}
-
-	private void resetaPontos(ArrayList<Item> itensMatch) {
-		for (int i = 0; i < itensMatch.size(); i++) {
-			itensMatch.get(i).resetaPontos();
-		}
-		
-	}
-	*/
+	 * private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
+	 * this.resetaPontos(itensMatch);
+	 * 
+	 * for (Item i : itensMatch) {
+	 * 
+	 * if (Arrays.equals(i.getTags(),itemNecessario.getTags())) {
+	 * i.setPontos(10*itemNecessario.getTags().length); }
+	 * 
+	 * else { for (int j = 0; j < itensMatch.size()-1; j++) {
+	 * this.pontuaPelasTags(itensMatch.get(j), itemNecessario);
+	 * 
+	 * }
+	 * 
+	 * //String[] a = i.getTags().clone(); //String[] b =
+	 * itemNecessario.getTags().clone();
+	 * 
+	 * //Arrays.sort(a); //Arrays.sort(b); //if(Arrays.equals(a, b)) {
+	 * //i.setPontos(5);
+	 * 
+	 * }
+	 * 
+	 * } } }
+	 * 
+	 * 
+	 * 
+	 * private void pontuaPelasTags(Item item, Item itemNecessario) { for (int k =
+	 * 0; k <= itemNecessario.getTags().length-1; k++) { for (int m = 0; m <=
+	 * item.getTags().length-1; m++) { if (m != k &&
+	 * itemNecessario.getTags()[k].equals(item.getTags()[m])) { item.setPontos(5);
+	 * break; } else if (m == k &&
+	 * itemNecessario.getTags()[k].equals(item.getTags()[m])) { item.setPontos(10);
+	 * break; } } } }
+	 * 
+	 * public String match(String idReceptor, int idItemNecessario,
+	 * ControllerUsuario ctlUsuario) { this.validador.validaId(idReceptor);
+	 * this.validador.validaIdItem(idItemNecessario);
+	 * ctlUsuario.pesquisaUsuarioPorId(idReceptor);
+	 * this.verificaItemNecessario(idItemNecessario);
+	 * ctlUsuario.verificaStatusReceptor(idReceptor);
+	 * 
+	 * Item itemNecessario = null;
+	 * 
+	 * for (Item i : this.itensSistemaNecessario) { if (i.getId() ==
+	 * idItemNecessario) { itemNecessario = i; } }
+	 * 
+	 * ArrayList<Item> itensMatch = new ArrayList<>();
+	 * 
+	 * for (Item i : this.itensSistema) { if
+	 * (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+	 * itensMatch.add(i); } }
+	 * 
+	 * this.pontuacao(itensMatch, itemNecessario); Collections.sort(itensMatch, new
+	 * ComparatorMatchItens());
+	 * 
+	 * String match = "";
+	 * 
+	 * 
+	 * for (int i = 0; i < itensMatch.size(); i++) {
+	 * 
+	 * if (i == itensMatch.size() - 1) { match = match +
+	 * itensMatch.get(i).toStringSistema(); }
+	 * 
+	 * 
+	 * else {
+	 * 
+	 * match = match + itensMatch.get(i).toStringSistema() + " | "; }
+	 * 
+	 * 
+	 * } return match;
+	 * 
+	 * 
+	 * 
+	 * //for (int i = 0; i < itensMatch.size(); i++) { //match = match +
+	 * Integer.toString(itensMatch.get(i).getPontos()); //}
+	 * 
+	 * //return match;
+	 * 
+	 * }
+	 * 
+	 * private void resetaPontos(ArrayList<Item> itensMatch) { for (int i = 0; i <
+	 * itensMatch.size(); i++) { itensMatch.get(i).resetaPontos(); }
+	 * 
+	 * }
+	 */
 	/*
-	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
-		this.validador.validaIdItem(idItemNec);
-		this.validador.validaIdItem(idItemDoado);
-		this.validador.validaData(data);
-		
-		Item itemNecessario = null;
-		Item itemDoacao = null;
-		
-		for (Item i : this.itensSistemaNecessario) {
-			if (i.getId() == idItemNec) {
-				itemNecessario = i;
-			}
-		}
-		this.validador.validaItem(itemNecessario, itemDoacao, idItemNec, idItemDoado);
-		
-		for (Item i : this.itensSistema) {
-			if (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
-				itemDoacao = i;
-				break;
-			}
-		}
-		
-		
-		this.validador.validaDoacao(itemDoacao, itemNecessario);
-		
-		
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
-	
-	public void salvaDados() throws IOException{
+	 * public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+	 * this.validador.validaIdItem(idItemNec);
+	 * this.validador.validaIdItem(idItemDoado); this.validador.validaData(data);
+	 * 
+	 * Item itemNecessario = null; Item itemDoacao = null;
+	 * 
+	 * for (Item i : this.itensSistemaNecessario) { if (i.getId() == idItemNec) {
+	 * itemNecessario = i; } } this.validador.validaItem(itemNecessario, itemDoacao,
+	 * idItemNec, idItemDoado);
+	 * 
+	 * for (Item i : this.itensSistema) { if
+	 * (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) { itemDoacao
+	 * = i; break; } }
+	 * 
+	 * 
+	 * this.validador.validaDoacao(itemDoacao, itemNecessario);
+	 * 
+	 * 
+	 * // TODO Auto-generated method stub return null; }
+	 */
+
+	public void salvaDados() throws IOException {
 		this.salvaDescritores();
 		this.salvaItens();
 		this.salvaItensNecessarios();
 	}
-	
-	private void salvaDescritores() throws IOException{
-		ObjectOutputStream gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "descritores.txt"));
+
+	private void salvaDescritores() throws IOException {
+		ObjectOutputStream gravaObjeto = new ObjectOutputStream(
+				new FileOutputStream("src" + File.separator + "descritores.txt"));
 		gravaObjeto.writeObject(this.descritoresSistema);
 		gravaObjeto.close();
-		
+
 	}
-	
-	private void salvaItens() throws IOException{
-		ObjectOutputStream gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "itens.txt"));
+
+	private void salvaItens() throws IOException {
+		ObjectOutputStream gravaObjeto = new ObjectOutputStream(
+				new FileOutputStream("src" + File.separator + "itens.txt"));
 		gravaObjeto.writeObject(this.itensSistema);
 		gravaObjeto.close();
 	}
-	
-	private void salvaItensNecessarios() throws IOException{
-		ObjectOutputStream gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "itensNecessarios.txt"));
+
+	private void salvaItensNecessarios() throws IOException {
+		ObjectOutputStream gravaObjeto = new ObjectOutputStream(
+				new FileOutputStream("src" + File.separator + "itensNecessarios.txt"));
 		gravaObjeto.writeObject(this.itensSistemaNecessario);
 		gravaObjeto.close();
 	}
-	
-	public void recuperaDados() throws ClassNotFoundException, IOException{
+
+	public void recuperaDados() throws ClassNotFoundException, IOException {
 		this.recuperaDescritores();
 		this.recuperaItens();
 		this.recuperaItensNecessarios();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private void recuperaDescritores() throws ClassNotFoundException, IOException{
-		ObjectInputStream objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "descritores.txt"));
+	private void recuperaDescritores() throws ClassNotFoundException, IOException {
+		ObjectInputStream objeto = new ObjectInputStream(
+				new FileInputStream("src" + File.separator + "descritores.txt"));
 		Object objLeitura = objeto.readObject();
 		this.descritoresSistema = (Set<Descritor>) objLeitura;
 		objeto.close();
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private void recuperaItens() throws ClassNotFoundException, IOException{
+	private void recuperaItens() throws ClassNotFoundException, IOException {
 		ObjectInputStream objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "itens.txt"));
 		Object objLeitura = objeto.readObject();
 		this.itensSistema = (ArrayList<Item>) objLeitura;
 		objeto.close();
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private void recuperaItensNecessarios() throws ClassNotFoundException, IOException{
-		ObjectInputStream objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "itensNecessarios.txt"));
+	private void recuperaItensNecessarios() throws ClassNotFoundException, IOException {
+		ObjectInputStream objeto = new ObjectInputStream(
+				new FileInputStream("src" + File.separator + "itensNecessarios.txt"));
 		Object objLeitura = objeto.readObject();
 		this.itensSistemaNecessario = (ArrayList<Item>) objLeitura;
 		objeto.close();
 	}
-	
-	
+
 }
-
-

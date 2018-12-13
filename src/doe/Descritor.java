@@ -3,9 +3,8 @@ package doe;
 import java.io.Serializable;
 
 /**
- * Representacao de um descritor no sistema.
- * Cada descritor e unico.
- * Todo descritor possui descricao e quantidade.
+ * Representacao de um descritor no sistema. Cada descritor e unico. Todo
+ * descritor possui descricao e quantidade.
  * 
  * @author Joao Vitor de Melo Cavalcante e Souza.
  * @author Ezequias de Oliveira Rocha.
@@ -13,7 +12,7 @@ import java.io.Serializable;
  *
  */
 public class Descritor implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -23,12 +22,12 @@ public class Descritor implements Serializable {
 	 * Descritor do item.
 	 */
 	private String descritor;
-	
+
 	/**
 	 * Quantidade do item.
 	 */
 	private int quantidade;
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,33 +52,35 @@ public class Descritor implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * Construtor do descritor.
+	 * 
 	 * @param descritor Descritor do item.
 	 */
 	public Descritor(String descritor) {
 		this.descritor = descritor;
 		this.quantidade = 0;
 	}
-	
+
 	/**
 	 * Construtor do descritor.
-	 * @param descritor Descritor do item.
+	 * 
+	 * @param descritor  Descritor do item.
 	 * @param quantidade Quantidade do item.
 	 */
 	public Descritor(String descritor, int quantidade) {
 		this.descritor = descritor;
 		this.quantidade = quantidade;
 	}
-	
+
 	/**
 	 * @return Retorna o descritor.
 	 */
 	public String getDescritor() {
 		return this.descritor;
 	}
-	
+
 	/**
 	 * Altera a quantidade do item.
 	 * 
@@ -88,14 +89,13 @@ public class Descritor implements Serializable {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+
 	/**
-	 * @return A representacao em String do descritor, no formato: (quantidade) - (descritor).
+	 * @return A representacao em String do descritor, no formato: (quantidade) -
+	 *         (descritor).
 	 */
 	public String toString() {
 		return this.quantidade + " - " + this.descritor;
 	}
-	
-	
 
 }

@@ -6,17 +6,16 @@ import java.util.Arrays;
 import Validador.Validador;
 
 /**
- * Representação de um item no sistema.
- * Cada item pertence a um doador ou um receptor.
- * Todo item e representado por Id, Quantidade, Descricao e Tags.
+ * Representação de um item no sistema. Cada item pertence a um doador ou um
+ * receptor. Todo item e representado por Id, Quantidade, Descricao e Tags.
  * 
  * @author Joao Vitor de Melo Cavalcante e Souza.
  * @author Ezequias de Oliveira Rocha.
  * @author Felipe Jeronimo Bernardo da Silva.
  * 
  */
-public class Item implements Serializable{
-	
+public class Item implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -26,56 +25,55 @@ public class Item implements Serializable{
 	 * Quantidade do item.
 	 */
 	private int quantidade;
-	
+
 	/**
 	 * Id do item.
 	 */
 	private int id;
-	
+
 	/**
 	 * Descricao do item.
 	 */
 	private String descricaoItem;
-	
+
 	/**
 	 * Tags do item.
 	 */
 	private String[] tags;
-	
+
 	/**
 	 * Nome do doador do item.
 	 */
 	private String nomeUsuario;
-	
+
 	/**
 	 * Id do doador do item.
 	 */
 	private String idUsuario;
-	
+
 	/**
 	 * Validador de usuario.
 	 */
 	private Validador validador = new Validador();
-	
+
 	private int pontos;
-	
-	
+
 	/**
 	 * Construtor do item.
 	 * 
-	 * @param id Id do item.
-	 * @param descricao Descricao do item.
+	 * @param id         Id do item.
+	 * @param descricao  Descricao do item.
 	 * @param quantidade Quantidade do item.
-	 * @param tags Tags do item.
+	 * @param tags       Tags do item.
 	 * @param nomeDoador Nome do doador do item.
-	 * @param idDoador Id do doador do item.
+	 * @param idDoador   Id do doador do item.
 	 */
-	
+
 	public Item(int id, String descricao, int quantidade, String tags, String nomeUsuario, String idDoador) {
 		this.validador.validaIdItem(id);
 		this.validador.validaDescritor(descricao);
 		this.validador.validaQuantidade(quantidade);
-		
+
 		this.descricaoItem = descricao;
 		this.quantidade = quantidade;
 		this.tags = tags.split(",");
@@ -84,7 +82,7 @@ public class Item implements Serializable{
 		this.idUsuario = idDoador;
 		this.pontos = 0;
 	}
-	
+
 	/**
 	 * Adiciona uma nova quantidade para o item.
 	 * 
@@ -94,7 +92,7 @@ public class Item implements Serializable{
 		this.validador.validaQuantidade(quantidade);
 		this.quantidade = this.quantidade + quantidade;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -122,26 +120,28 @@ public class Item implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * @return Retorna a quantidade do item.
 	 */
 	public int getQuantidade() {
 		return quantidade;
 	}
-	
+
 	/**
 	 * Altera o nome do usuario.
+	 * 
 	 * @param nome Novo nome a ser alterado.
 	 */
 	public void setNomeUsuario(String nome) {
 		this.validador.validaNome(nome);
-		
+
 		this.nomeUsuario = nome;
 	}
 
 	/**
 	 * Altera a quantidade do item.
+	 * 
 	 * @param quantidade Nova quantidade a ser alterada.
 	 */
 	public void setQuantidade(int quantidade) {
@@ -157,11 +157,12 @@ public class Item implements Serializable{
 
 	/**
 	 * Altera a descricao do item.
+	 * 
 	 * @param descricaoItem Nova descricao do item.
 	 */
 	public void setDescricaoItem(String descricaoItem) {
 		this.validador.validaDescritor(descricaoItem);
-		
+
 		this.descricaoItem = descricaoItem;
 	}
 
@@ -172,9 +173,10 @@ public class Item implements Serializable{
 	public String[] getTags() {
 		return tags;
 	}
-	
+
 	/**
 	 * Altera as tags que o item possui.
+	 * 
 	 * @param tags Novas tags do item.
 	 */
 	public void setTags(String tags) {
@@ -188,7 +190,7 @@ public class Item implements Serializable{
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
 	 * 
 	 * @return Retorna a pontuacao em um match.
@@ -204,7 +206,6 @@ public class Item implements Serializable{
 	public void setPontos(int pontos) {
 		this.pontos += pontos;
 	}
-	
 
 	public String getNomeUsuario() {
 		return nomeUsuario;
@@ -224,32 +225,39 @@ public class Item implements Serializable{
 	}
 
 	/**
-	 * @return Retorna a representacao do item, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade).
+	 * @return Retorna a representacao do item, no formato: (id) - (descricao do
+	 *         item), tags: (tags), quantidade: (quantidade).
 	 */
 	public String toString() {
-		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade);
+		return String.format("%d - %s, tags: %s, quantidade: %d", this.id, this.descricaoItem,
+				Arrays.toString(this.tags), this.quantidade);
 	}
-	
+
 	/**
-	 * @return Retorna a  representacao do sistema, no formato: (id) - (descricao do item), tags: (tags), quantidade: (quantidade), doador: (nome do doador)/(id do doador)"
+	 * @return Retorna a representacao do sistema, no formato: (id) - (descricao do
+	 *         item), tags: (tags), quantidade: (quantidade), doador: (nome do
+	 *         doador)/(id do doador)"
 	 */
 	public String toStringSistema() {
-		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idUsuario);
+		return String.format("%d - %s, tags: %s, quantidade: %d, doador: %s/%s", this.id, this.descricaoItem,
+				Arrays.toString(this.tags), this.quantidade, this.nomeUsuario, this.idUsuario);
 
 	}
-	
+
 	/**
 	 * 
-	 * @return Retorna a representacao de um item pedido por um receptor, no formato: (id) - (descricao), tags: (tags), quantidade: (quantidade), Receptor: (nomeReceptor)/id(idUsuario).
+	 * @return Retorna a representacao de um item pedido por um receptor, no
+	 *         formato: (id) - (descricao), tags: (tags), quantidade: (quantidade),
+	 *         Receptor: (nomeReceptor)/id(idUsuario).
 	 */
 	public String toStringSistemaNecessario() {
-		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem, Arrays.toString(this.tags), this.quantidade, this.nomeUsuario,this.idUsuario);
+		return String.format("%d - %s, tags: %s, quantidade: %d, Receptor: %s/%s", this.id, this.descricaoItem,
+				Arrays.toString(this.tags), this.quantidade, this.nomeUsuario, this.idUsuario);
 
 	}
 
 	public void resetaPontos() {
 		this.pontos = 0;
 	}
-	
-	
+
 }

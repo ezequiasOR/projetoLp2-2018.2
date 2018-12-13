@@ -33,8 +33,7 @@ public class ComparatorItensDoados implements Comparator<String> {
 			} else {
 				if (dia1 < dia2) {
 					return 1;
-				}
-				else if (dia2 < dia1) {
+				} else if (dia2 < dia1) {
 					return -1;
 				}
 			}
