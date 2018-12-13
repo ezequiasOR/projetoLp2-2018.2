@@ -493,7 +493,7 @@ public class ControllerUsuario {
 	@SuppressWarnings("unchecked")
 	public void recuperaDados() throws ClassNotFoundException, IOException {
 		ObjectInputStream objeto;
-		objeto = new ObjectInputStream(new FileInputStream("srs" + File.separator + "usuarios.txt"));
+		objeto = new ObjectInputStream(new FileInputStream("src" + File.separator + "usuarios.txt"));
 		Object objLeitura = objeto.readObject();
 		this.usuarios = (LinkedHashMap<String, Usuario>) objLeitura;
 		objeto.close();

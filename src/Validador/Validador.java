@@ -1,5 +1,7 @@
 package Validador;
 
+import java.io.Serializable;
+
 import doe.Item;
 
 /**
@@ -10,8 +12,13 @@ import doe.Item;
  * @author Felipe Jeronimo Bernardo da Silva.
  *
  */
-public class Validador {
+public class Validador implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4734634764969540843L;
+
 	/**
 	 * Valida os parametros de um usuario a ser cadastrado.
 	 * Um Usuario nao pode ter nenhum de seus parametros null ou espacos vazios (com espacos tambem).
