@@ -1,4 +1,4 @@
-package Comparators;
+package comparators;
 
 public class ComparatorArrays {
 

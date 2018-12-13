@@ -16,8 +16,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import Comparators.ComparatorMatchItens;
 import Validador.Validador;
+import comparators.ComparatorDescritor;
+import comparators.ComparatorItemId;
+import comparators.ComparatorItensDoados;
+import comparators.ComparatorMatchItens;
 import doe.Item;
 import doe.Usuario;
 
@@ -490,6 +493,7 @@ public class ControllerUsuario {
 		Item itemNecessario = getItem(idItemNec);
 		Item itemDoacao = getItem(idItemDoado);
 		int quantidadeDoada;
+		
 		if (itemNecessario.getQuantidade() <= itemDoacao.getQuantidade()) {
 			quantidadeDoada = itemNecessario.getQuantidade();
 		} else {
@@ -500,19 +504,21 @@ public class ControllerUsuario {
 		String string = String.format("%s - doador: %s/%s, item: %s, quantidade: %d, receptor: %s/%s", data,
 				itemDoacao.getNomeUsuario(), itemDoacao.getIdUsuario(), itemNecessario.getDescricaoItem(),
 				quantidadeDoada, itemNecessario.getNomeUsuario(), itemNecessario.getIdUsuario());
-
+		
 		if (itemNecessario.getQuantidade() - quantidadeDoada == 0) {
 			String id = itemNecessario.getIdUsuario();
 			this.usuarios.get(id).removeItemNecessario(idItemNec);
 		} else {
-			itemNecessario.setQuantidade(-1 * quantidadeDoada);
+			int novaQuantidade = itemNecessario.getQuantidade() - quantidadeDoada;
+			itemNecessario.setQuantidade(novaQuantidade);
 		}
 
 		if (itemDoacao.getQuantidade() - quantidadeDoada == 0) {
 			String id = itemDoacao.getIdUsuario();
 			this.usuarios.get(id).removeItem(idItemDoado);
 		} else {
-			itemDoacao.setQuantidade(-1 * quantidadeDoada);
+			int novaQuantidade = itemDoacao.getQuantidade() - quantidadeDoada;
+			itemDoacao.setQuantidade(novaQuantidade);
 		}
 
 		this.itensDoados.add(string);
@@ -543,7 +549,23 @@ public class ControllerUsuario {
 		}
 		return item;
 	}
-
+	
+	public String listaDoacoes() {
+		String saida = "";
+		
+		Collections.sort(this.itensDoados, new ComparatorItensDoados());
+		
+		for (int u = 0; u < this.itensDoados.size(); u++) {
+			if (u == this.itensDoados.size() - 1) {
+				saida += this.itensDoados.get(u);
+			} else {
+				saida += this.itensDoados.get(u) + " | ";
+			}
+		}
+		
+		return saida;
+	}
+	
 	/**
 	 * Salva o Mapa de usuarios em um arquivo.
 	 * 
@@ -571,4 +593,5 @@ public class ControllerUsuario {
 		objeto.close();
 
 	}
+
 }

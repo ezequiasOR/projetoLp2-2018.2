@@ -15,12 +15,12 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-import Comparators.ComparatorItemId;
-import Comparators.ComparatorDescritor;
-import Comparators.ComparatorItemNome;
-import Comparators.ComparatorItemQuantidade;
-import Comparators.ComparatorMatchItens;
 import Validador.Validador;
+import comparators.ComparatorDescritor;
+import comparators.ComparatorItemId;
+import comparators.ComparatorItemNome;
+import comparators.ComparatorItemQuantidade;
+import comparators.ComparatorMatchItens;
 import doe.Descritor;
 import doe.Item;
 import doe.Usuario;

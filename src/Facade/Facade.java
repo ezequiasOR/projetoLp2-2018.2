@@ -236,11 +236,10 @@ public class Facade {
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		return ctlUsuarios.realizaDoacao(idItemNec, idItemDoado, data);
 	}
-	/*
+	
 	public String listaDoacoes() {
-		return ctlItem.listaDoacoes();
+		return ctlUsuarios.listaDoacoes();
 	}
-	*/
 	
 	public void finalizaSistema() throws IOException{
 		ctlUsuarios.salvaDados();
