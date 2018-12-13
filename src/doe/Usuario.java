@@ -1,5 +1,6 @@
 package doe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.Map;
@@ -341,6 +342,21 @@ public class Usuario implements Serializable{
 		}
 		this.itens.remove(idItem);
 		
+	}
+
+	public Map<Integer, Item> getItens() {
+		return itens;
+	}
+
+	public ArrayList<Item> verificaMatch(Item itemNecessario) {
+		ArrayList<Item> itensMatch = new ArrayList<>();
+		
+		for (Integer i : itens.keySet()) {
+			if (itens.get(i).getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
+				itensMatch.add(this.itens.get(i));
+			}
+		}
+		return itensMatch;
 	}
 
 }

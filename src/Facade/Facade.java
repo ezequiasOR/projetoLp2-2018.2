@@ -230,7 +230,7 @@ public class Facade {
 	}
 	
 	public String match(String idReceptor, int idItemNecessario) {
-		return ctlItem.match(idReceptor, idItemNecessario,this.ctlUsuarios);
+		return ctlUsuarios.match(idReceptor, idItemNecessario);
 	}
 	
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {

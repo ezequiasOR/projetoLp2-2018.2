@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import Comparators.ComparatorMatchItens;
 import Validador.Validador;
 import doe.Item;
 import doe.Usuario;
@@ -27,40 +30,43 @@ import doe.Usuario;
  *
  */
 public class ControllerUsuario {
-	
+
 	/**
 	 * Validador de controle de usuario.
 	 */
 	private Validador validador;
-	
+
 	/**
 	 * Map responsavel por armazenar usuarios.
 	 */
 	private LinkedHashMap<String, Usuario> usuarios;
-	
+
 	/**
 	 * Atributo responsavel por controlar item.
 	 */
 	private ControllerItem ctlItem;
-	
+
 	/**
 	 * Construtor de controle de usuario.
-	 * @param ctlItem 
+	 * 
+	 * @param ctlItem
 	 */
 	public ControllerUsuario(ControllerItem ctlItem) {
 		this.usuarios = new LinkedHashMap<>();
 		this.validador = new Validador();
 		this.ctlItem = ctlItem;
 	}
-	
+
 	/**
 	 * Cadastra um doador no sistema.
 	 * 
-	 * @param id Id do usuario (doador)
-	 * @param nome Nome do usuario.
-	 * @param email Email do usuario.
+	 * @param id      Id do usuario (doador)
+	 * @param nome    Nome do usuario.
+	 * @param email   Email do usuario.
 	 * @param celular Numero do celular do usuario.
-	 * @param classe Classe do usuario (so podera ser PESSOA_FISICA, IGREJA, ONG, ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO FEDERAL, ASSOCIACAO, SOCIEDADE).
+	 * @param classe  Classe do usuario (so podera ser PESSOA_FISICA, IGREJA, ONG,
+	 *                ORGAO PUBLICO MUNICIPAL, ORGAO PUBLICO ESTADUAL, ORGAO PUBLICO
+	 *                FEDERAL, ASSOCIACAO, SOCIEDADE).
 	 * @return Retorna o Id do usuario cadastrado.
 	 */
 	public String cadastraDoador(String id, String nome, String email, String celular, String classe) {
@@ -73,7 +79,7 @@ public class ControllerUsuario {
 		this.usuarios.put(id, new Usuario(id, nome, email, celular, classe, "doador"));
 		return id;
 	}
-	
+
 	/**
 	 * Le usuarios receptores de um arquivo de texto.
 	 * 
@@ -99,7 +105,7 @@ public class ControllerUsuario {
 		sc.close();
 
 	}
-	
+
 	/**
 	 * Pesquisa um usuario pelo seu id no sistema.
 	 * 
@@ -114,7 +120,7 @@ public class ControllerUsuario {
 		}
 		return this.usuarios.get(id).toString();
 	}
-	
+
 	/**
 	 * Pesquisa por todos os usuarios no sistema com um mesmo nome.
 	 * 
@@ -154,13 +160,13 @@ public class ControllerUsuario {
 		}
 		return saida;
 	}
-	
+
 	/**
 	 * Atualiza as informarcoes de um usuario ja cadastrado.
 	 * 
-	 * @param id Id do usuario (este e imutavel).
-	 * @param nome Novo nome desejado.
-	 * @param email Novo email desejado.
+	 * @param id      Id do usuario (este e imutavel).
+	 * @param nome    Novo nome desejado.
+	 * @param email   Novo email desejado.
 	 * @param celular Novo numero de celular desejado.
 	 * @return Retorna a nova representacao textual do usuario.
 	 */
@@ -183,7 +189,7 @@ public class ControllerUsuario {
 
 		return this.usuarios.get(id).toString();
 	}
-	
+
 	/**
 	 * Remove um usuario cadastrado no sistema.
 	 * 
@@ -191,54 +197,56 @@ public class ControllerUsuario {
 	 */
 	public void removeUsuario(String id) {
 		this.validador.validaId(id);
-		
+
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
 
 		this.usuarios.remove(id);
 	}
-	
+
 	/**
-	 * Adiciona um item em um usuario (doador).
-	 * A Id do item e gerada automaticamente pelo sistema.
+	 * Adiciona um item em um usuario (doador). A Id do item e gerada
+	 * automaticamente pelo sistema.
 	 * 
-	 * @param id Id do usuario a adicionar o item em sua conta (e no sistema).
-	 * @param descricao Descricao do item a ser cadastrado.
+	 * @param id         Id do usuario a adicionar o item em sua conta (e no
+	 *                   sistema).
+	 * @param descricao  Descricao do item a ser cadastrado.
 	 * @param quantidade Quantidade do item a ser cadastrado.
-	 * @param tags Tags do item a ser cadastrado.
-	 * @return O Id gerado automaticamente do item(que e sua ordem de cadastrado no sistema).
+	 * @param tags       Tags do item a ser cadastrado.
+	 * @return O Id gerado automaticamente do item(que e sua ordem de cadastrado no
+	 *         sistema).
 	 */
 	public int adicionaItem(String id, String descricao, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(id, descricao, quantidade);
 		if (!this.usuarios.containsKey(id)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + id + ".");
 		}
-		
+
 		int idItem = ctlItem.identificador();
-		
-		if(!(ctlItem.contemDescritor(descricao))) {
+
+		if (!(ctlItem.contemDescritor(descricao))) {
 			ctlItem.adicionaDescritor(descricao);
-			if(quantidade > 0) {
+			if (quantidade > 0) {
 				ctlItem.modificaDescritorSistemaQuantidade(descricao, quantidade);
 			}
 		}
-		
+
 		else {
 			ctlItem.modificaDescritorSistemaQuantidade(descricao, quantidade);
 		}
-		
+
 		this.usuarios.get(id).adicionaItem(idItem, descricao.trim().toLowerCase(), quantidade, tags);
-		ctlItem.adicionaItemSistema(new Item(idItem, descricao.trim().toLowerCase(), quantidade,tags,this.usuarios.get(id).getNome(),id));
-		
+		ctlItem.adicionaItemSistema(new Item(idItem, descricao.trim().toLowerCase(), quantidade, tags,
+				this.usuarios.get(id).getNome(), id));
+
 		return idItem;
 	}
-	
-	
+
 	/**
 	 * Exibe um item de um doador.
 	 * 
-	 * @param idItem Id do item a ser exibido.
+	 * @param idItem   Id do item a ser exibido.
 	 * @param idDoador Id do doador portado do item.
 	 * @return Retorna a representacao textual do item.
 	 */
@@ -248,138 +256,140 @@ public class ControllerUsuario {
 		}
 		return this.usuarios.get(idDoador).getItem(idItem);
 	}
-	
+
 	/**
 	 * Atualiza um item de um doador.
 	 * 
-	 * @param Id do item (este e imutavel, assim como o ID do doador).
-	 * @param idDoador Id do doador portador do item a ser modificado.
+	 * @param Id         do item (este e imutavel, assim como o ID do doador).
+	 * @param idDoador   Id do doador portador do item a ser modificado.
 	 * @param quantidade Nova quantidade desejada do item.
-	 * @param tags Novas tags desejadas do item.
+	 * @param tags       Novas tags desejadas do item.
 	 * @return Retorna a nova representacao textual do Item.
 	 */
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
-        this.validador.validaId(idDoador);
-        this.validador.validaIdItem(idItem);
-        
-        if (!this.usuarios.containsKey(idDoador)) {
-            throw new IllegalArgumentException("Usuario nao encontrado: " + idDoador + ".");
-        }
-        if (this.usuarios.get(idDoador).getItem(idItem) == null) {
-            throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
-        }
-        
-        if(quantidade > 0) {
-        	ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idDoador).getItemOb(idItem).getDescricaoItem(), quantidade);
-        	ctlItem.modificaQuantidadeItemSistema(idItem, quantidade);
-        }
-        
-        if(!(tags == null)) {
-        	ctlItem.modificaTagsItemSistema(idItem, tags);
-        }
-        
-        return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
-    }
-	
+		this.validador.validaId(idDoador);
+		this.validador.validaIdItem(idItem);
+
+		if (!this.usuarios.containsKey(idDoador)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + idDoador + ".");
+		}
+		if (this.usuarios.get(idDoador).getItem(idItem) == null) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
+
+		if (quantidade > 0) {
+			ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idDoador).getItemOb(idItem).getDescricaoItem(),
+					quantidade);
+			ctlItem.modificaQuantidadeItemSistema(idItem, quantidade);
+		}
+
+		if (!(tags == null)) {
+			ctlItem.modificaTagsItemSistema(idItem, tags);
+		}
+
+		return this.usuarios.get(idDoador).atualizaItem(idItem, quantidade, tags);
+	}
+
 	/**
 	 * Remove um item de um doador.
 	 * 
-	 * @param idItem Id do item a ser removido.
+	 * @param idItem   Id do item a ser removido.
 	 * @param idDoador Id do doador portador do item a ser removido.
 	 */
 	public void removeItemParaDoacao(String idItem, String idDoador) {
 		this.validador.validaId(idDoador);
 		this.validador.validaId(idItem);
 		this.validador.validaIdItem(Integer.parseInt(idItem));
-		
-		if(!(this.usuarios.containsKey(idDoador))) {
+
+		if (!(this.usuarios.containsKey(idDoador))) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idDoador + ".");
 		}
-		
+
 		int idItemInt = Integer.parseInt(idItem);
-		
-		if(this.usuarios.get(idDoador).verificaItem(idItemInt)) {
-			ctlItem.modificaDescritorSistemaQuantidade(this.usuarios.get(idDoador).getItemOb(idItemInt).getDescricaoItem(), 0);
+
+		if (this.usuarios.get(idDoador).verificaItem(idItemInt)) {
+			ctlItem.modificaDescritorSistemaQuantidade(
+					this.usuarios.get(idDoador).getItemOb(idItemInt).getDescricaoItem(), 0);
 		}
-		
+
 		this.usuarios.get(idDoador).removeItem(idItemInt);
 		ctlItem.removeItemSistema(idItemInt);
-		
 
 	}
-	
+
 	/**
 	 * Adiciona um item a um receptor, um pedido de um item em uma melhor descricao.
 	 * 
-	 * @param idReceptor Id do usuario receptor.
+	 * @param idReceptor    Id do usuario receptor.
 	 * @param descricaoItem Descricao do item desejado.
-	 * @param quantidade Quantidade desejada do item desejado.
-	 * @param tags Tags do item desejado.
+	 * @param quantidade    Quantidade desejada do item desejado.
+	 * @param tags          Tags do item desejado.
 	 * @return Retorna o id do item gerado automaticamente pelo sistema.
 	 */
 	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
 		this.validador.verificaCadastroDeItem(idReceptor, descricaoItem, quantidade);
-		
+
 		if (!this.usuarios.containsKey(idReceptor)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
 		}
-		
+
 		int idItem = ctlItem.identificador();
-		
-		ctlItem.adicionaItemSistemaNecessario(new Item(idItem, descricaoItem.toLowerCase(), quantidade, tags, this.usuarios.get(idReceptor).getNome(), idReceptor));
-		
+
+		ctlItem.adicionaItemSistemaNecessario(new Item(idItem, descricaoItem.toLowerCase(), quantidade, tags,
+				this.usuarios.get(idReceptor).getNome(), idReceptor));
+
 		return this.usuarios.get(idReceptor).adicionaItem(idItem, descricaoItem.toLowerCase(), quantidade, tags);
-		
+
 	}
 
 	/**
 	 * Atualiza um pedido de um receptor.
 	 * 
-	 * @param idReceptor Id do receptor.
-	 * @param idItem Id do item (este e imutavel, assim como o ID do receptor).
+	 * @param idReceptor     Id do receptor.
+	 * @param idItem         Id do item (este e imutavel, assim como o ID do
+	 *                       receptor).
 	 * @param novaQuantidade Nova quantidade do pedido.
-	 * @param novasTags Novas tags do pedido.
+	 * @param novasTags      Novas tags do pedido.
 	 * @return Retorna a nova representacao textual do pedido.
 	 */
 	public String atualizaItemNecessario(String idReceptor, int idItem, int novaQuantidade, String novasTags) {
 		this.validador.validaId(idReceptor);
-        this.validador.validaIdItem(idItem);
+		this.validador.validaIdItem(idItem);
 
-        if (!this.usuarios.containsKey(idReceptor)) {
-            throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
-        }
-        
-        if(novaQuantidade > 0) {
-        	ctlItem.modificaQuantidadeItemSistema(idItem, novaQuantidade);
-        }
-        
-        if(!(novasTags == null)) {
-        	ctlItem.modificaTagsItemSistemaNecessario(idItem, novasTags);
-        }
-        
-        
-        return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
+		if (!this.usuarios.containsKey(idReceptor)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
+		}
+
+		if (novaQuantidade > 0) {
+			ctlItem.modificaQuantidadeItemSistema(idItem, novaQuantidade);
+		}
+
+		if (!(novasTags == null)) {
+			ctlItem.modificaTagsItemSistemaNecessario(idItem, novasTags);
+		}
+
+		return this.usuarios.get(idReceptor).atualizaItemNecessario(idItem, novaQuantidade, novasTags);
 	}
-	
+
 	/**
 	 * Remove um pedido de um receptor.
 	 * 
 	 * @param idReceptor Id do receptor a ter seu pedido removido.
-	 * @param idItem Id do pedido a ser removido.
+	 * @param idItem     Id do pedido a ser removido.
 	 */
 	public void removeItemNecessario(String idReceptor, int idItem) {
 		this.validador.validaId(idReceptor);
 		this.validador.validaIdItem(idItem);
-		
+
 		if (!this.usuarios.containsKey(idReceptor)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
 		}
-		
+
 		ctlItem.removeItemSistemaNecessario(idItem);
 		this.usuarios.get(idReceptor).removeItemNecessario(idItem);
-		
+
 	}
-	
+
 	/**
 	 * Verifica se um usuario e receptor ou doador.
 	 * 
@@ -387,23 +397,93 @@ public class ControllerUsuario {
 	 */
 	public void verificaStatusReceptor(String idUsuario) {
 		this.pesquisaUsuarioPorId(idUsuario);
-		if(this.usuarios.get(idUsuario).getStatus().equals("doador")) {
+		if (this.usuarios.get(idUsuario).getStatus().equals("doador")) {
 			throw new IllegalArgumentException("O Usuario deve ser um receptor: " + idUsuario + ".");
 		}
 	}
-	
+
+	public String match(String idReceptor, int idItemNecessario) {
+		this.validador.validaId(idReceptor);
+		this.validador.validaIdItem(idItemNecessario);
+		if (!this.usuarios.containsKey(idReceptor)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + idReceptor + ".");
+		}
+		this.verificaStatusReceptor(idReceptor);
+
+		Item itemNecessario = this.usuarios.get(idReceptor).getItemOb(idItemNecessario);
+
+		ArrayList<Item> itensMatch = new ArrayList<>();
+
+		for (String chave : this.usuarios.keySet()) {
+			itensMatch.addAll(this.usuarios.get(chave).verificaMatch(itemNecessario));
+		}
+
+		this.pontuacao(itensMatch, itemNecessario);
+		Collections.sort(itensMatch, new ComparatorMatchItens());
+
+		String match = "";
+
+		for (int i = 0; i < itensMatch.size(); i++) {
+			if (i == itensMatch.size() - 1) {
+				match = match + itensMatch.get(i).toStringSistema();
+			} else {
+				match = match + itensMatch.get(i).toStringSistema() + " | ";
+			}
+
+		}
+		return match;
+	}
+
+	private void pontuacao(ArrayList<Item> itensMatch, Item itemNecessario) {
+		this.resetaPontos(itensMatch);
+
+		for (Item i : itensMatch) {
+
+			if (Arrays.equals(i.getTags(), itemNecessario.getTags())) {
+				i.setPontos(10 * itemNecessario.getTags().length);
+			}
+
+			else {
+				for (int j = 0; j < itensMatch.size() - 1; j++) {
+					this.pontuaPelasTags(itensMatch.get(j), itemNecessario);
+
+				}
+			}
+		}
+	}
+
+	private void pontuaPelasTags(Item item, Item itemNecessario) {
+		for (int k = 0; k <= itemNecessario.getTags().length - 1; k++) {
+			for (int m = 0; m <= item.getTags().length - 1; m++) {
+				if (m != k && itemNecessario.getTags()[k].equals(item.getTags()[m])) {
+					item.setPontos(5);
+					break;
+				} else if (m == k && itemNecessario.getTags()[k].equals(item.getTags()[m])) {
+					item.setPontos(10);
+					break;
+				}
+			}
+		}
+	}
+
+	private void resetaPontos(ArrayList<Item> itensMatch) {
+		for (int i = 0; i < itensMatch.size(); i++) {
+			itensMatch.get(i).resetaPontos();
+		}
+	}
+
 	/**
 	 * Salva o Mapa de usuarios em um arquivo.
 	 * 
 	 * @throws IOException
 	 */
-	public void salvaDados() throws IOException{
+	public void salvaDados() throws IOException {
 		ObjectOutputStream gravaObjeto;
-		gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "usuarios.txt" ));
+		gravaObjeto = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "usuarios.txt"));
 		gravaObjeto.writeObject(this.usuarios);
 		gravaObjeto.close();
 	}
-	
+
 	/**
 	 * Le e recupera o Mapa de usuarios de um arquivo.
 	 * 
@@ -411,12 +491,12 @@ public class ControllerUsuario {
 	 * @throws IOException
 	 */
 	@SuppressWarnings("unchecked")
-	public void recuperaDados() throws ClassNotFoundException, IOException{
+	public void recuperaDados() throws ClassNotFoundException, IOException {
 		ObjectInputStream objeto;
 		objeto = new ObjectInputStream(new FileInputStream("srs" + File.separator + "usuarios.txt"));
 		Object objLeitura = objeto.readObject();
 		this.usuarios = (LinkedHashMap<String, Usuario>) objLeitura;
 		objeto.close();
-		
+
 	}
 }

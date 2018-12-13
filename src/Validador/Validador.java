@@ -172,9 +172,12 @@ public class Validador {
 		}
 	}
 
-	public void validaItemNecessario(Item itemNecessario, int idItemNec) {
+	public void validaItem(Item itemNecessario, Item itemDoacao, int idItemNec, int idItemDoado) {
 		if (itemNecessario == null) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItemNec +".");
+		}
+		if (itemDoacao == null) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItemDoado +".");
 		}
 	}
 

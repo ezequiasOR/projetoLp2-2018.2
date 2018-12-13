@@ -525,7 +525,7 @@ public class ControllerItem {
 				itemNecessario = i;
 			}
 		}
-		this.validador.validaItemNecessario(itemNecessario, idItemNec);
+		this.validador.validaItem(itemNecessario, itemDoacao, idItemNec, idItemDoado);
 		
 		for (Item i : this.itensSistema) {
 			if (i.getDescricaoItem().equals(itemNecessario.getDescricaoItem())) {
@@ -533,6 +533,8 @@ public class ControllerItem {
 				break;
 			}
 		}
+		
+		
 		this.validador.validaDoacao(itemDoacao, itemNecessario);
 		
 		
