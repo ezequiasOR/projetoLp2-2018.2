@@ -241,24 +241,52 @@ public class Facade {
 	public void removeItemNecessario(String idReceptor, int idItem) {
 		ctlUsuarios.removeItemNecessario(idReceptor, idItem);
 	}
-
+	
+	/**
+	 * Realiza match entre um pedido e varias oportunidades de recebelo pelas doacoes.
+	 * O Programa verifica quais itens para doacao tem a mesma descricao do item necessario do receptor,
+	 * e os mostra ordenadamente conforme as tags.
+	 * @param idReceptor Id do receptor a verificar os matches.
+	 * @param idItemNecessario Id do item necessario do receptor.
+	 * @return Uma representação textual ordenada de todos os itens que atendem ao item necessario, cadastrados no sistema.
+	 */
 	public String match(String idReceptor, int idItemNecessario) {
 		return ctlUsuarios.match(idReceptor, idItemNecessario);
 	}
-
+	
+	/**
+	 * Realiza uma doacao entre um doador e um receptor, guardando uma representacao 
+	 * textual como registro de tal.
+	 * @param idItemNec
+	 * @param idItemDoado
+	 * @param data
+	 * @return
+	 */
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		return ctlUsuarios.realizaDoacao(idItemNec, idItemDoado, data);
 	}
-
+	
+	/**
+	 * @return Retorna uma representação textual de todas as doacoes efetuadas, de forma ordenada pela data da doacao.
+	 */
 	public String listaDoacoes() {
 		return ctlUsuarios.listaDoacoes();
 	}
-
+	
+	/**
+	 * Encerra o sistema, salvando os principais dados gerados durante a execucao, como Usuarios e Itens.
+	 * @throws IOException
+	 */
 	public void finalizaSistema() throws IOException {
 		ctlUsuarios.salvaDados();
 		ctlItem.salvaDados();
 	}
-
+	
+	/**
+	 * Reinicializa o sistema, recuperando os dados salvos anteriormente durante a finalizacao.
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public void iniciaSistema() throws ClassNotFoundException, IOException {
 		ctlUsuarios.recuperaDados();
 		ctlItem.recuperaDados();
